@@ -1,4 +1,4 @@
 package interface_adapter.team_stats;
 
-public class TeamState {
+public class TeamStatsPresenter {
 }
