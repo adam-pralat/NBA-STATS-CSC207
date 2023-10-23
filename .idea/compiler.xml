@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Group80-CSC207" />
+        <module name="Code" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Group80-CSC207" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

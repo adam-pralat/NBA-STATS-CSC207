@@ -1,0 +1,12 @@
+Basic Use Cases: 
+
+1. query by player
+2. query by team
+------------------------------------------------------------------------------------------------------------------------------------------
+Extra stuff we can add:
+
+3. leaderboard by specific query (e.g. leaderboard of [players/teams/etc] based on [points they scored in the season/steals/etc])
+4. compare performance of individual [team/player] over time (e.g. compare lebron's stats from 2016 and 2019)
+5. create bar/chart for specific data
+6. choose stat filter
+7. sort data (e.g. show players with the highest points at the top (kinda like sort by function on youtube))

@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/Diagrams/Diagrams.iml" filepath="$PROJECT_DIR$/Diagrams/Diagrams.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Group80-CSC207.iml" filepath="$PROJECT_DIR$/.idea/Group80-CSC207.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Code.iml" filepath="$PROJECT_DIR$/.idea/Code.iml" />
+>>>>>>> 9497637362dcda6fd061813de1458c8761e94c75
     </modules>
   </component>
 </project>
