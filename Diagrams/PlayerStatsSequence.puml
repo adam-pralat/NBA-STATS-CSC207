@@ -1,0 +1,21 @@
+@startuml
+Title getPlayerStats
+Actor -> PlayerStatsInteractor: execute
+activate PlayerStatsInteractor
+PlayerStatsInteractor -> PlayerDataAccessInterface: getPlayerStats
+activate PlayerDataAccessInterface
+PlayerDataAccessInterface --> PlayerStatsInteractor
+deactivate PlayerDataAccessInterface
+PlayerStatsInteractor -> PlayerStatsOutputData: <<create>>
+activate PlayerStatsOutputData
+PlayerStatsOutputData --> PlayerStatsInteractor
+deactivate PlayerStatsOutputData
+PlayerStatsInteractor -> PlayerStatsOutputBoundary: prepareSuccessView
+activate PlayerStatsOutputBoundary
+PlayerStatsOutputBoundary --> PlayerStatsInteractor
+PlayerStatsInteractor -> PlayerStatsOutputBoundary: prepareFailView
+PlayerStatsOutputBoundary --> PlayerStatsInteractor
+deactivate PlayerStatsOutputBoundary
+PlayerStatsInteractor --> Actor
+deactivate PlayerStatsInteractor
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+Title getTeamStats
+Actor -> TeamStatsInteractor: execute
+activate TeamStatsInteractor
+TeamStatsInteractor -> TeamDataAccessInterface: getTeamStats
+activate TeamDataAccessInterface
+TeamDataAccessInterface --> TeamStatsInteractor
+deactivate TeamDataAccessInterface
+TeamStatsInteractor -> TeamStatsOutputData: <<create>>
+activate TeamStatsOutputData
+TeamStatsOutputData --> TeamStatsInteractor
+deactivate TeamStatsOutputData
+TeamStatsInteractor -> TeamStatsOutputBoundary: prepareSuccessView
+activate TeamStatsOutputBoundary
+TeamStatsOutputBoundary --> TeamStatsInteractor
+TeamStatsInteractor -> TeamStatsOutputBoundary: prepareFailView
+TeamStatsOutputBoundary --> TeamStatsInteractor
+deactivate TeamStatsOutputBoundary
+TeamStatsInteractor --> Actor
+deactivate TeamStatsInteractor
+@enduml
