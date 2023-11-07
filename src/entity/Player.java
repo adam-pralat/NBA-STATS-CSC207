@@ -2,9 +2,10 @@ package entity;
 
 public class Player {
     // Personal information
+    private int id;
     private String firstName;
-    private String lastName; // YYYY-MM-DD
-    private String birthDate;
+    private String lastName;
+    private String birthDate; // YYYY-MM-DD
     private String country;
     private double height; // In meters
     private double weight; // In kg
