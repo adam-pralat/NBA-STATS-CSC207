@@ -1,6 +1,11 @@
 package entity;
 
+import java.text.DecimalFormat;
+
+import static java.lang.Math.round;
+
 public class Player {
+    private int id; // API id
     // Personal information
     private String firstName;
     private String lastName; // YYYY-MM-DD
@@ -17,10 +22,11 @@ public class Player {
     private boolean active; // Whether or not the player is currently active
 
 
-
     // Statistic metrics
+    private int gamesPlayed;
     private int points;
-    private double minutes; // How many minutes the player has played
+    private int assists;
+    private int timePlayed; // How much time the player has played (In seconds)
     private int fieldGoalsMade;
     private int fieldGoalsAttempted;
     private int freeThrowsMade;
@@ -35,7 +41,8 @@ public class Player {
     private int blocks;
     private int plusMinus;
 
-    public Player(String firstName,
+    public Player(int id,
+                  String firstName,
                   String lastName,
                   String birthDate,
                   String country,
@@ -45,8 +52,10 @@ public class Player {
                   String position,
                   int jerseyNumber,
                   boolean active,
+                  int gamesPlayed,
                   int points,
-                  double minutes,
+                  int assists,
+                  int timePlayed,
                   int fieldGoalsMade,
                   int fieldGoalsAttempted,
                   int freeThrowsMade,
@@ -61,6 +70,7 @@ public class Player {
                   int blocks,
                   int plusMinus
     ){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -71,8 +81,10 @@ public class Player {
         this.position = position;
         this.jerseyNumber = jerseyNumber;
         this.active = active;
+        this.gamesPlayed = gamesPlayed;
         this.points = points;
-        this.minutes = minutes;
+        this.assists = assists;
+        this.timePlayed = timePlayed;
         this.fieldGoalsMade = fieldGoalsMade;
         this.fieldGoalsAttempted = fieldGoalsAttempted;
         this.freeThrowsMade = freeThrowsMade;
@@ -87,6 +99,66 @@ public class Player {
         this.blocks = blocks;
         this.plusMinus = plusMinus;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", country='" + country + '\'' +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", team='" + team + '\'' +
+                ", position='" + position + '\'' +
+                ", jerseyNumber=" + jerseyNumber +
+                ", active=" + active +
+                ", gamesPlayed=" + gamesPlayed +
+                ", points=" + points +
+                ", assists=" + assists +
+                ", timePlayed=" + timePlayed +
+                ", fieldGoalsMade=" + fieldGoalsMade +
+                ", fieldGoalsAttempted=" + fieldGoalsAttempted +
+                ", freeThrowsMade=" + freeThrowsMade +
+                ", freeThrowsAttempted=" + freeThrowsAttempted +
+                ", threePointsMade=" + threePointsMade +
+                ", threePointsAttempted=" + threePointsAttempted +
+                ", offensiveRebounds=" + offensiveRebounds +
+                ", defensiveRebounds=" + defensiveRebounds +
+                ", personalFouls=" + personalFouls +
+                ", steals=" + steals +
+                ", turnovers=" + turnovers +
+                ", blocks=" + blocks +
+                ", plusMinus=" + plusMinus +
+                '}';
+    }
+
+    // Per game methods
+    private double statPerGame(int stat){
+        if (gamesPlayed != 0) {
+            double perGame = (double) stat / (double) gamesPlayed;
+            DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
+            return Double.valueOf(df.format(perGame));
+        } else {
+            return 0.0;
+        }
+    }
+
+    public double pointsPerGame() { return statPerGame(points);}
+    public double assistsPerGame(){ return statPerGame(assists);}
+
+    public double reboundsPerGame(){ return statPerGame(totalRebounds());}
+
+    public double blocksPerGame(){ return statPerGame(blocks);}
+
+    public double stealsPerGame(){ return statPerGame(steals); }
+
+    public double timePlayedPerGame() {return statPerGame(timePlayed);}
+
+    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
+
+    // TODO: Finish all methods
 
     // Percentage methods
     public double fieldGoalPercentage(){
@@ -105,6 +177,18 @@ public class Player {
         } else {
             return 0.0;
         }
+    }
+
+    public int id(){
+        return this.id;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
     }
 
     public double threePointPercentage(){
@@ -202,6 +286,14 @@ public class Player {
         this.active = active;
     }
 
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
     public int getPoints() {
         return points;
     }
@@ -210,12 +302,12 @@ public class Player {
         this.points = points;
     }
 
-    public double getMinutes() {
-        return minutes;
+    public double getTimePlayed() {
+        return timePlayed;
     }
 
-    public void setMinutes(double minutes) {
-        this.minutes = minutes;
+    public void setTimePlayed(int timePlayed) {
+        this.timePlayed = timePlayed;
     }
 
     public int getFieldGoalsMade() {
