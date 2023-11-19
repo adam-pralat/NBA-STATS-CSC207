@@ -134,6 +134,7 @@ public class Player {
                 '}';
     }
 
+    // TODO: Use facade here??
     // Per game methods
     private double statPerGame(int stat){
         if (gamesPlayed != 0) {
@@ -148,17 +149,30 @@ public class Player {
     public double pointsPerGame() { return statPerGame(points);}
     public double assistsPerGame(){ return statPerGame(assists);}
 
+    public double fieldGoalsMadePerGame() {return statPerGame(fieldGoalsMade); }
+    public double fieldGoalsAttemptedPerGame() {return statPerGame(fieldGoalsAttempted); }
+
+    public double freeThrowsMadePerGame() {return statPerGame(freeThrowsMade); }
+    public double freeThrowsAttemptedPerGame() {return statPerGame(freeThrowsAttempted); }
+
+    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
+    public double threePointsAttemptedPerGame() {return statPerGame(threePointsAttempted); }
+
+    public double defensiveReboundsPerGame() {return statPerGame(defensiveRebounds); }
+
+    public double offensiveReboundsPerGame() {return statPerGame(offensiveRebounds); }
+
     public double reboundsPerGame(){ return statPerGame(totalRebounds());}
 
-    public double blocksPerGame(){ return statPerGame(blocks);}
+    public double personalFoulsPerGame(){ return statPerGame(personalFouls); }
 
     public double stealsPerGame(){ return statPerGame(steals); }
 
+    public double turnoversPerGame() {return statPerGame(turnovers); }
+
+    public double blocksPerGame(){ return statPerGame(blocks);}
+
     public double timePlayedPerGame() {return statPerGame(timePlayed);}
-
-    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
-
-    // TODO: Finish all methods
 
     // Percentage methods
     public double fieldGoalPercentage(){
