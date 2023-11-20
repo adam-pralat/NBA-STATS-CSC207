@@ -1,5 +1,5 @@
 package use_case.team_stats;
 
 public interface TeamStatsInputBoundary {
-    void execute(TeamStatsInputBoundary teamStatsInputBoundary);
+    TeamStatsOutputData getTeamStats(int teamId);
 }
