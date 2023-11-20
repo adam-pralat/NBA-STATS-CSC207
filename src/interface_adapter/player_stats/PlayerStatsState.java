@@ -2,6 +2,8 @@ package interface_adapter.player_stats;
 
 public class PlayerStatsState {
 
+    private String playerStatsError;
+
     // Profile information
     private String firstName;
     private String lastName;
@@ -36,6 +38,24 @@ public class PlayerStatsState {
     private int turnovers;
     private int blocks;
     private int plusMinus;
+
+    // Statistic metrics for per game
+    private double pointsPerGame;
+    private double assistsPerGame;
+    private double timePlayedPerGame; // How much time the player has played (In seconds)
+    private double fieldGoalsMadePerGame;
+    private double fieldGoalsAttemptedPerGame;
+    private double freeThrowsMadePerGame;
+    private double freeThrowsAttemptedPerGame;
+    private double threePointsMadePerGame;
+    private double threePointsAttemptedPerGame;
+    private double offensiveReboundsPerGame;
+    private double defensiveReboundsPerGame;
+    private double personalFoulsPerGame;
+    private double stealsPerGame;
+    private double turnoversPerGame;
+    private double blocksPerGame;
+    private double plusMinusPerGame;
 
     // instantiate Error fields
 
@@ -574,7 +594,7 @@ public class PlayerStatsState {
     }
 
     // Additional function for calculating statPerGame and formatting the data appropriately
-    // Additional methods for returning the reformatted data
+    // Additional methods for getting and setting the reformatted data
     // (These are from the Player.java entity to make formatting easier
     private double statPerGame(int stat){
         if (gamesPlayed != 0) {
@@ -586,6 +606,7 @@ public class PlayerStatsState {
         }
     }
 
+    // "getters" for per game stats metric
     public double pointsPerGame() { return statPerGame(points);}
     public double assistsPerGame(){ return statPerGame(assists);}
 
@@ -613,4 +634,77 @@ public class PlayerStatsState {
     public double blocksPerGame(){ return statPerGame(blocks);}
 
     public double timePlayedPerGame() {return statPerGame(timePlayed);}
+
+    // setters for per game stats metrics
+    public void setPointsPerGame(double pointsPerGame) {
+        this.pointsPerGame = pointsPerGame;
+    }
+
+    public void setAssistsPerGame(double assistsPerGame) {
+        this.assistsPerGame = assistsPerGame;
+    }
+
+    public void setTimePlayedPerGame(double timePlayedPerGame) {
+        this.timePlayedPerGame = timePlayedPerGame;
+    }
+
+    public void setFieldGoalsMadePerGame(double fieldGoalsMadePerGame) {
+        this.fieldGoalsMadePerGame = fieldGoalsMadePerGame;
+    }
+
+    public void setFieldGoalsAttemptedPerGame(double fieldGoalsAttemptedPerGame) {
+        this.fieldGoalsAttemptedPerGame = fieldGoalsAttemptedPerGame;
+    }
+
+    public void setFreeThrowsMadePerGame(double freeThrowsMadePerGame) {
+        this.freeThrowsMadePerGame = freeThrowsMadePerGame;
+    }
+
+    public void setFreeThrowsAttemptedPerGame(double freeThrowsAttemptedPerGame) {
+        this.freeThrowsAttemptedPerGame = freeThrowsAttemptedPerGame;
+    }
+
+    public void setThreePointsMadePerGame(double threePointsMadePerGame) {
+        this.threePointsMadePerGame = threePointsMadePerGame;
+    }
+
+    public void setThreePointsAttemptedPerGame(double threePointsAttemptedPerGame) {
+        this.threePointsAttemptedPerGame = threePointsAttemptedPerGame;
+    }
+
+    public void setOffensiveReboundsPerGame(double offensiveReboundsPerGame) {
+        this.offensiveReboundsPerGame = offensiveReboundsPerGame;
+    }
+
+    public void setDefensiveReboundsPerGame(double defensiveReboundsPerGame) {
+        this.defensiveReboundsPerGame = defensiveReboundsPerGame;
+    }
+
+    public void setPersonalFoulsPerGame(double personalFoulsPerGame) {
+        this.personalFoulsPerGame = personalFoulsPerGame;
+    }
+
+    public void setStealsPerGame(double stealsPerGame) {
+        this.stealsPerGame = stealsPerGame;
+    }
+
+    public void setTurnoversPerGame(double turnoversPerGame) {
+        this.turnoversPerGame = turnoversPerGame;
+    }
+
+    public void setBlocksPerGame(double blocksPerGame) {
+        this.blocksPerGame = blocksPerGame;
+    }
+
+    public void setPlusMinusPerGame(double plusMinusPerGame) {
+        this.plusMinusPerGame = plusMinusPerGame;
+    }
+
+    public String getPlayerStatsError() {
+        return playerStatsError;
+    }
+
+    public void setPlayerStatsError(String playerStatsError) {
+        this.playerStatsError = playerStatsError;
+    }
 }
