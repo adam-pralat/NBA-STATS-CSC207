@@ -12,10 +12,26 @@ import java.util.Map;
 
 public class PlayerDataAccessObject {
     public static void main(String args[]) {
-        Player result = getPlayerInfo(236);
-        System.out.println(result);
-        Map<String, Object> r = getPlayerYearlyStats(236, 2018);
-        System.out.println(r);
+        System.out.println(existsById(100000));
+    }
+
+    public static boolean existsById(int playerID) throws JSONException {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://api-nba-v1.p.rapidapi.com/players?id=" + playerID)
+                .get()
+                .addHeader("X-RapidAPI-Key", "7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09")
+                .addHeader("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com")
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject responseJSON = new JSONObject(response.body().string());
+            return responseJSON.getInt("results") > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
     public static Player getPlayerInfo(int playerID) throws JSONException {
         // Get a player's stats over a season
