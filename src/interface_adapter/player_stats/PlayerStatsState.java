@@ -2,6 +2,8 @@ package interface_adapter.player_stats;
 
 public class PlayerStatsState {
 
+    private String playerStatsError;
+
     // Profile information
     private String firstName;
     private String lastName;
@@ -696,5 +698,13 @@ public class PlayerStatsState {
 
     public void setPlusMinusPerGame(double plusMinusPerGame) {
         this.plusMinusPerGame = plusMinusPerGame;
+    }
+
+    public String getPlayerStatsError() {
+        return playerStatsError;
+    }
+
+    public void setPlayerStatsError(String playerStatsError) {
+        this.playerStatsError = playerStatsError;
     }
 }
