@@ -572,4 +572,45 @@ public class PlayerStatsState {
     public void setPlusMinusError(int plusMinusError) {
         this.plusMinusError = plusMinusError;
     }
+
+    // Additional function for calculating statPerGame and formatting the data appropriately
+    // Additional methods for returning the reformatted data
+    // (These are from the Player.java entity to make formatting easier
+    private double statPerGame(int stat){
+        if (gamesPlayed != 0) {
+            double perGame = (double) stat / (double) gamesPlayed;
+            DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
+            return Double.valueOf(df.format(perGame));
+        } else {
+            return 0.0;
+        }
+    }
+
+    public double pointsPerGame() { return statPerGame(points);}
+    public double assistsPerGame(){ return statPerGame(assists);}
+
+    public double fieldGoalsMadePerGame() {return statPerGame(fieldGoalsMade); }
+    public double fieldGoalsAttemptedPerGame() {return statPerGame(fieldGoalsAttempted); }
+
+    public double freeThrowsMadePerGame() {return statPerGame(freeThrowsMade); }
+    public double freeThrowsAttemptedPerGame() {return statPerGame(freeThrowsAttempted); }
+
+    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
+    public double threePointsAttemptedPerGame() {return statPerGame(threePointsAttempted); }
+
+    public double defensiveReboundsPerGame() {return statPerGame(defensiveRebounds); }
+
+    public double offensiveReboundsPerGame() {return statPerGame(offensiveRebounds); }
+
+    public double reboundsPerGame(){ return statPerGame(totalRebounds());}
+
+    public double personalFoulsPerGame(){ return statPerGame(personalFouls); }
+
+    public double stealsPerGame(){ return statPerGame(steals); }
+
+    public double turnoversPerGame() {return statPerGame(turnovers); }
+
+    public double blocksPerGame(){ return statPerGame(blocks);}
+
+    public double timePlayedPerGame() {return statPerGame(timePlayed);}
 }
