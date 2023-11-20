@@ -190,7 +190,7 @@ public class Player {
         return out;
     }
 
-    public void increment(Map<String, Object> statMap){
+    public void addStat(Map<String, Object> statMap){
         // Assuming statMap contains all fields needed
         gamesPlayed += (Integer) statMap.get("gamesPlayed");
         points += (Integer) statMap.get("points");
