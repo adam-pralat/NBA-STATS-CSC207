@@ -33,6 +33,24 @@ public class PlayerDataAccessObject {
             return false;
         }
     }
+
+    public static boolean existsById(int playerId) throws JSONException {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://api-nba-v1.p.rapidapi.com/players?id=" + playerId)
+                .get()
+                .addHeader("X-RapidAPI-Key", "7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09")
+                .addHeader("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            JSONObject playerJSON = new JSONObject(response.body().string());
+            return playerJSON.getInt("results") > 0;
+        } catch(Exception e){
+            return false;
+        }
+    }
     public static Player getPlayerInfo(int playerID) throws JSONException {
         // Get a player's stats over a season
         // Returns player object with basic information (Does not vary season-to-season)
