@@ -9,53 +9,59 @@ public class PlayerStatsState {
     private String lastName;
     private String birthDate; // YYYY-MM-DD
     private String country;
-    private double height; // In meters
-    private double weight; // In kg
+    private String height; // In meters
+    private String weight; // In kg
 
 
     // Player information
     private String team; // Name of the player's current team
     private String position;
-    private int jerseyNumber;
+    private String jerseyNumber;
     private boolean active; // Whether or not the player is currently active
 
 
     // Statistic metrics
-    private int gamesPlayed;
-    private int points;
-    private int assists;
-    private int timePlayed; // How much time the player has played (In seconds)
-    private int fieldGoalsMade;
-    private int fieldGoalsAttempted;
-    private int freeThrowsMade;
-    private int freeThrowsAttempted;
-    private int threePointsMade;
-    private int threePointsAttempted;
-    private int offensiveRebounds;
-    private int defensiveRebounds;
-    private int personalFouls;
-    private int steals;
-    private int turnovers;
-    private int blocks;
-    private int plusMinus;
+    private String gamesPlayed;
+    private String points;
+    private String assists;
+    private String timePlayed; // How much time the player has played (In seconds)
+    private String fieldGoalsMade;
+    private String fieldGoalsAttempted;
+    private String freeThrowsMade;
+    private String freeThrowsAttempted;
+    private String threePointsMade;
+    private String threePointsAttempted;
+    private String offensiveRebounds;
+    private String defensiveRebounds;
+    private String personalFouls;
+    private String steals;
+    private String turnovers;
+    private String blocks;
+    private String plusMinus;
 
     // Statistic metrics for per game
-    private double pointsPerGame;
-    private double assistsPerGame;
-    private double timePlayedPerGame; // How much time the player has played (In seconds)
-    private double fieldGoalsMadePerGame;
-    private double fieldGoalsAttemptedPerGame;
-    private double freeThrowsMadePerGame;
-    private double freeThrowsAttemptedPerGame;
-    private double threePointsMadePerGame;
-    private double threePointsAttemptedPerGame;
-    private double offensiveReboundsPerGame;
-    private double defensiveReboundsPerGame;
-    private double personalFoulsPerGame;
-    private double stealsPerGame;
-    private double turnoversPerGame;
-    private double blocksPerGame;
-    private double plusMinusPerGame;
+    private String pointsPerGame;
+    private String assistsPerGame;
+    private String timePlayedPerGame; // How much time the player has played (In seconds)
+    private String fieldGoalsMadePerGame;
+    private String fieldGoalsAttemptedPerGame;
+    private String freeThrowsMadePerGame;
+    private String freeThrowsAttemptedPerGame;
+    private String threePointsMadePerGame;
+    private String threePointsAttemptedPerGame;
+    private String offensiveReboundsPerGame;
+    private String defensiveReboundsPerGame;
+    private String reboundsPerGame;
+    private String personalFoulsPerGame;
+    private String stealsPerGame;
+    private String turnoversPerGame;
+    private String blocksPerGame;
+    private String plusMinusPerGame;
+
+    // Percentage metrics TODO: Add error fields
+    private String freeThrowPercentage;
+    private String fieldGoalPercentage;
+    private String threePointPercentage;
 
     // instantiate Error fields
 
@@ -64,35 +70,35 @@ public class PlayerStatsState {
     private String lastNameError = null;
     private String birthDateError = null;
     private String countryError = null;
-    private double heightError = null;
-    private double weightError = null;
+    private String heightError = null;
+    private String weightError = null;
 
 
     // Player information error
     private String teamError = null;
     private String positionError = null;
-    private int jerseyNumberError = null;
-    private boolean activeError = null;
+    private String jerseyNumberError = null;
+    private String activeError = null;
 
 
     // Statistic metrics error
-    private int gamesPlayedError = null;
-    private int pointsError = null;
-    private int assistsError = null;
-    private int timePlayedError = null;
-    private int fieldGoalsMadeError = null;
-    private int fieldGoalsAttemptedError = null;
-    private int freeThrowsMadeError = null;
-    private int freeThrowsAttemptedError = null;
-    private int threePointsMadeError = null;
-    private int threePointsAttemptedError = null;
-    private int offensiveReboundsError = null;
-    private int defensiveReboundsError = null;
-    private int personalFoulsError = null;
-    private int stealsError = null;
-    private int turnoversError = null;
-    private int blocksError = null;
-    private int plusMinusError = null;
+    private String gamesPlayedError = null;
+    private String pointsError = null;
+    private String assistsError = null;
+    private String timePlayedError = null;
+    private String fieldGoalsMadeError = null;
+    private String fieldGoalsAttemptedError = null;
+    private String freeThrowsMadeError = null;
+    private String freeThrowsAttemptedError = null;
+    private String threePointsMadeError = null;
+    private String threePointsAttemptedError = null;
+    private String offensiveReboundsError = null;
+    private String defensiveReboundsError = null;
+    private String personalFoulsError = null;
+    private String stealsError = null;
+    private String turnoversError = null;
+    private String blocksError = null;
+    private String plusMinusError = null;
 
     public PlayerStatsState(PlayerStatsState copy) {
 
@@ -104,7 +110,7 @@ public class PlayerStatsState {
         birthDate = copy.birthDate; // YYYY-MM-DD
         birthDateError = copy.birthDateError;
         country = copy.country;
-        countryError = copy.countryError
+        countryError = copy.countryError;
         height = copy.height; // In meters
         heightError = copy.heightError;
         weight = copy.weight; // In kg
@@ -117,7 +123,7 @@ public class PlayerStatsState {
         position = copy.position;
         positionError = copy.positionError;
         jerseyNumber = copy.jerseyNumber;
-        jerseyNumberError = copy.jerseyNumberError
+        jerseyNumberError = copy.jerseyNumberError;
         active = copy.active; // Whether or not the player is currently active
         activeError = copy.activeError;
 
@@ -156,10 +162,43 @@ public class PlayerStatsState {
         blocksError = copy.blocksError;
         plusMinus = copy.plusMinus;
         plusMinusError = copy.plusMinusError;
+
+        // Per game metrics
+        pointsPerGame = copy.pointsPerGame;
+        assistsPerGame = copy.assistsPerGame;
+        timePlayedPerGame = copy.timePlayedPerGame; // How much time the player has played (In seconds)
+        fieldGoalsMadePerGame = copy.fieldGoalsMadePerGame;
+        fieldGoalsAttemptedPerGame = copy.fieldGoalsAttemptedPerGame;
+        freeThrowsMadePerGame = copy.freeThrowsMadePerGame;
+        freeThrowsAttemptedPerGame = copy.freeThrowsAttemptedPerGame;
+        threePointsMadePerGame = copy.threePointsMadePerGame;
+        threePointsAttemptedPerGame = copy.threePointsAttemptedPerGame;
+        offensiveReboundsPerGame = copy.offensiveReboundsPerGame;
+        defensiveReboundsPerGame = copy.defensiveReboundsPerGame;
+        reboundsPerGame = copy.reboundsPerGame;
+        personalFoulsPerGame = copy.personalFoulsPerGame;
+        stealsPerGame = copy.stealsPerGame;
+        turnoversPerGame = copy.turnoversPerGame;
+        blocksPerGame = copy.blocksPerGame;
+        plusMinusPerGame = copy.plusMinusPerGame;
+
+        // Percentage metrics
+        freeThrowPercentage = copy.freeThrowPercentage;
+        fieldGoalPercentage = copy.fieldGoalPercentage;
+        threePointPercentage = copy.threePointPercentage;
+
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public PlayerStatsState() {}
+
+    public String getPlayerStatsError() {
+        return playerStatsError;
+    }
+
+    public void setPlayerStatsError(String playerStatsError) {
+        this.playerStatsError = playerStatsError;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -193,19 +232,19 @@ public class PlayerStatsState {
         this.country = country;
     }
 
-    public double getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -225,11 +264,11 @@ public class PlayerStatsState {
         this.position = position;
     }
 
-    public int getJerseyNumber() {
+    public String getJerseyNumber() {
         return jerseyNumber;
     }
 
-    public void setJerseyNumber(int jerseyNumber) {
+    public void setJerseyNumber(String jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
     }
 
@@ -241,140 +280,300 @@ public class PlayerStatsState {
         this.active = active;
     }
 
-    public int getGamesPlayed() {
+    public String getGamesPlayed() {
         return gamesPlayed;
     }
 
-    public void setGamesPlayed(int gamesPlayed) {
+    public void setGamesPlayed(String gamesPlayed) {
         this.gamesPlayed = gamesPlayed;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String points) {
         this.points = points;
     }
 
-    public int getAssists() {
+    public String getAssists() {
         return assists;
     }
 
-    public void setAssists(int assists) {
+    public void setAssists(String assists) {
         this.assists = assists;
     }
 
-    public int getTimePlayed() {
+    public String getTimePlayed() {
         return timePlayed;
     }
 
-    public void setTimePlayed(int timePlayed) {
+    public void setTimePlayed(String timePlayed) {
         this.timePlayed = timePlayed;
     }
 
-    public int getFieldGoalsMade() {
+    public String getFieldGoalsMade() {
         return fieldGoalsMade;
     }
 
-    public void setFieldGoalsMade(int fieldGoalsMade) {
+    public void setFieldGoalsMade(String fieldGoalsMade) {
         this.fieldGoalsMade = fieldGoalsMade;
     }
 
-    public int getFieldGoalsAttempted() {
+    public String getFieldGoalsAttempted() {
         return fieldGoalsAttempted;
     }
 
-    public void setFieldGoalsAttempted(int fieldGoalsAttempted) {
+    public void setFieldGoalsAttempted(String fieldGoalsAttempted) {
         this.fieldGoalsAttempted = fieldGoalsAttempted;
     }
 
-    public int getFreeThrowsMade() {
+    public String getFreeThrowsMade() {
         return freeThrowsMade;
     }
 
-    public void setFreeThrowsMade(int freeThrowsMade) {
+    public void setFreeThrowsMade(String freeThrowsMade) {
         this.freeThrowsMade = freeThrowsMade;
     }
 
-    public int getFreeThrowsAttempted() {
+    public String getFreeThrowsAttempted() {
         return freeThrowsAttempted;
     }
 
-    public void setFreeThrowsAttempted(int freeThrowsAttempted) {
+    public void setFreeThrowsAttempted(String freeThrowsAttempted) {
         this.freeThrowsAttempted = freeThrowsAttempted;
     }
 
-    public int getThreePointsMade() {
+    public String getThreePointsMade() {
         return threePointsMade;
     }
 
-    public void setThreePointsMade(int threePointsMade) {
+    public void setThreePointsMade(String threePointsMade) {
         this.threePointsMade = threePointsMade;
     }
 
-    public int getThreePointsAttempted() {
+    public String getThreePointsAttempted() {
         return threePointsAttempted;
     }
 
-    public void setThreePointsAttempted(int threePointsAttempted) {
+    public void setThreePointsAttempted(String threePointsAttempted) {
         this.threePointsAttempted = threePointsAttempted;
     }
 
-    public int getOffensiveRebounds() {
+    public String getOffensiveRebounds() {
         return offensiveRebounds;
     }
 
-    public void setOffensiveRebounds(int offensiveRebounds) {
+    public void setOffensiveRebounds(String offensiveRebounds) {
         this.offensiveRebounds = offensiveRebounds;
     }
 
-    public int getDefensiveRebounds() {
+    public String getDefensiveRebounds() {
         return defensiveRebounds;
     }
 
-    public void setDefensiveRebounds(int defensiveRebounds) {
+    public void setDefensiveRebounds(String defensiveRebounds) {
         this.defensiveRebounds = defensiveRebounds;
     }
 
-    public int getPersonalFouls() {
+    public String getPersonalFouls() {
         return personalFouls;
     }
 
-    public void setPersonalFouls(int personalFouls) {
+    public void setPersonalFouls(String personalFouls) {
         this.personalFouls = personalFouls;
     }
 
-    public int getSteals() {
+    public String getSteals() {
         return steals;
     }
 
-    public void setSteals(int steals) {
+    public void setSteals(String steals) {
         this.steals = steals;
     }
 
-    public int getTurnovers() {
+    public String getTurnovers() {
         return turnovers;
     }
 
-    public void setTurnovers(int turnovers) {
+    public void setTurnovers(String turnovers) {
         this.turnovers = turnovers;
     }
 
-    public int getBlocks() {
+    public String getBlocks() {
         return blocks;
     }
 
-    public void setBlocks(int blocks) {
+    public void setBlocks(String blocks) {
         this.blocks = blocks;
     }
 
-    public int getPlusMinus() {
+    public String getPlusMinus() {
         return plusMinus;
     }
 
-    public void setPlusMinus(int plusMinus) {
+    public void setPlusMinus(String plusMinus) {
         this.plusMinus = plusMinus;
+    }
+
+    public String getPointsPerGame() {
+        return pointsPerGame;
+    }
+
+    public void setPointsPerGame(String pointsPerGame) {
+        this.pointsPerGame = pointsPerGame;
+    }
+
+    public String getAssistsPerGame() {
+        return assistsPerGame;
+    }
+
+    public void setAssistsPerGame(String assistsPerGame) {
+        this.assistsPerGame = assistsPerGame;
+    }
+
+    public String getTimePlayedPerGame() {
+        return timePlayedPerGame;
+    }
+
+    public void setTimePlayedPerGame(String timePlayedPerGame) {
+        this.timePlayedPerGame = timePlayedPerGame;
+    }
+
+    public String getFieldGoalsMadePerGame() {
+        return fieldGoalsMadePerGame;
+    }
+
+    public void setFieldGoalsMadePerGame(String fieldGoalsMadePerGame) {
+        this.fieldGoalsMadePerGame = fieldGoalsMadePerGame;
+    }
+
+    public String getFieldGoalsAttemptedPerGame() {
+        return fieldGoalsAttemptedPerGame;
+    }
+
+    public void setFieldGoalsAttemptedPerGame(String fieldGoalsAttemptedPerGame) {
+        this.fieldGoalsAttemptedPerGame = fieldGoalsAttemptedPerGame;
+    }
+
+    public String getFreeThrowsMadePerGame() {
+        return freeThrowsMadePerGame;
+    }
+
+    public void setFreeThrowsMadePerGame(String freeThrowsMadePerGame) {
+        this.freeThrowsMadePerGame = freeThrowsMadePerGame;
+    }
+
+    public String getFreeThrowsAttemptedPerGame() {
+        return freeThrowsAttemptedPerGame;
+    }
+
+    public void setFreeThrowsAttemptedPerGame(String freeThrowsAttemptedPerGame) {
+        this.freeThrowsAttemptedPerGame = freeThrowsAttemptedPerGame;
+    }
+
+    public String getThreePointsMadePerGame() {
+        return threePointsMadePerGame;
+    }
+
+    public void setThreePointsMadePerGame(String threePointsMadePerGame) {
+        this.threePointsMadePerGame = threePointsMadePerGame;
+    }
+
+    public String getThreePointsAttemptedPerGame() {
+        return threePointsAttemptedPerGame;
+    }
+
+    public void setThreePointsAttemptedPerGame(String threePointsAttemptedPerGame) {
+        this.threePointsAttemptedPerGame = threePointsAttemptedPerGame;
+    }
+
+    public String getOffensiveReboundsPerGame() {
+        return offensiveReboundsPerGame;
+    }
+
+    public void setOffensiveReboundsPerGame(String offensiveReboundsPerGame) {
+        this.offensiveReboundsPerGame = offensiveReboundsPerGame;
+    }
+
+    public String getDefensiveReboundsPerGame() {
+        return defensiveReboundsPerGame;
+    }
+
+    public void setDefensiveReboundsPerGame(String defensiveReboundsPerGame) {
+        this.defensiveReboundsPerGame = defensiveReboundsPerGame;
+    }
+
+    public String getReboundsPerGame() {
+        return reboundsPerGame;
+    }
+
+    public void setReboundsPerGame(String reboundsPerGame) {
+        this.reboundsPerGame = reboundsPerGame;
+    }
+
+    public String getPersonalFoulsPerGame() {
+        return personalFoulsPerGame;
+    }
+
+    public void setPersonalFoulsPerGame(String personalFoulsPerGame) {
+        this.personalFoulsPerGame = personalFoulsPerGame;
+    }
+
+    public String getStealsPerGame() {
+        return stealsPerGame;
+    }
+
+    public void setStealsPerGame(String stealsPerGame) {
+        this.stealsPerGame = stealsPerGame;
+    }
+
+    public String getTurnoversPerGame() {
+        return turnoversPerGame;
+    }
+
+    public void setTurnoversPerGame(String turnoversPerGame) {
+        this.turnoversPerGame = turnoversPerGame;
+    }
+
+    public String getBlocksPerGame() {
+        return blocksPerGame;
+    }
+
+    public void setBlocksPerGame(String blocksPerGame) {
+        this.blocksPerGame = blocksPerGame;
+    }
+
+    public String getPlusMinusPerGame() {
+        return plusMinusPerGame;
+    }
+
+    public void setPlusMinusPerGame(String plusMinusPerGame) {
+        this.plusMinusPerGame = plusMinusPerGame;
+    }
+
+    public String getFreeThrowPercentage() {
+        return freeThrowPercentage;
+    }
+
+    public void setFreeThrowPercentage(String freeThrowPercentage) {
+        this.freeThrowPercentage = freeThrowPercentage;
+    }
+
+    public String getFieldGoalPercentage() {
+        return fieldGoalPercentage;
+    }
+
+    public void setFieldGoalPercentage(String fieldGoalPercentage) {
+        this.fieldGoalPercentage = fieldGoalPercentage;
+    }
+
+    public String getThreePointPercentage() {
+        return threePointPercentage;
+    }
+
+    public void setThreePointPercentage(String threePointPercentage) {
+        this.threePointPercentage = threePointPercentage;
     }
 
     public String getFirstNameError() {
@@ -409,19 +608,19 @@ public class PlayerStatsState {
         this.countryError = countryError;
     }
 
-    public double getHeightError() {
+    public String getHeightError() {
         return heightError;
     }
 
-    public void setHeightError(double heightError) {
+    public void setHeightError(String heightError) {
         this.heightError = heightError;
     }
 
-    public double getWeightError() {
+    public String getWeightError() {
         return weightError;
     }
 
-    public void setWeightError(double weightError) {
+    public void setWeightError(String weightError) {
         this.weightError = weightError;
     }
 
@@ -441,270 +640,155 @@ public class PlayerStatsState {
         this.positionError = positionError;
     }
 
-    public int getJerseyNumberError() {
+    public String getJerseyNumberError() {
         return jerseyNumberError;
     }
 
-    public void setJerseyNumberError(int jerseyNumberError) {
+    public void setJerseyNumberError(String jerseyNumberError) {
         this.jerseyNumberError = jerseyNumberError;
     }
 
-    public boolean isActiveError() {
+    public String getActiveError() {
         return activeError;
     }
 
-    public void setActiveError(boolean activeError) {
+    public void setActiveError(String activeError) {
         this.activeError = activeError;
     }
 
-    public int getGamesPlayedError() {
+    public String getGamesPlayedError() {
         return gamesPlayedError;
     }
 
-    public void setGamesPlayedError(int gamesPlayedError) {
+    public void setGamesPlayedError(String gamesPlayedError) {
         this.gamesPlayedError = gamesPlayedError;
     }
 
-    public int getPointsError() {
+    public String getPointsError() {
         return pointsError;
     }
 
-    public void setPointsError(int pointsError) {
+    public void setPointsError(String pointsError) {
         this.pointsError = pointsError;
     }
 
-    public int getAssistsError() {
+    public String getAssistsError() {
         return assistsError;
     }
 
-    public void setAssistsError(int assistsError) {
+    public void setAssistsError(String assistsError) {
         this.assistsError = assistsError;
     }
 
-    public int getTimePlayedError() {
+    public String getTimePlayedError() {
         return timePlayedError;
     }
 
-    public void setTimePlayedError(int timePlayedError) {
+    public void setTimePlayedError(String timePlayedError) {
         this.timePlayedError = timePlayedError;
     }
 
-    public int getFieldGoalsMadeError() {
+    public String getFieldGoalsMadeError() {
         return fieldGoalsMadeError;
     }
 
-    public void setFieldGoalsMadeError(int fieldGoalsMadeError) {
+    public void setFieldGoalsMadeError(String fieldGoalsMadeError) {
         this.fieldGoalsMadeError = fieldGoalsMadeError;
     }
 
-    public int getFieldGoalsAttemptedError() {
+    public String getFieldGoalsAttemptedError() {
         return fieldGoalsAttemptedError;
     }
 
-    public void setFieldGoalsAttemptedError(int fieldGoalsAttemptedError) {
+    public void setFieldGoalsAttemptedError(String fieldGoalsAttemptedError) {
         this.fieldGoalsAttemptedError = fieldGoalsAttemptedError;
     }
 
-    public int getFreeThrowsMadeError() {
+    public String getFreeThrowsMadeError() {
         return freeThrowsMadeError;
     }
 
-    public void setFreeThrowsMadeError(int freeThrowsMadeError) {
+    public void setFreeThrowsMadeError(String freeThrowsMadeError) {
         this.freeThrowsMadeError = freeThrowsMadeError;
     }
 
-    public int getFreeThrowsAttemptedError() {
+    public String getFreeThrowsAttemptedError() {
         return freeThrowsAttemptedError;
     }
 
-    public void setFreeThrowsAttemptedError(int freeThrowsAttemptedError) {
+    public void setFreeThrowsAttemptedError(String freeThrowsAttemptedError) {
         this.freeThrowsAttemptedError = freeThrowsAttemptedError;
     }
 
-    public int getThreePointsMadeError() {
+    public String getThreePointsMadeError() {
         return threePointsMadeError;
     }
 
-    public void setThreePointsMadeError(int threePointsMadeError) {
+    public void setThreePointsMadeError(String threePointsMadeError) {
         this.threePointsMadeError = threePointsMadeError;
     }
 
-    public int getThreePointsAttemptedError() {
+    public String getThreePointsAttemptedError() {
         return threePointsAttemptedError;
     }
 
-    public void setThreePointsAttemptedError(int threePointsAttemptedError) {
+    public void setThreePointsAttemptedError(String threePointsAttemptedError) {
         this.threePointsAttemptedError = threePointsAttemptedError;
     }
 
-    public int getOffensiveReboundsError() {
+    public String getOffensiveReboundsError() {
         return offensiveReboundsError;
     }
 
-    public void setOffensiveReboundsError(int offensiveReboundsError) {
+    public void setOffensiveReboundsError(String offensiveReboundsError) {
         this.offensiveReboundsError = offensiveReboundsError;
     }
 
-    public int getDefensiveReboundsError() {
+    public String getDefensiveReboundsError() {
         return defensiveReboundsError;
     }
 
-    public void setDefensiveReboundsError(int defensiveReboundsError) {
+    public void setDefensiveReboundsError(String defensiveReboundsError) {
         this.defensiveReboundsError = defensiveReboundsError;
     }
 
-    public int getPersonalFoulsError() {
+    public String getPersonalFoulsError() {
         return personalFoulsError;
     }
 
-    public void setPersonalFoulsError(int personalFoulsError) {
+    public void setPersonalFoulsError(String personalFoulsError) {
         this.personalFoulsError = personalFoulsError;
     }
 
-    public int getStealsError() {
+    public String getStealsError() {
         return stealsError;
     }
 
-    public void setStealsError(int stealsError) {
+    public void setStealsError(String stealsError) {
         this.stealsError = stealsError;
     }
 
-    public int getTurnoversError() {
+    public String getTurnoversError() {
         return turnoversError;
     }
 
-    public void setTurnoversError(int turnoversError) {
+    public void setTurnoversError(String turnoversError) {
         this.turnoversError = turnoversError;
     }
 
-    public int getBlocksError() {
+    public String getBlocksError() {
         return blocksError;
     }
 
-    public void setBlocksError(int blocksError) {
+    public void setBlocksError(String blocksError) {
         this.blocksError = blocksError;
     }
 
-    public int getPlusMinusError() {
+    public String getPlusMinusError() {
         return plusMinusError;
     }
 
-    public void setPlusMinusError(int plusMinusError) {
+    public void setPlusMinusError(String plusMinusError) {
         this.plusMinusError = plusMinusError;
-    }
-
-    // Additional function for calculating statPerGame and formatting the data appropriately
-    // Additional methods for getting and setting the reformatted data
-    // (These are from the Player.java entity to make formatting easier
-    private double statPerGame(int stat){
-        if (gamesPlayed != 0) {
-            double perGame = (double) stat / (double) gamesPlayed;
-            DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
-            return Double.valueOf(df.format(perGame));
-        } else {
-            return 0.0;
-        }
-    }
-
-    // "getters" for per game stats metric
-    public double pointsPerGame() { return statPerGame(points);}
-    public double assistsPerGame(){ return statPerGame(assists);}
-
-    public double fieldGoalsMadePerGame() {return statPerGame(fieldGoalsMade); }
-    public double fieldGoalsAttemptedPerGame() {return statPerGame(fieldGoalsAttempted); }
-
-    public double freeThrowsMadePerGame() {return statPerGame(freeThrowsMade); }
-    public double freeThrowsAttemptedPerGame() {return statPerGame(freeThrowsAttempted); }
-
-    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
-    public double threePointsAttemptedPerGame() {return statPerGame(threePointsAttempted); }
-
-    public double defensiveReboundsPerGame() {return statPerGame(defensiveRebounds); }
-
-    public double offensiveReboundsPerGame() {return statPerGame(offensiveRebounds); }
-
-    public double reboundsPerGame(){ return statPerGame(totalRebounds());}
-
-    public double personalFoulsPerGame(){ return statPerGame(personalFouls); }
-
-    public double stealsPerGame(){ return statPerGame(steals); }
-
-    public double turnoversPerGame() {return statPerGame(turnovers); }
-
-    public double blocksPerGame(){ return statPerGame(blocks);}
-
-    public double timePlayedPerGame() {return statPerGame(timePlayed);}
-
-    // setters for per game stats metrics
-    public void setPointsPerGame(double pointsPerGame) {
-        this.pointsPerGame = pointsPerGame;
-    }
-
-    public void setAssistsPerGame(double assistsPerGame) {
-        this.assistsPerGame = assistsPerGame;
-    }
-
-    public void setTimePlayedPerGame(double timePlayedPerGame) {
-        this.timePlayedPerGame = timePlayedPerGame;
-    }
-
-    public void setFieldGoalsMadePerGame(double fieldGoalsMadePerGame) {
-        this.fieldGoalsMadePerGame = fieldGoalsMadePerGame;
-    }
-
-    public void setFieldGoalsAttemptedPerGame(double fieldGoalsAttemptedPerGame) {
-        this.fieldGoalsAttemptedPerGame = fieldGoalsAttemptedPerGame;
-    }
-
-    public void setFreeThrowsMadePerGame(double freeThrowsMadePerGame) {
-        this.freeThrowsMadePerGame = freeThrowsMadePerGame;
-    }
-
-    public void setFreeThrowsAttemptedPerGame(double freeThrowsAttemptedPerGame) {
-        this.freeThrowsAttemptedPerGame = freeThrowsAttemptedPerGame;
-    }
-
-    public void setThreePointsMadePerGame(double threePointsMadePerGame) {
-        this.threePointsMadePerGame = threePointsMadePerGame;
-    }
-
-    public void setThreePointsAttemptedPerGame(double threePointsAttemptedPerGame) {
-        this.threePointsAttemptedPerGame = threePointsAttemptedPerGame;
-    }
-
-    public void setOffensiveReboundsPerGame(double offensiveReboundsPerGame) {
-        this.offensiveReboundsPerGame = offensiveReboundsPerGame;
-    }
-
-    public void setDefensiveReboundsPerGame(double defensiveReboundsPerGame) {
-        this.defensiveReboundsPerGame = defensiveReboundsPerGame;
-    }
-
-    public void setPersonalFoulsPerGame(double personalFoulsPerGame) {
-        this.personalFoulsPerGame = personalFoulsPerGame;
-    }
-
-    public void setStealsPerGame(double stealsPerGame) {
-        this.stealsPerGame = stealsPerGame;
-    }
-
-    public void setTurnoversPerGame(double turnoversPerGame) {
-        this.turnoversPerGame = turnoversPerGame;
-    }
-
-    public void setBlocksPerGame(double blocksPerGame) {
-        this.blocksPerGame = blocksPerGame;
-    }
-
-    public void setPlusMinusPerGame(double plusMinusPerGame) {
-        this.plusMinusPerGame = plusMinusPerGame;
-    }
-
-    public String getPlayerStatsError() {
-        return playerStatsError;
-    }
-
-    public void setPlayerStatsError(String playerStatsError) {
-        this.playerStatsError = playerStatsError;
     }
 }
