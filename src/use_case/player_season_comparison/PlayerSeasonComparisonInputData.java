@@ -1,6 +1,6 @@
-package use_case.player_stats_comparison;
+package use_case.player_season_comparison;
 
-public class PlayerStatsComparisonInputData {
+public class PlayerSeasonComparisonInputData {
     final private int id;
 
     // Two integers to store the seasons used for comparing a player's stats
@@ -8,7 +8,7 @@ public class PlayerStatsComparisonInputData {
     final private int season1;
     final private int season2;
 
-    public PlayerStatsComparisonInputData(int id, int season1, int season2) {
+    public PlayerSeasonComparisonInputData(int id, int season1, int season2) {
 
         // TODO: add checks for when the query season doesn't exist (does the api call return null if the player didn't play in the year given?)
 
