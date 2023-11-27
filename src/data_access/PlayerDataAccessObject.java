@@ -15,6 +15,12 @@ import java.util.Map;
 
 public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
+    private final String apiKey;
+
+    public PlayerDataAccessObject(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     public static void main(String args[]) {
         // System.out.println(existsById(100000));
     }
@@ -25,7 +31,7 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
         Request request = new Request.Builder()
                 .url("https://api-nba-v1.p.rapidapi.com/players?id=" + playerID)
                 .get()
-                .addHeader("X-RapidAPI-Key", "7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09")
+                .addHeader("X-RapidAPI-Key", apiKey)
                 .addHeader("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com")
                 .build();
 
