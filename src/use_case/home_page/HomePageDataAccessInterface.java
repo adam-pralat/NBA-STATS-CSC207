@@ -17,9 +17,9 @@ public interface HomePageDataAccessInterface {
 
     Team getTeamInfo(int teamID);
 
-    Map<String, Object> getTeamYearlyRecord(int teamID, int season); // Wins, Losses, past 10 wins, past 10 losses in given season
+    Team getTeamYearlyRecord(int teamID, int season); // Wins, Losses, past 10 wins, past 10 losses in given season
 
-    Map<String, Object> getTeamYearlyStats(int teamID, int season);
+    Team getTeamYearlyStats(int teamID, int season);
 
     // TODO: Team data access
 }
