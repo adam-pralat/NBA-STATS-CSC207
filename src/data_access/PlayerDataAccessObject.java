@@ -5,37 +5,40 @@ import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import use_case.player_stats.PlayerStatsDataAccessInterface;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerDataAccessObject {
+// TODO: Issue - API rate limit is hit + Get FG% and 3P% and FT%
+
+public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
+    private Object jsonNull = JSONObject.NULL;// JSON value for null
     public static void main(String args[]) {
-        Player result = getPlayerInfo(236);
-        System.out.println(result);
-        Map<String, Object> r = getPlayerYearlyStats(236, 2018);
-        System.out.println(r);
+        // System.out.println(existsById(100000));
     }
 
-    public static boolean existsById(int playerId) throws JSONException {
+    public boolean existsById(int playerID) throws JSONException {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://api-nba-v1.p.rapidapi.com/players?id=" + playerId)
+                .url("https://api-nba-v1.p.rapidapi.com/players?id=" + playerID)
                 .get()
                 .addHeader("X-RapidAPI-Key", "7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09")
                 .addHeader("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com")
                 .build();
-        try{
+
+        try {
             Response response = client.newCall(request).execute();
-            JSONObject playerJSON = new JSONObject(response.body().string());
-            return playerJSON.getInt("results") > 0;
-        } catch(Exception e){
+            JSONObject responseJSON = new JSONObject(response.body().string());
+            return responseJSON.getInt("results") > 0;
+        } catch (Exception e) {
             return false;
         }
     }
-    public static Player getPlayerInfo(int playerID) throws JSONException {
+
+    public Player getPlayerInfo(int playerID) throws JSONException {
         // Get a player's stats over a season
         // Returns player object with basic information (Does not vary season-to-season)
 
@@ -57,18 +60,24 @@ public class PlayerDataAccessObject {
 
             // Check issue
             // Load player object with basic information
+            // Default values:
+            //  Strings are set to an empty string if the value is not found by the API
+            //  Height and weight are both set to 0.0 if not found by the API
+            //  Jersey number is set to -1 if not found by the API
+            //  Active is set to false if not found by the api
+
             Player playerObject = new Player(
-                    playerInfoJSON.getInt("id"),
-                    playerInfoJSON.getString("firstname"),
-                    playerInfoJSON.getString("lastname"),
-                    playerInfoJSON.getJSONObject("birth").getString("date"),
-                    playerInfoJSON.getJSONObject("birth").getString("country"),
-                    playerInfoJSON.getJSONObject("height").getDouble("meters"),
-                    playerInfoJSON.getJSONObject("weight").getDouble("kilograms"),
-                    "",
-                    playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getString("pos"),
-                    playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getInt("jersey"),
-                    playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getBoolean("active"),
+                    playerID,
+                    (playerInfoJSON.get("firstname") != jsonNull) ? (playerInfoJSON.getString("firstname")) : (""),
+                    (playerInfoJSON.get("lastname") != jsonNull) ? (playerInfoJSON.getString("lastname")) : (""),
+                    (playerInfoJSON.get("birth") != jsonNull && playerInfoJSON.getJSONObject("birth").get("date") != jsonNull) ? (playerInfoJSON.getJSONObject("birth").getString("date")) : (""),
+                    (playerInfoJSON.get("birth") != jsonNull && playerInfoJSON.getJSONObject("birth").get("country") != jsonNull) ? (playerInfoJSON.getJSONObject("birth").getString("country")) : (""),
+                    (playerInfoJSON.get("height") != jsonNull && playerInfoJSON.getJSONObject("height").get("meters") != jsonNull) ? (playerInfoJSON.getJSONObject("height").getDouble("meters")) : (0.0),
+                    (playerInfoJSON.get("weight") != jsonNull && playerInfoJSON.getJSONObject("weight").get("kilograms") != jsonNull) ? (playerInfoJSON.getJSONObject("weight").getDouble("kilograms")) : (0.0),
+                    "", // Team name - Figure this one out
+                    (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("pos") != jsonNull) ? ( playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getString("pos")) : (""),
+                    (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("jersey") != jsonNull) ? (playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getInt("jersey")) : (-1),
+                    (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("active") != jsonNull) ? (playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getBoolean("active")) : (false),
                     0,
                     0,
                     0,
@@ -94,7 +103,7 @@ public class PlayerDataAccessObject {
         }
     }
 
-    public static Map<String, Object> getPlayerYearlyStats(int playerID, int season) {
+    public Map<String, Object> getPlayerYearlyStats(int playerID, int season) {
         Map<String, Object> playerStats = new HashMap<String, Object>();
         OkHttpClient playerStatsClient = new OkHttpClient();
 
@@ -113,6 +122,7 @@ public class PlayerDataAccessObject {
             // System.out.println(response);
 
             JSONObject playerStatsResponseJSON = new JSONObject(playerStatsResponse.body().string());
+            System.out.println(playerStatsResponseJSON);
             JSONArray gameStatsJSON = playerStatsResponseJSON.getJSONArray("response");
 
             // Add player stats to existing player object
@@ -139,22 +149,22 @@ public class PlayerDataAccessObject {
                 JSONObject gameJSONObject = (JSONObject) game;
                 // If any of the metrics are null - Omit this record
                 if (
-                        gameJSONObject.get("points").equals(null) |
-                                gameJSONObject.get("assists").equals(null) |
-                                gameJSONObject.get("min").equals(null) |
-                                gameJSONObject.get("fgm").equals(null) |
-                                gameJSONObject.get("fga").equals(null) |
-                                gameJSONObject.get("ftm").equals(null) |
-                                gameJSONObject.get("fta").equals(null) |
-                                gameJSONObject.get("tpm").equals(null) |
-                                gameJSONObject.get("tpa").equals(null) |
-                                gameJSONObject.get("offReb").equals(null) |
-                                gameJSONObject.get("defReb").equals(null) |
-                                gameJSONObject.get("pFouls").equals(null) |
-                                gameJSONObject.get("steals").equals(null) |
-                                gameJSONObject.get("turnovers").equals(null) |
-                                gameJSONObject.get("blocks").equals(null) |
-                                gameJSONObject.get("plusMinus").equals(null)
+                        gameJSONObject.get("points").equals(jsonNull) |
+                                gameJSONObject.get("assists").equals(jsonNull) |
+                                gameJSONObject.get("min").equals(jsonNull) |
+                                gameJSONObject.get("fgm").equals(jsonNull) |
+                                gameJSONObject.get("fga").equals(jsonNull) |
+                                gameJSONObject.get("ftm").equals(jsonNull) |
+                                gameJSONObject.get("fta").equals(jsonNull) |
+                                gameJSONObject.get("tpm").equals(jsonNull) |
+                                gameJSONObject.get("tpa").equals(jsonNull) |
+                                gameJSONObject.get("offReb").equals(jsonNull) |
+                                gameJSONObject.get("defReb").equals(jsonNull) |
+                                gameJSONObject.get("pFouls").equals(jsonNull) |
+                                gameJSONObject.get("steals").equals(jsonNull) |
+                                gameJSONObject.get("turnovers").equals(jsonNull) |
+                                gameJSONObject.get("blocks").equals(jsonNull) |
+                                gameJSONObject.get("plusMinus").equals(jsonNull)
                 )
                     continue;
                 gamesPlayed += 1;
@@ -202,10 +212,14 @@ public class PlayerDataAccessObject {
     }
 
     // TODO: Put in different file??
-    private static int convertMinutesStringToSeconds(String minutesString) {
+    private int convertMinutesStringToSeconds(String minutesString) {
         String[] parts = minutesString.split(":"); // Split string into minutes and seconds
-        int minutes = Integer.parseInt(parts[0]);
-        int seconds = Integer.parseInt(parts[1]);
-        return 60 * minutes + seconds;
+        if (parts.length == 2) {
+            int minutes = Integer.parseInt(parts[0]);
+            int seconds = Integer.parseInt(parts[1]);
+            return 60 * minutes + seconds;
+        } else {
+            return 60 * Integer.parseInt(parts[0]);
+        }
     }
 }

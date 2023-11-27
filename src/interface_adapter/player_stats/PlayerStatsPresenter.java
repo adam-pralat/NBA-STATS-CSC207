@@ -1,17 +1,18 @@
 package interface_adapter.player_stats;
 
 import interface_adapter.ViewManagerModel;
+import org.json.JSONObject;
 import use_case.player_stats.PlayerStatsOutputBoundary;
 import use_case.player_stats.PlayerStatsOutputData;
 
-import java.util.Dictionary;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
+// TODO: ROund percentage values and convert seconds to minutes and seconds
 public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
 
     private final PlayerStatsViewModel playerStatsViewModel;
     private ViewManagerModel viewManagerModel;
+    private Object jsonNull = JSONObject.NULL;// JSON value for null
 
     public PlayerStatsPresenter(ViewManagerModel viewManagerModel,PlayerStatsViewModel playerStatsViewModel) {
         this.viewManagerModel = viewManagerModel;
@@ -28,56 +29,61 @@ public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
 
         // Set all state attributes. If an attribute is null, it is set to be an empty string
         // Basic attributes
-        state.setFirstName((playerStats.get("firstName") == null) ? (playerStats.get("firstName")) : (""));
-        state.setLastName((playerStats.get("lastName") == null) ? (playerStats.get("lastName")) : (""));
-        state.setBirthDate((playerStats.get("birthDate") == null) ? (playerStats.get("birthDate")) : (""));
-        state.setCountry((playerStats.get("country") == null) ? (playerStats.get("country")) : (""));
-        state.setHeight((playerStats.get("height") == null) ? (playerStats.get("height")) : (""));
-        state.setWeight((playerStats.get("weight") == null) ? (playerStats.get("weight")) : (""));
+        state.setFirstName((playerStats.get("firstName") != jsonNull) ? (playerStats.get("firstName").toString()) : (""));
+        state.setLastName((playerStats.get("lastName") != jsonNull) ? (playerStats.get("lastName").toString()) : (""));
+        state.setBirthDate((playerStats.get("birthDate") != jsonNull) ? (playerStats.get("birthDate").toString()) : (""));
+        state.setCountry((playerStats.get("country") != jsonNull) ? (playerStats.get("country").toString()) : (""));
+        state.setHeight((playerStats.get("height") != jsonNull) ? (playerStats.get("height").toString()) : (""));
+        state.setWeight((playerStats.get("weight") != jsonNull) ? (playerStats.get("weight").toString()) : (""));
 
         // Cumulative statistics
-        state.setGamesPlayed((playerStats.get("gamesPlayed") == null) ? (playerStats.get("gamesPlayed")) : (""));
-        state.setPoints((playerStats.get("points") == null) ? (playerStats.get("points")) : (""));
-        state.setAssists((playerStats.get("assists") == null) ? (playerStats.get("assists")) : (""));
-        state.setTimePlayed((playerStats.get("timePlayed") == null) ? (playerStats.get("timePlayed")) : ("")); // Convert to minutes/seconds
-        state.setFieldGoalsMade((playerStats.get("fieldGoalsMade") == null) ? (playerStats.get("fieldGoalsMade")) : (""));
-        state.setFieldGoalsAttempted((playerStats.get("fieldGoalsAttempted") == null) ? (playerStats.get("fieldGoalsAttempted")) : (""));
-        state.setFreeThrowsMade((playerStats.get("freeThrowsMade") == null) ? (playerStats.get("freeThrowsMade")) : (""));
-        state.setFreeThrowsAttempted((playerStats.get("freeThrowsAttempted") == null) ? (playerStats.get("freeThrowsAttempted")) : (""));
-        state.setThreePointsMade((playerStats.get("threePointsMade") == null) ? (playerStats.get("threePointsMade")) : (""));
-        state.setThreePointsAttempted((playerStats.get("threePointsAttempted") == null) ? (playerStats.get("threePointsAttempted")) : (""));
-        state.setOffensiveRebounds((playerStats.get("offensiveRebounds") == null) ? (playerStats.get("offensiveRebounds")) : (""));
-        state.setDefensiveRebounds((playerStats.get("defensiveRebounds") == null) ? (playerStats.get("defensiveRebounds")) : (""));
-        state.setPersonalFouls((playerStats.get("personalFouls") == null) ? (playerStats.get("personalFouls")) : (""));
-        state.setSteals((playerStats.get("steals") == null) ? (playerStats.get("steals")) : (""));
-        state.setTurnovers((playerStats.get("turnovers") == null) ? (playerStats.get("turnovers")) : (""));
-        state.setBlocks((playerStats.get("blocks") == null) ? (playerStats.get("blocks")) : (""));
-        state.setPlusMinus((playerStats.get("plusMinus") == null) ? (playerStats.get("plusMinus")) : (""));
+        state.setGamesPlayed((playerStats.get("gamesPlayed") != jsonNull) ? (playerStats.get("gamesPlayed").toString()) : (""));
+        state.setPoints((playerStats.get("points") != jsonNull) ? (playerStats.get("points").toString()) : (""));
+        state.setAssists((playerStats.get("assists") != jsonNull) ? (playerStats.get("assists").toString()) : (""));
+        state.setTimePlayed((playerStats.get("timePlayed") != jsonNull) ? (playerStats.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setFieldGoalsMade((playerStats.get("fieldGoalsMade") != jsonNull) ? (playerStats.get("fieldGoalsMade").toString()) : (""));
+        state.setFieldGoalsAttempted((playerStats.get("fieldGoalsAttempted") != jsonNull) ? (playerStats.get("fieldGoalsAttempted").toString()) : (""));
+        state.setFreeThrowsMade((playerStats.get("freeThrowsMade") != jsonNull) ? (playerStats.get("freeThrowsMade").toString()) : (""));
+        state.setFreeThrowsAttempted((playerStats.get("freeThrowsAttempted") != jsonNull) ? (playerStats.get("freeThrowsAttempted").toString()) : (""));
+        state.setThreePointsMade((playerStats.get("threePointsMade") != jsonNull) ? (playerStats.get("threePointsMade").toString()) : (""));
+        state.setThreePointsAttempted((playerStats.get("threePointsAttempted") != jsonNull) ? (playerStats.get("threePointsAttempted").toString()) : (""));
+        state.setOffensiveRebounds((playerStats.get("offensiveRebounds") != jsonNull) ? (playerStats.get("offensiveRebounds").toString()) : (""));
+        state.setDefensiveRebounds((playerStats.get("defensiveRebounds") != jsonNull) ? (playerStats.get("defensiveRebounds").toString()) : (""));
+        state.setPersonalFouls((playerStats.get("personalFouls") != jsonNull) ? (playerStats.get("personalFouls").toString()) : (""));
+        state.setSteals((playerStats.get("steals") != jsonNull) ? (playerStats.get("steals").toString()) : (""));
+        state.setTurnovers((playerStats.get("turnovers") != jsonNull) ? (playerStats.get("turnovers").toString()) : (""));
+        state.setBlocks((playerStats.get("blocks") != jsonNull) ? (playerStats.get("blocks").toString()) : (""));
+        state.setPlusMinus((playerStats.get("plusMinus") != jsonNull) ? (playerStats.get("plusMinus").toString()) : (""));
 
         // Per game statistics
-        state.setPointsPerGame((playerStats.get("pointsPerGame") == null) ? (playerStats.get("pointsPerGame")) : (""));
-        state.setAssistsPerGame((playerStats.get("assistsPerGame") == null) ? (playerStats.get("assistsPerGame")) : (""));
-        state.setFieldGoalsMadePerGame((playerStats.get("fieldGoalsMadePerGame") == null) ? (playerStats.get("fieldGoalsMadePerGame")) : (""));
-        state.setFieldGoalsAttemptedPerGame((playerStats.get("fieldGoalsAttemptedPerGame") == null) ? (playerStats.get("fieldGoalsAttemptedPerGame")) : (""));
-        state.setFreeThrowsMadePerGame((playerStats.get("freeThrowsMadePerGame") == null) ? (playerStats.get("freeThrowsMadePerGame")) : (""));
-        state.setFreeThrowsAttemptedPerGame((playerStats.get("freeThrowsAttemptedPerGame") == null) ? (playerStats.get("freeThrowsAttemptedPerGame")) : (""));
-        state.setThreePointsMadePerGame((playerStats.get("threePointsMadePerGame") == null) ? (playerStats.get("threePointsMadePerGame")) : (""));
-        state.setThreePointsAttemptedPerGame((playerStats.get("threePointsAttemptedPerGame") == null) ? (playerStats.get("threePointsAttemptedPerGame")) : (""));
-        state.setDefensiveReboundsPerGame((playerStats.get("defensiveReboundsPerGame") == null) ? (playerStats.get("defensiveReboundsPerGame")) : (""));
-        state.setOffensiveReboundsPerGame((playerStats.get("offensiveReboundsPerGame") == null) ? (playerStats.get("offensiveReboundsPerGame")) : (""));
-        state.setReboundsPerGame((playerStats.get("reboundsPerGame") == null) ? (playerStats.get("reboundsPerGame")) : (""));
-        state.setPersonalFoulsPerGame((playerStats.get("personalFoulsPerGame") == null) ? (playerStats.get("personalFoulsPerGame")) : (""));
-        state.setStealsPerGame((playerStats.get("stealsPerGame") == null) ? (playerStats.get("stealsPerGame")) : (""));
-        state.setTurnoversPerGame((playerStats.get("turnoversPerGame") == null) ? (playerStats.get("turnoversPerGame")) : (""));
-        state.setBlocksPerGame((playerStats.get("blocksPerGame") == null) ? (playerStats.get("blocksPerGame")) : (""));
-        state.setTimePlayedPerGame((playerStats.get("timePlayedPerGame") == null) ? (playerStats.get("timePlayedPerGame")) : ("-"));
+        state.setPointsPerGame((playerStats.get("pointsPerGame") != jsonNull) ? (playerStats.get("pointsPerGame").toString()) : (""));
+        state.setAssistsPerGame((playerStats.get("assistsPerGame") != jsonNull) ? (playerStats.get("assistsPerGame").toString()) : (""));
+        state.setFieldGoalsMadePerGame((playerStats.get("fieldGoalsMadePerGame") != jsonNull) ? (playerStats.get("fieldGoalsMadePerGame").toString()) : (""));
+        state.setFieldGoalsAttemptedPerGame((playerStats.get("fieldGoalsAttemptedPerGame") != jsonNull) ? (playerStats.get("fieldGoalsAttemptedPerGame").toString()) : (""));
+        state.setFreeThrowsMadePerGame((playerStats.get("freeThrowsMadePerGame") != jsonNull) ? (playerStats.get("freeThrowsMadePerGame").toString()) : (""));
+        state.setFreeThrowsAttemptedPerGame((playerStats.get("freeThrowsAttemptedPerGame") != jsonNull) ? (playerStats.get("freeThrowsAttemptedPerGame").toString()) : (""));
+        state.setThreePointsMadePerGame((playerStats.get("threePointsMadePerGame") != jsonNull) ? (playerStats.get("threePointsMadePerGame").toString()) : (""));
+        state.setThreePointsAttemptedPerGame((playerStats.get("threePointsAttemptedPerGame") != jsonNull) ? (playerStats.get("threePointsAttemptedPerGame").toString()) : (""));
+        state.setDefensiveReboundsPerGame((playerStats.get("defensiveReboundsPerGame") != jsonNull) ? (playerStats.get("defensiveReboundsPerGame").toString()) : (""));
+        state.setOffensiveReboundsPerGame((playerStats.get("offensiveReboundsPerGame") != jsonNull) ? (playerStats.get("offensiveReboundsPerGame").toString()) : (""));
+        state.setReboundsPerGame((playerStats.get("reboundsPerGame") != jsonNull) ? (playerStats.get("reboundsPerGame").toString()) : (""));
+        state.setPersonalFoulsPerGame((playerStats.get("personalFoulsPerGame") != jsonNull) ? (playerStats.get("personalFoulsPerGame").toString()) : (""));
+        state.setStealsPerGame((playerStats.get("stealsPerGame") != jsonNull) ? (playerStats.get("stealsPerGame").toString()) : (""));
+        state.setTurnoversPerGame((playerStats.get("turnoversPerGame") != jsonNull) ? (playerStats.get("turnoversPerGame").toString()) : (""));
+        state.setBlocksPerGame((playerStats.get("blocksPerGame") != jsonNull) ? (playerStats.get("blocksPerGame").toString()) : (""));
+        state.setTimePlayedPerGame((playerStats.get("timePlayedPerGame") != jsonNull) ? (playerStats.get("timePlayedPerGame").toString()) : (""));
+
+        // Percentage metrics
+        state.setFreeThrowPercentage((playerStats.get("freeThrowPercentage") != jsonNull) ? (playerStats.get("freeThrowPercentage").toString()) : (""));
+        state.setFieldGoalPercentage((playerStats.get("fieldGoalPercentage") != jsonNull) ? (playerStats.get("fieldGoalPercentage").toString()) : (""));
+        state.setThreePointPercentage((playerStats.get("threePointPercentage") != jsonNull) ? (playerStats.get("threePointPercentage").toString()) : (""));
 
         // Set view and fire property changes
          this.viewManagerModel.setActiveView(playerStatsViewModel.getViewName());
          this.viewManagerModel.firePropertyChanged();
 
-         this.playerStatsViewModel.setState(playerStatsViewModel);
-         this.clearViewModel.firePropertyChanged();
+         this.playerStatsViewModel.setState(state);
+         this.playerStatsViewModel.firePropertyChanged();
     }
 
     @Override
@@ -91,6 +97,4 @@ public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
          this.playerStatsViewModel.setState(state);
          this.playerStatsViewModel.firePropertyChanged();
     }
-
-
 }

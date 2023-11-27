@@ -187,7 +187,18 @@ public class Player {
         out.put("turnoversPerGame", turnoversPerGame());
         out.put("blocksPerGame", blocksPerGame());
         out.put("timePlayedPerGame", timePlayedPerGame());
+
+        // Percentages
+        out.put("fieldGoalPercentage", roundTwoDecimals(fieldGoalPercentage()));
+        out.put("threePointPercentage", roundTwoDecimals(threePointPercentage()));
+        out.put("freeThrowPercentage", roundTwoDecimals(freeThrowPercentage()));
         return out;
+    }
+
+    // TODO: Put in different file
+    private double roundTwoDecimals(double num){
+        DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
+        return Double.valueOf(df.format(num));
     }
 
     public void addStat(Map<String, Object> statMap){
@@ -222,6 +233,8 @@ public class Player {
             return 0.0;
         }
     }
+
+    // TODO: Round percentages
 
     public double pointsPerGame() { return statPerGame(points);}
     public double assistsPerGame(){ return statPerGame(assists);}
