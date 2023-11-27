@@ -1,7 +1,5 @@
 package use_case.player_season_comparison;
 
-import entity.Player;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
