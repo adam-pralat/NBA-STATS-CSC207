@@ -2,8 +2,10 @@ package entity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.round;
 
 public class Team {
     // Team Information
@@ -81,6 +83,106 @@ public class Team {
         this.blocks = blocks;
         this.plusMinus = plusMinus;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", code='" + code + '\'' +
+                ", city='" + city + '\'' +
+                ", logo='" + logo + '\'' +
+                ", conference='" + conference + '\'' +
+                ", players=" + players +
+                ", wins=" + wins +
+                ", losses=" + losses +
+                ", winsPastTen=" + winsPastTen +
+                ", lossesPastTen=" + lossesPastTen +
+                ", conferencePlace=" + conferencePlace +
+                ", games=" + games +
+                ", fastBreakPoints=" + fastBreakPoints +
+                ", pointsInPaint=" + pointsInPaint +
+                ", secondChancePoints=" + secondChancePoints +
+                ", pointsOffTurnovers=" + pointsOffTurnovers +
+                ", points=" + points +
+                ", fieldGoalsMade=" + fieldGoalsMade +
+                ", fieldGoalsAttempted=" + fieldGoalsAttempted +
+                ", freeThrowsMade=" + freeThrowsMade +
+                ", freeThrowsAttempted=" + freeThrowsAttempted +
+                ", threePointsMade=" + threePointsMade +
+                ", threePointsAttempted=" + threePointsAttempted +
+                ", offReb=" + offReb +
+                ", defReb=" + defReb +
+                ", assists=" + assists +
+                ", pFouls=" + pFouls +
+                ", steals=" + steals +
+                ", turnovers=" + turnovers +
+                ", blocks=" + blocks +
+                ", plusMinus=" + plusMinus +
+                '}';
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> out = new HashMap<>();
+
+        //General Info
+        out.put("id", + id);
+        out.put("name", name);
+        out.put("nickname", nickname);
+        out.put("code", code);
+        out.put("city", city);
+        out.put("logo", logo);
+        out.put("conference", conference);
+        out.put("players", players);
+
+        //Stats
+        out.put("wins", wins);
+        out.put("losses", losses);
+        out.put("winsPastTen", winsPastTen);
+        out.put("lossesPastTen", lossesPastTen);
+        out.put("conferencePlace", conferencePlace);
+        out.put("games", games);
+        out.put("fastBreakPoints", fastBreakPoints);
+        out.put("pointsInPaint", pointsInPaint);
+        out.put("secondChancePoints", secondChancePoints);
+        out.put("pointsOffTurnovers", pointsOffTurnovers);
+        out.put("points", points);
+        out.put("fieldGoalsMade", fieldGoalsMade);
+        out.put("fieldGoalsAttempted", fieldGoalsAttempted);
+        out.put("freeThrowsMade", freeThrowsMade);
+        out.put("freeThrowsAttempted", freeThrowsAttempted);
+        out.put("threePointsMade", threePointsMade);
+        out.put("threePointsAttempted", threePointsAttempted);
+        out.put("offReb", offReb);
+        out.put("defReb", defReb);
+        out.put("assists", assists);
+        out.put("pFouls", pFouls);
+        out.put("steals", steals);
+        out.put("turnovers", turnovers);
+        out.put("blocks", blocks);
+        out.put("plusMinus", plusMinus);
+
+        // Per game metrics
+        out.put("pointsPerGame", pointsPerGame());
+        out.put("assistsPerGame", assistsPerGame());
+        out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
+        out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
+        out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());
+        out.put("freeThrowsAttemptedPerGame", freeThrowsAttemptedPerGame());
+        out.put("threePointsMadePerGame", threePointsMadePerGame());
+        out.put("threePointsAttemptedPerGame", threePointsAttemptedPerGame());
+        out.put("defensiveReboundsPerGame", defensiveReboundsPerGame());
+        out.put("offensiveReboundsPerGame", offensiveReboundsPerGame());
+        out.put("reboundsPerGame", reboundsPerGame());
+        out.put("personalFoulsPerGame", personalFoulsPerGame());
+        out.put("stealsPerGame", stealsPerGame());
+        out.put("turnoversPerGame", turnoversPerGame());
+        out.put("blocksPerGame", blocksPerGame());
+        out.put("totalRebounds", totalRebounds());
+        return out;
+    }
+
 
     public void addStat(Team stat) {
         this.wins += stat.wins;
