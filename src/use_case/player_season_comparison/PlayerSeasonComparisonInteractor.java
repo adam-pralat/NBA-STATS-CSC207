@@ -36,8 +36,6 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
 
                 // iterate through the season2 stats, and from it, subtract season1 stats
                 // then put those values in playerStatComparison
-                // TODO: what happens if one of the stats is null? I think this is this covered in the getPlayerYearlyStats function under PlayerDataAccessObject?
-                // TODO: ask Noah about this to make sure
                 while (iterator.hasNext()) {
                     Map.Entry<String, Object> entry = iterator.next();
                     if (season1PlayerStats.containsKey(entry.getKey())) {
