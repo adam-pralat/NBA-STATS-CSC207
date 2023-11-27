@@ -1,6 +1,9 @@
 package interface_adapter.home_page;
 
 public class HomePageState {
+    // Error message
+    private String error;
+
     // Featured Player information
     // Note that some player information is cut out to show on home page
 
@@ -14,15 +17,15 @@ public class HomePageState {
     private String playerTeam; // Name of the player's current team
 
     // Statistic metrics
-    private String playerPointsPerGame;
-    private String playerAssistsPerGame;
-    private String playerFreeThrowPercentage;
-    private String playerFieldGoalPercentage;
-    private String playerThreePointPercentage;
-    private String playerTimePlayedPerGame;
-    private String playerStealsPerGame;
-    private String playerTurnoversPerGame;
-    private String playerBlocksPerGame;
+    private double playerPointsPerGame;
+    private double playerAssistsPerGame;
+    private double playerFreeThrowPercentage;
+    private double playerFieldGoalPercentage;
+    private double playerThreePointPercentage;
+    private double playerTimePlayedPerGame;
+    private double playerStealsPerGame;
+    private double playerTurnoversPerGame;
+    private double playerBlocksPerGame;
 
     // Featured Team Information
     // General information
@@ -32,18 +35,20 @@ public class HomePageState {
     private String conference;
 
     // Team standings metrics
-    private String teamWins;
-    private String teamLosses;
-    private String teamsWinsLastTen;
-    private String teamsLossesLastTen;
-    private String conferencePlace;
+    private int teamWins;
+    private int teamLosses;
+    private int teamsWinsLastTen;
+    private int teamsLossesLastTen;
+    private int conferencePlace;
 
 
     // Statistic metrics
-    private String teamPointsPerGame;
-    private String teamFreeThrowPercentage;
-    private String teamFieldGoalPercentage;
-    private String teamThreePointPercentage;
+    private double teamPointsPerGame;
+    private double teamFreeThrowPercentage;
+    private double teamFieldGoalPercentage;
+    private double teamThreePointPercentage;
+
+    private boolean useCaseFailed;
 
     public HomePageState() {}
 
@@ -75,6 +80,7 @@ public class HomePageState {
         this.teamFreeThrowPercentage = copy.teamFreeThrowPercentage;
         this.teamFieldGoalPercentage = copy.teamFieldGoalPercentage;
         this.teamThreePointPercentage = copy.teamThreePointPercentage;
+        this.error = copy.error;
     }
 
     public String getPlayerFirstName() {
@@ -117,75 +123,75 @@ public class HomePageState {
         this.playerTeam = playerTeam;
     }
 
-    public String getPlayerPointsPerGame() {
+    public double getPlayerPointsPerGame() {
         return playerPointsPerGame;
     }
 
-    public void setPlayerPointsPerGame(String playerPointsPerGame) {
+    public void setPlayerPointsPerGame(double playerPointsPerGame) {
         this.playerPointsPerGame = playerPointsPerGame;
     }
 
-    public String getPlayerAssistsPerGame() {
+    public double getPlayerAssistsPerGame() {
         return playerAssistsPerGame;
     }
 
-    public void setPlayerAssistsPerGame(String playerAssistsPerGame) {
+    public void setPlayerAssistsPerGame(double playerAssistsPerGame) {
         this.playerAssistsPerGame = playerAssistsPerGame;
     }
 
-    public String getPlayerFreeThrowPercentage() {
+    public double getPlayerFreeThrowPercentage() {
         return playerFreeThrowPercentage;
     }
 
-    public void setPlayerFreeThrowPercentage(String playerFreeThrowPercentage) {
+    public void setPlayerFreeThrowPercentage(double playerFreeThrowPercentage) {
         this.playerFreeThrowPercentage = playerFreeThrowPercentage;
     }
 
-    public String getPlayerFieldGoalPercentage() {
+    public double getPlayerFieldGoalPercentage() {
         return playerFieldGoalPercentage;
     }
 
-    public void setPlayerFieldGoalPercentage(String playerFieldGoalPercentage) {
+    public void setPlayerFieldGoalPercentage(double playerFieldGoalPercentage) {
         this.playerFieldGoalPercentage = playerFieldGoalPercentage;
     }
 
-    public String getPlayerThreePointPercentage() {
+    public double getPlayerThreePointPercentage() {
         return playerThreePointPercentage;
     }
 
-    public void setPlayerThreePointPercentage(String playerThreePointPercentage) {
+    public void setPlayerThreePointPercentage(double playerThreePointPercentage) {
         this.playerThreePointPercentage = playerThreePointPercentage;
     }
 
-    public String getPlayerTimePlayedPerGame() {
+    public double getPlayerTimePlayedPerGame() {
         return playerTimePlayedPerGame;
     }
 
-    public void setPlayerTimePlayedPerGame(String playerTimePlayedPerGame) {
+    public void setPlayerTimePlayedPerGame(double playerTimePlayedPerGame) {
         this.playerTimePlayedPerGame = playerTimePlayedPerGame;
     }
 
-    public String getPlayerStealsPerGame() {
+    public double getPlayerStealsPerGame() {
         return playerStealsPerGame;
     }
 
-    public void setPlayerStealsPerGame(String playerStealsPerGame) {
+    public void setPlayerStealsPerGame(double playerStealsPerGame) {
         this.playerStealsPerGame = playerStealsPerGame;
     }
 
-    public String getPlayerTurnoversPerGame() {
+    public double getPlayerTurnoversPerGame() {
         return playerTurnoversPerGame;
     }
 
-    public void setPlayerTurnoversPerGame(String playerTurnoversPerGame) {
+    public void setPlayerTurnoversPerGame(double playerTurnoversPerGame) {
         this.playerTurnoversPerGame = playerTurnoversPerGame;
     }
 
-    public String getPlayerBlocksPerGame() {
+    public double getPlayerBlocksPerGame() {
         return playerBlocksPerGame;
     }
 
-    public void setPlayerBlocksPerGame(String playerBlocksPerGame) {
+    public void setPlayerBlocksPerGame(double playerBlocksPerGame) {
         this.playerBlocksPerGame = playerBlocksPerGame;
     }
 
@@ -221,75 +227,126 @@ public class HomePageState {
         this.conference = conference;
     }
 
-    public String getTeamWins() {
+    public int getTeamWins() {
         return teamWins;
     }
 
-    public void setTeamWins(String teamWins) {
+    public void setTeamWins(int teamWins) {
         this.teamWins = teamWins;
     }
 
-    public String getTeamLosses() {
+    public int getTeamLosses() {
         return teamLosses;
     }
 
-    public void setTeamLosses(String teamLosses) {
+    public void setTeamLosses(int teamLosses) {
         this.teamLosses = teamLosses;
     }
 
-    public String getTeamsWinsLastTen() {
+    public int getTeamsWinsLastTen() {
         return teamsWinsLastTen;
     }
 
-    public void setTeamsWinsLastTen(String teamsWinsLastTen) {
+    public void setTeamsWinsLastTen(int teamsWinsLastTen) {
         this.teamsWinsLastTen = teamsWinsLastTen;
     }
 
-    public String getTeamsLossesLastTen() {
+    public int getTeamsLossesLastTen() {
         return teamsLossesLastTen;
     }
 
-    public void setTeamsLossesLastTen(String teamsLossesLastTen) {
+    public void setTeamsLossesLastTen(int teamsLossesLastTen) {
         this.teamsLossesLastTen = teamsLossesLastTen;
     }
 
-    public String getConferencePlace() {
+    public int getConferencePlace() {
         return conferencePlace;
     }
 
-    public void setConferencePlace(String conferencePlace) {
+    public void setConferencePlace(int conferencePlace) {
         this.conferencePlace = conferencePlace;
     }
 
-    public String getTeamPointsPerGame() {
+    public double getTeamPointsPerGame() {
         return teamPointsPerGame;
     }
 
-    public void setTeamPointsPerGame(String teamPointsPerGame) {
+    public void setTeamPointsPerGame(double teamPointsPerGame) {
         this.teamPointsPerGame = teamPointsPerGame;
     }
 
-    public String getTeamFreeThrowPercentage() {
+    public double getTeamFreeThrowPercentage() {
         return teamFreeThrowPercentage;
     }
 
-    public void setTeamFreeThrowPercentage(String teamFreeThrowPercentage) {
+    public void setTeamFreeThrowPercentage(double teamFreeThrowPercentage) {
         this.teamFreeThrowPercentage = teamFreeThrowPercentage;
     }
 
-    public String getTeamFieldGoalPercentage() {
+    public double getTeamFieldGoalPercentage() {
         return teamFieldGoalPercentage;
     }
 
-    public void setTeamFieldGoalPercentage(String teamFieldGoalPercentage) {
+    public void setTeamFieldGoalPercentage(double teamFieldGoalPercentage) {
         this.teamFieldGoalPercentage = teamFieldGoalPercentage;
     }
 
-    public String getTeamThreePointPercentage() {
+    public double getTeamThreePointPercentage() {
         return teamThreePointPercentage;
     }
 
-    public void setTeamThreePointPercentage(String teamThreePointPercentage) {
+    public void setTeamThreePointPercentage(double teamThreePointPercentage) {
         this.teamThreePointPercentage = teamThreePointPercentage;
+    }
+
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
+    }
+
+    public void setUseCaseFailed(boolean useCaseFailed) {
+        this.useCaseFailed = useCaseFailed;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    @Override
+    public String toString() {
+        return "HomePageState{" +
+                "error='" + error + '\'' +
+                ", playerFirstName='" + playerFirstName + '\'' +
+                ", playerLastName='" + playerLastName + '\'' +
+                ", playerBirthDate='" + playerBirthDate + '\'' +
+                ", playerCountry='" + playerCountry + '\'' +
+                ", playerTeam='" + playerTeam + '\'' +
+                ", playerPointsPerGame=" + playerPointsPerGame +
+                ", playerAssistsPerGame=" + playerAssistsPerGame +
+                ", playerFreeThrowPercentage=" + playerFreeThrowPercentage +
+                ", playerFieldGoalPercentage=" + playerFieldGoalPercentage +
+                ", playerThreePointPercentage=" + playerThreePointPercentage +
+                ", playerTimePlayedPerGame=" + playerTimePlayedPerGame +
+                ", playerStealsPerGame=" + playerStealsPerGame +
+                ", playerTurnoversPerGame=" + playerTurnoversPerGame +
+                ", playerBlocksPerGame=" + playerBlocksPerGame +
+                ", teamName='" + teamName + '\'' +
+                ", teamNickname='" + teamNickname + '\'' +
+                ", teamCode='" + teamCode + '\'' +
+                ", conference='" + conference + '\'' +
+                ", teamWins=" + teamWins +
+                ", teamLosses=" + teamLosses +
+                ", teamsWinsLastTen=" + teamsWinsLastTen +
+                ", teamsLossesLastTen=" + teamsLossesLastTen +
+                ", conferencePlace=" + conferencePlace +
+                ", teamPointsPerGame=" + teamPointsPerGame +
+                ", teamFreeThrowPercentage=" + teamFreeThrowPercentage +
+                ", teamFieldGoalPercentage=" + teamFieldGoalPercentage +
+                ", teamThreePointPercentage=" + teamThreePointPercentage +
+                ", useCaseFailed=" + useCaseFailed +
+                '}';
     }
 }

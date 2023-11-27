@@ -226,15 +226,11 @@ public class Player {
     // Per game methods
     private double statPerGame(int stat){
         if (gamesPlayed != 0) {
-            double perGame = (double) stat / (double) gamesPlayed;
-            DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
-            return Double.valueOf(df.format(perGame));
+            return roundTwoDecimals((double) stat / (double) gamesPlayed);
         } else {
             return 0.0;
         }
     }
-
-    // TODO: Round percentages
 
     public double pointsPerGame() { return statPerGame(points);}
     public double assistsPerGame(){ return statPerGame(assists);}
@@ -268,7 +264,7 @@ public class Player {
     public double fieldGoalPercentage(){
         // Return 0% if the player has not attempted any field goals
         if (fieldGoalsAttempted != 0){
-            return (double)fieldGoalsMade/(double)fieldGoalsAttempted * 100;
+            return roundTwoDecimals((double)fieldGoalsMade/(double)fieldGoalsAttempted * 100);
         } else {
             return 0.0;
         }
@@ -277,7 +273,7 @@ public class Player {
     public double freeThrowPercentage(){
         // Return 0% if the player has not attempted any free throws
         if (freeThrowsAttempted != 0){
-            return (double)freeThrowsMade/(double)freeThrowsAttempted * 100;
+            return roundTwoDecimals((double)freeThrowsMade/(double)freeThrowsAttempted * 100);
         } else {
             return 0.0;
         }
@@ -298,7 +294,7 @@ public class Player {
     public double threePointPercentage(){
         // Return 0% if the player has not attempted any field goals
         if (threePointsAttempted != 0){
-            return (double)threePointsMade/(double)threePointsAttempted * 100;
+            return roundTwoDecimals((double)threePointsMade/(double)threePointsAttempted * 100);
         } else {
             return 0.0;
         }
