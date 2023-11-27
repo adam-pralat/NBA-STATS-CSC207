@@ -1,13 +1,14 @@
 package entity;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.Math.round;
 
 public class Player {
     private int id; // API id
     // Personal information
-    private int id;
     private String firstName;
     private String lastName;
     private String birthDate; // YYYY-MM-DD
@@ -135,13 +136,97 @@ public class Player {
                 '}';
     }
 
+    public Map<String, Object> toMap(){
+        Map<String, Object> out = new HashMap<>();
+
+        out.put("id", + id);
+        out.put("firstName", firstName);
+        out.put("lastName", lastName);
+        out.put("birthDate", birthDate);
+        out.put("country", country);
+        out.put("height", height);
+        out.put("weight", weight);
+        out.put("team", team);
+        out.put("position", position);
+        out.put("jerseyNumber", jerseyNumber);
+        out.put("active", active);
+
+        // Statistics
+        out.put("gamesPlayed", gamesPlayed);
+        out.put("points", points);
+        out.put("assists", assists);
+        out.put("timePlayed", timePlayed);
+        out.put("fieldGoalsMade", fieldGoalsMade);
+        out.put("fieldGoalsAttempted", fieldGoalsAttempted);
+        out.put("freeThrowsMade", freeThrowsMade);
+        out.put("freeThrowsAttempted", freeThrowsAttempted);
+        out.put("threePointsMade", threePointsMade);
+        out.put("threePointsAttempted", threePointsAttempted);
+        out.put("offensiveRebounds", offensiveRebounds);
+        out.put("defensiveRebounds", defensiveRebounds);
+        out.put("personalFouls", personalFouls);
+        out.put("steals", steals);
+        out.put("turnovers", turnovers);
+        out.put("blocks", blocks);
+        out.put("plusMinus", plusMinus);
+
+        // Per game metrics
+        out.put("pointsPerGame", pointsPerGame());
+        out.put("assistsPerGame", assistsPerGame());
+        out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
+        out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
+        out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());
+        out.put("freeThrowsAttemptedPerGame", freeThrowsAttemptedPerGame());
+        out.put("threePointsMadePerGame", threePointsMadePerGame());
+        out.put("threePointsAttemptedPerGame", threePointsAttemptedPerGame());
+        out.put("defensiveReboundsPerGame", defensiveReboundsPerGame());
+        out.put("offensiveReboundsPerGame", offensiveReboundsPerGame());
+        out.put("reboundsPerGame", reboundsPerGame());
+        out.put("personalFoulsPerGame", personalFoulsPerGame());
+        out.put("stealsPerGame", stealsPerGame());
+        out.put("turnoversPerGame", turnoversPerGame());
+        out.put("blocksPerGame", blocksPerGame());
+        out.put("timePlayedPerGame", timePlayedPerGame());
+
+        // Percentages
+        out.put("fieldGoalPercentage", roundTwoDecimals(fieldGoalPercentage()));
+        out.put("threePointPercentage", roundTwoDecimals(threePointPercentage()));
+        out.put("freeThrowPercentage", roundTwoDecimals(freeThrowPercentage()));
+        return out;
+    }
+
+    // TODO: Put in different file
+    private double roundTwoDecimals(double num){
+        DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
+        return Double.valueOf(df.format(num));
+    }
+
+    public void addStat(Map<String, Object> statMap){
+        // Assuming statMap contains all fields needed
+        gamesPlayed += (Integer) statMap.get("gamesPlayed");
+        points += (Integer) statMap.get("points");
+        assists += (Integer) statMap.get("assists");
+        timePlayed += (Integer) statMap.get("timePlayed");
+        fieldGoalsMade += (Integer) statMap.get("fieldGoalsMade");
+        fieldGoalsAttempted += (Integer) statMap.get("fieldGoalsAttempted");
+        freeThrowsMade += (Integer) statMap.get("freeThrowsMade");
+        freeThrowsAttempted += (Integer) statMap.get("freeThrowsAttempted");
+        threePointsMade += (Integer) statMap.get("threePointsMade");
+        threePointsAttempted += (Integer) statMap.get("threePointsAttempted");
+        offensiveRebounds += (Integer) statMap.get("offensiveRebounds");
+        defensiveRebounds += (Integer) statMap.get("defensiveRebounds");
+        personalFouls += (Integer) statMap.get("personalFouls");
+        steals += (Integer) statMap.get("steals");
+        turnovers += (Integer) statMap.get("turnovers");
+        blocks += (Integer) statMap.get("blocks");
+        plusMinus += (Integer) statMap.get("plusMinus");
+    }
+
     // TODO: Use facade here??
     // Per game methods
     private double statPerGame(int stat){
         if (gamesPlayed != 0) {
-            double perGame = (double) stat / (double) gamesPlayed;
-            DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
-            return Double.valueOf(df.format(perGame));
+            return roundTwoDecimals((double) stat / (double) gamesPlayed);
         } else {
             return 0.0;
         }
@@ -179,7 +264,7 @@ public class Player {
     public double fieldGoalPercentage(){
         // Return 0% if the player has not attempted any field goals
         if (fieldGoalsAttempted != 0){
-            return (double)fieldGoalsMade/(double)fieldGoalsAttempted * 100;
+            return roundTwoDecimals((double)fieldGoalsMade/(double)fieldGoalsAttempted * 100);
         } else {
             return 0.0;
         }
@@ -188,7 +273,7 @@ public class Player {
     public double freeThrowPercentage(){
         // Return 0% if the player has not attempted any free throws
         if (freeThrowsAttempted != 0){
-            return (double)freeThrowsMade/(double)freeThrowsAttempted * 100;
+            return roundTwoDecimals((double)freeThrowsMade/(double)freeThrowsAttempted * 100);
         } else {
             return 0.0;
         }
@@ -209,7 +294,7 @@ public class Player {
     public double threePointPercentage(){
         // Return 0% if the player has not attempted any field goals
         if (threePointsAttempted != 0){
-            return (double)threePointsMade/(double)threePointsAttempted * 100;
+            return roundTwoDecimals((double)threePointsMade/(double)threePointsAttempted * 100);
         } else {
             return 0.0;
         }

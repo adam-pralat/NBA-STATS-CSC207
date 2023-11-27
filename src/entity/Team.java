@@ -1,6 +1,8 @@
 package entity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class Team {
@@ -11,7 +13,15 @@ public class Team {
     private String code;
     private String city;
     private String logo;
+    private String conference;
     private ArrayList<Player> players;
+
+    // Wins/Losses
+    private int wins;
+    private int losses;
+    private int winsPastTen;
+    private int lossesPastTen;
+    private int conferencePlace;
 
     // Team Statistics
     private int games;
@@ -20,12 +30,12 @@ public class Team {
     private int secondChancePoints;
     private int pointsOffTurnovers;
     private int points;
-    private int fgm;
-    private int fga;
-    private int ftm;
-    private int fta;
-    private int tpm;
-    private int tpa;
+    private int fieldGoalsMade;
+    private int fieldGoalsAttempted;
+    private int freeThrowsMade;
+    private int freeThrowsAttempted;
+    private int threePointsMade;
+    private int threePointsAttempted;
     private int offReb;
     private int defReb;
     private int assists;
@@ -36,26 +46,32 @@ public class Team {
     private int plusMinus;
 
 
-    public Team(int id, String name, String nickname, String code, String city, String logo, ArrayList<Player> players, int games, int fastBreakPoints, int pointsInPaint, int secondChancePoints, int pointsOffTurnovers, int points, int fgm, int fga, int ftm, int fta, int tpm, int tpa, int offReb, int defReb, int assists, int pFouls, int steals, int turnovers, int blocks, int plusMinus) {
+    public Team(int id, String name, String nickname, String code, String city, String logo, String conference, ArrayList<Player> players, int wins, int losses, int winsPastTen, int lossesPastTen, int conferencePlace, int games, int fastBreakPoints, int pointsInPaint, int secondChancePoints, int pointsOffTurnovers, int points, int fieldGoalsMade, int fieldGoalsAttempted, int freeThrowsMade, int freeThrowsAttempted, int threePointsMade, int threePointsAttempted, int offReb, int defReb, int assists, int pFouls, int steals, int turnovers, int blocks, int plusMinus) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;
         this.code = code;
         this.city = city;
         this.logo = logo;
+        this.conference = conference;
         this.players = players;
+        this.wins = wins;
+        this.losses = losses;
+        this.winsPastTen = winsPastTen;
+        this.lossesPastTen = lossesPastTen;
+        this.conferencePlace = conferencePlace;
         this.games = games;
         this.fastBreakPoints = fastBreakPoints;
         this.pointsInPaint = pointsInPaint;
         this.secondChancePoints = secondChancePoints;
         this.pointsOffTurnovers = pointsOffTurnovers;
         this.points = points;
-        this.fgm = fgm;
-        this.fga = fga;
-        this.ftm = ftm;
-        this.fta = fta;
-        this.tpm = tpm;
-        this.tpa = tpa;
+        this.fieldGoalsMade = fieldGoalsMade;
+        this.fieldGoalsAttempted = fieldGoalsAttempted;
+        this.freeThrowsMade = freeThrowsMade;
+        this.freeThrowsAttempted = freeThrowsAttempted;
+        this.threePointsMade = threePointsMade;
+        this.threePointsAttempted = threePointsAttempted;
         this.offReb = offReb;
         this.defReb = defReb;
         this.assists = assists;
@@ -64,6 +80,109 @@ public class Team {
         this.turnovers = turnovers;
         this.blocks = blocks;
         this.plusMinus = plusMinus;
+    }
+
+    public void addStat(Team stat) {
+        this.wins += stat.wins;
+        this.losses += stat.losses;
+        this.winsPastTen += stat.winsPastTen;
+        this.lossesPastTen += stat.lossesPastTen;
+        this.conferencePlace += stat.conferencePlace;
+        this.games += stat.games;
+        this.fastBreakPoints += stat.fastBreakPoints;
+        this.pointsInPaint += stat.pointsInPaint;
+        this.secondChancePoints += stat.secondChancePoints;
+        this.pointsOffTurnovers += stat.pointsOffTurnovers;
+        this.points += stat.points;
+        this.fieldGoalsMade += stat.fieldGoalsMade;
+        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
+        this.freeThrowsMade += stat.freeThrowsMade;
+        this.freeThrowsAttempted += stat.freeThrowsAttempted;
+        this.threePointsMade += stat.threePointsMade;
+        this.threePointsAttempted += stat.threePointsAttempted;
+        this.offReb += stat.offReb;
+        this.defReb += stat.defReb;
+        this.assists += stat.assists;
+        this.pFouls += stat.pFouls;
+        this.steals += stat.steals;
+        this.turnovers += stat.turnovers;
+        this.blocks += stat.blocks;
+        this.plusMinus += stat.plusMinus;
+    }
+
+    // TODO: Put in different file
+    private double statPerGame(int stat){
+        if (games != 0) {
+           return roundTwoDecimals((double)stat/(double)games);
+        } else {
+            return 0.0;
+        }
+    }
+
+    public double pointsPerGame() { return statPerGame(points);}
+    public double assistsPerGame(){ return statPerGame(assists);}
+
+    public double fieldGoalsMadePerGame() {return statPerGame(fieldGoalsMade); }
+    public double fieldGoalsAttemptedPerGame() {return statPerGame(fieldGoalsAttempted); }
+
+    public double freeThrowsMadePerGame() {return statPerGame(freeThrowsMade); }
+    public double freeThrowsAttemptedPerGame() {return statPerGame(freeThrowsAttempted); }
+
+    public double threePointsMadePerGame() {return statPerGame(threePointsMade); }
+    public double threePointsAttemptedPerGame() {return statPerGame(threePointsAttempted); }
+
+    public double defensiveReboundsPerGame() {return statPerGame(defReb); }
+
+    public double offensiveReboundsPerGame() {return statPerGame(offReb); }
+
+    public double reboundsPerGame(){ return statPerGame(totalRebounds());}
+
+    public double personalFoulsPerGame(){ return statPerGame(pFouls); }
+
+    public double stealsPerGame(){ return statPerGame(steals); }
+
+    public double turnoversPerGame() {return statPerGame(turnovers); }
+
+    public double blocksPerGame(){ return statPerGame(blocks);}
+
+    public int totalRebounds(){ return defReb + offReb; }
+
+    // TODO: Put in different file
+    private double roundTwoDecimals(double num){
+        DecimalFormat df = new DecimalFormat("#.##"); // Round double to 2 decimal places
+        return Double.valueOf(df.format(num));
+    }
+
+    public double fieldGoalPercentage(){
+        // Return 0% if the player has not attempted any field goals
+        if (fieldGoalsAttempted != 0){
+            return roundTwoDecimals((double)fieldGoalsMade/(double)fieldGoalsAttempted * 100);
+        } else {
+            return 0.0;
+        }
+    }
+
+    public double freeThrowPercentage(){
+        // Return 0% if the player has not attempted any free throws
+        if (freeThrowsAttempted != 0){
+            return roundTwoDecimals((double)freeThrowsMade/(double)freeThrowsAttempted * 100);
+        } else {
+            return 0.0;
+        }
+    }
+
+    public double threePointPercentage(){
+        // Return 0% if the player has not attempted any field goals
+        if (threePointsAttempted != 0){
+            return roundTwoDecimals((double)threePointsMade/(double)threePointsAttempted * 100);
+        } else {
+            return 0.0;
+        }
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -106,12 +225,60 @@ public class Team {
         this.logo = logo;
     }
 
+    public String getConference() {
+        return conference;
+    }
+
+    public void setConference(String conference) {
+        this.conference = conference;
+    }
+
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public int getWinsPastTen() {
+        return winsPastTen;
+    }
+
+    public void setWinsPastTen(int winsPastTen) {
+        this.winsPastTen = winsPastTen;
+    }
+
+    public int getLossesPastTen() {
+        return lossesPastTen;
+    }
+
+    public void setLossesPastTen(int lossesPastTen) {
+        this.lossesPastTen = lossesPastTen;
+    }
+
+    public int getConferencePlace() {
+        return conferencePlace;
+    }
+
+    public void setConferencePlace(int conferencePlace) {
+        this.conferencePlace = conferencePlace;
     }
 
     public int getGames() {
@@ -162,52 +329,52 @@ public class Team {
         this.points = points;
     }
 
-    public int getFgm() {
-        return fgm;
+    public int getFieldGoalsMade() {
+        return fieldGoalsMade;
     }
 
-    public void setFgm(int fgm) {
-        this.fgm = fgm;
+    public void setFieldGoalsMade(int fieldGoalsMade) {
+        this.fieldGoalsMade = fieldGoalsMade;
     }
 
-    public int getFga() {
-        return fga;
+    public int getFieldGoalsAttempted() {
+        return fieldGoalsAttempted;
     }
 
-    public void setFga(int fga) {
-        this.fga = fga;
+    public void setFieldGoalsAttempted(int fieldGoalsAttempted) {
+        this.fieldGoalsAttempted = fieldGoalsAttempted;
     }
 
-    public int getFtm() {
-        return ftm;
+    public int getFreeThrowsMade() {
+        return freeThrowsMade;
     }
 
-    public void setFtm(int ftm) {
-        this.ftm = ftm;
+    public void setFreeThrowsMade(int freeThrowsMade) {
+        this.freeThrowsMade = freeThrowsMade;
     }
 
-    public int getFta() {
-        return fta;
+    public int getFreeThrowsAttempted() {
+        return freeThrowsAttempted;
     }
 
-    public void setFta(int fta) {
-        this.fta = fta;
+    public void setFreeThrowsAttempted(int freeThrowsAttempted) {
+        this.freeThrowsAttempted = freeThrowsAttempted;
     }
 
-    public int getTpm() {
-        return tpm;
+    public int getThreePointsMade() {
+        return threePointsMade;
     }
 
-    public void setTpm(int tpm) {
-        this.tpm = tpm;
+    public void setThreePointsMade(int threePointsMade) {
+        this.threePointsMade = threePointsMade;
     }
 
-    public int getTpa() {
-        return tpa;
+    public int getThreePointsAttempted() {
+        return threePointsAttempted;
     }
 
-    public void setTpa(int tpa) {
-        this.tpa = tpa;
+    public void setThreePointsAttempted(int threePointsAttempted) {
+        this.threePointsAttempted = threePointsAttempted;
     }
 
     public int getOffReb() {
