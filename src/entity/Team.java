@@ -183,33 +183,62 @@ public class Team {
         return out;
     }
 
+//    public void addStat(Team stat) {
+//        this.wins += stat.wins;
+//        this.losses += stat.losses;
+//        this.winsPastTen += stat.winsPastTen;
+//        this.lossesPastTen += stat.lossesPastTen;
+//        this.conferencePlace += stat.conferencePlace;
+//        this.games += stat.games;
+//        this.fastBreakPoints += stat.fastBreakPoints;
+//        this.pointsInPaint += stat.pointsInPaint;
+//        this.secondChancePoints += stat.secondChancePoints;
+//        this.pointsOffTurnovers += stat.pointsOffTurnovers;
+//        this.points += stat.points;
+//        this.fieldGoalsMade += stat.fieldGoalsMade;
+//        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
+//        this.freeThrowsMade += stat.freeThrowsMade;
+//        this.freeThrowsAttempted += stat.freeThrowsAttempted;
+//        this.threePointsMade += stat.threePointsMade;
+//        this.threePointsAttempted += stat.threePointsAttempted;
+//        this.offReb += stat.offReb;
+//        this.defReb += stat.defReb;
+//        this.assists += stat.assists;
+//        this.pFouls += stat.pFouls;
+//        this.steals += stat.steals;
+//        this.turnovers += stat.turnovers;
+//        this.blocks += stat.blocks;
+//        this.plusMinus += stat.plusMinus;
+//    }
 
-    public void addStat(Team stat) {
-        this.wins += stat.wins;
-        this.losses += stat.losses;
-        this.winsPastTen += stat.winsPastTen;
-        this.lossesPastTen += stat.lossesPastTen;
-        this.conferencePlace += stat.conferencePlace;
-        this.games += stat.games;
-        this.fastBreakPoints += stat.fastBreakPoints;
-        this.pointsInPaint += stat.pointsInPaint;
-        this.secondChancePoints += stat.secondChancePoints;
-        this.pointsOffTurnovers += stat.pointsOffTurnovers;
-        this.points += stat.points;
-        this.fieldGoalsMade += stat.fieldGoalsMade;
-        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
-        this.freeThrowsMade += stat.freeThrowsMade;
-        this.freeThrowsAttempted += stat.freeThrowsAttempted;
-        this.threePointsMade += stat.threePointsMade;
-        this.threePointsAttempted += stat.threePointsAttempted;
-        this.offReb += stat.offReb;
-        this.defReb += stat.defReb;
-        this.assists += stat.assists;
-        this.pFouls += stat.pFouls;
-        this.steals += stat.steals;
-        this.turnovers += stat.turnovers;
-        this.blocks += stat.blocks;
-        this.plusMinus += stat.plusMinus;
+    //Changed addStat with map, statMap
+    public void addStat(Map<String, Object> statMap){
+        wins += (Integer) statMap.get("wins");
+        losses += (Integer) statMap.get("losses");
+        winsPastTen += (Integer) statMap.get("winsPastTen");
+        lossesPastTen += (Integer) statMap.get("lossesPastTen");
+        conferencePlace += (Integer) statMap.get("conferencePlace");
+        games += (Integer) statMap.get("games");
+        fastBreakPoints += (Integer) statMap.get("fastBreakPoints");
+        pointsInPaint += (Integer) statMap.get("pointsInPaint");
+        secondChancePoints += (Integer) statMap.get("secondChancePoints");
+        pointsOffTurnovers += (Integer) statMap.get("pointsOffTurnovers");
+        points += (Integer) statMap.get("points");
+        fieldGoalsMade += (Integer) statMap.get("fieldGoalsMade");
+        fieldGoalsAttempted += (Integer) statMap.get("fieldGoalsAttempted");
+        freeThrowsMade += (Integer) statMap.get("freeThrowsMade");
+        freeThrowsAttempted += (Integer) statMap.get("freeThrowsAttempted");
+        threePointsMade += (Integer) statMap.get("threePointsMade");
+        threePointsAttempted += (Integer) statMap.get("threePointsAttempted");
+        offReb += (Integer) statMap.get("offReb");
+        defReb += (Integer) statMap.get("defReb");
+        assists += (Integer) statMap.get("assists");
+        pFouls += (Integer) statMap.get("pFouls");
+        steals += (Integer) statMap.get("steals");
+        assists += (Integer) statMap.get("assists");
+        turnovers += (Integer) statMap.get("turnovers");
+        blocks += (Integer) statMap.get("blocks");
+        plusMinus += (Integer) statMap.get("plusMinus");
     }
 
     // TODO: Put in different file
