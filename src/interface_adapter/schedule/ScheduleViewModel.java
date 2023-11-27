@@ -8,9 +8,14 @@ import java.beans.PropertyChangeSupport;
 
 public class ScheduleViewModel extends ViewModel {
 
+    public static final String EXIT_BUTTON_LABEL = "Exit";
     public final String TITLE_LABEL = "Schedule View";
 
     private ScheduleState state = new ScheduleState();
+
+    public ScheduleViewModel(String viewName) {
+        super(viewName);
+    }
 
 
     public void setState(ScheduleState state) {
