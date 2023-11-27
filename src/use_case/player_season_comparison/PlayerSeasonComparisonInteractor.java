@@ -25,10 +25,7 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
             playerSeasonComparisonPresenter.prepareFailView(("Player ID does not exist."));
         } else {
             try {
-                // TODO change to method call that figures out current season when it is implemented
-                int currentSeason = 2023;
-                Player player = playerSeasonComparisonAccessObject.getPlayerInfo(id);
-
+                // TODO does season2 > season1 have to be true?
                 // create maps for season1 and season2
                 Map<String, Object> season1PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season1);
                 Map<String, Object> season2PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season2);
