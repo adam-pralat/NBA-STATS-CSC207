@@ -20,20 +20,20 @@ public class TeamStatsInteractor implements TeamStatsInputBoundary {
 
     @Override
     public void execute(TeamStatsInputData inputData) {
-        int teamid = inputData.getTeamId();
-        if (!teamStatsDataAccessInterface.existsById(teamid)) {
+        int teamId = inputData.getTeamId();
+        if (!teamStatsDataAccessInterface.existsById(teamId)) {
             teamStatsOutputBoundary.prepareFailView("Team ID does not exist.");
         } else {
             try {
                 int currSeason = 2023; //TODO method to figure out current season
-                Team team = teamStatsDataAccessInterface.getTeamInfo(teamid);
+                Team team = teamStatsDataAccessInterface.getTeamInfo(teamId);
 
                 //TODO method for yearly record, similar to Yearly stats
 
                 for(int season = 2015; season <= currSeason; season++) {
-                    Map<String, Object> seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamid, season);
+                    Map<String, Object> seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamId, season);
                     team.addStat(seasonTeamStats);
-                    Map<String, Object> seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamid, season);
+                    Map<String, Object> seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamId, season);
                     team.addStat(seasonTeamRecord);
                 }
 
