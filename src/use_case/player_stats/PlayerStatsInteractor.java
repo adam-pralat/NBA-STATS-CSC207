@@ -3,6 +3,7 @@ package use_case.player_stats;
 import entity.Player;
 import interface_adapter.player_stats.PlayerStatsPresenter;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 
@@ -22,9 +23,8 @@ public class PlayerStatsInteractor implements PlayerStatsInputBoundary {
             playerStatsPresenter.prepareFailView("Player ID does not exist.");
         } else {
             try {
-                int currSeason = 2023; //TODO method to figure out current season
+                int currSeason = LocalDate.now().getYear();
                 Player player = playerStatsAccessObject.getPlayerInfo(id);
-                // TODO Map<String, Object> currentPlayerStats = playerStatsAccessObject.getPlayerYearlyStats(id, currSeason);
 
                 for(int season = 2015; season <= currSeason; season++) {
                     Map<String, Object> seasonPlayerStats = playerStatsAccessObject.getPlayerYearlyStats(id, season);
