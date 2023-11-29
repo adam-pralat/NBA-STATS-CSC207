@@ -15,7 +15,7 @@ public class PlayerComparisonOutputData {
         this.useCaseFailed = useCaseFailed;
     }
 
-    public Map<String, Object> getPlayerYearlyStats1() { return this.playerStats1; }
+    public Map<String, Object> getPlayerStats1() { return this.playerStats1; }
 
-    public Map<String, Object> getPlayerYearlyStats2() { return this.playerStats2; }
+    public Map<String, Object> getPlayerStats2() { return this.playerStats2; }
 }
