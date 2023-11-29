@@ -38,8 +38,7 @@ public class GameDataAccessObject implements ScheduleDataAccessInterface {
                 String gameDate = gameJSON.getJSONObject("date").getString("start").substring(0, 10);
                 String status = gameJSON.getJSONObject("status").getString("long");
                 JSONObject arenaInfo = gameJSON.getJSONObject("arena");
-                String location = arenaInfo.getString("name") + ", " + arenaInfo.getString("city") +
-                        ", " + arenaInfo.getString("state");
+                String location = arenaInfo.getString("name") + ", " + arenaInfo.getString("city") + ", " + arenaInfo.getString("state");
 
                 JSONObject homeTeam = gameJSON.getJSONObject("teams").getJSONObject("home");
                 JSONObject homeScores = gameJSON.getJSONObject("scores").getJSONObject("home");

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class ScheduleState {
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
     private Map<Integer, Game> games;
 
     public ScheduleState(ScheduleState copy) { date = copy.date; games = copy.games; }
@@ -23,5 +23,13 @@ public class ScheduleState {
 
     public void setGames(Map<Integer, Game> games) {
         this.games = games;
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleState{" +
+                "date=" + date +
+                ", games=" + games +
+                '}';
     }
 }

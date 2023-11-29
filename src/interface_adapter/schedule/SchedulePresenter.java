@@ -21,7 +21,13 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
     public void prepareSuccessView(ScheduleOutputData games) {
         ScheduleState scheduleState = scheduleViewModel.getState();
         scheduleState.setDate(games.getDate());
+        scheduleState.setGames(games.getGames());
 
+        this.scheduleViewModel.setState(scheduleState);
+        this.scheduleViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(scheduleViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
