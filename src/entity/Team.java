@@ -2,8 +2,10 @@ package entity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.round;
 
 public class Team {
     // Team Information
@@ -82,32 +84,161 @@ public class Team {
         this.plusMinus = plusMinus;
     }
 
-    public void addStat(Team stat) {
-        this.wins += stat.wins;
-        this.losses += stat.losses;
-        this.winsPastTen += stat.winsPastTen;
-        this.lossesPastTen += stat.lossesPastTen;
-        this.conferencePlace += stat.conferencePlace;
-        this.games += stat.games;
-        this.fastBreakPoints += stat.fastBreakPoints;
-        this.pointsInPaint += stat.pointsInPaint;
-        this.secondChancePoints += stat.secondChancePoints;
-        this.pointsOffTurnovers += stat.pointsOffTurnovers;
-        this.points += stat.points;
-        this.fieldGoalsMade += stat.fieldGoalsMade;
-        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
-        this.freeThrowsMade += stat.freeThrowsMade;
-        this.freeThrowsAttempted += stat.freeThrowsAttempted;
-        this.threePointsMade += stat.threePointsMade;
-        this.threePointsAttempted += stat.threePointsAttempted;
-        this.offReb += stat.offReb;
-        this.defReb += stat.defReb;
-        this.assists += stat.assists;
-        this.pFouls += stat.pFouls;
-        this.steals += stat.steals;
-        this.turnovers += stat.turnovers;
-        this.blocks += stat.blocks;
-        this.plusMinus += stat.plusMinus;
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", code='" + code + '\'' +
+                ", city='" + city + '\'' +
+                ", logo='" + logo + '\'' +
+                ", conference='" + conference + '\'' +
+                ", players=" + players +
+                ", wins=" + wins +
+                ", losses=" + losses +
+                ", winsPastTen=" + winsPastTen +
+                ", lossesPastTen=" + lossesPastTen +
+                ", conferencePlace=" + conferencePlace +
+                ", games=" + games +
+                ", fastBreakPoints=" + fastBreakPoints +
+                ", pointsInPaint=" + pointsInPaint +
+                ", secondChancePoints=" + secondChancePoints +
+                ", pointsOffTurnovers=" + pointsOffTurnovers +
+                ", points=" + points +
+                ", fieldGoalsMade=" + fieldGoalsMade +
+                ", fieldGoalsAttempted=" + fieldGoalsAttempted +
+                ", freeThrowsMade=" + freeThrowsMade +
+                ", freeThrowsAttempted=" + freeThrowsAttempted +
+                ", threePointsMade=" + threePointsMade +
+                ", threePointsAttempted=" + threePointsAttempted +
+                ", offReb=" + offReb +
+                ", defReb=" + defReb +
+                ", assists=" + assists +
+                ", pFouls=" + pFouls +
+                ", steals=" + steals +
+                ", turnovers=" + turnovers +
+                ", blocks=" + blocks +
+                ", plusMinus=" + plusMinus +
+                '}';
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> out = new HashMap<>();
+
+        //General Info
+        out.put("id", + id);
+        out.put("name", name);
+        out.put("nickname", nickname);
+        out.put("code", code);
+        out.put("city", city);
+        out.put("logo", logo);
+        out.put("conference", conference);
+        out.put("players", players);
+
+        //Stats
+        out.put("wins", wins);
+        out.put("losses", losses);
+        out.put("winsPastTen", winsPastTen);
+        out.put("lossesPastTen", lossesPastTen);
+        out.put("conferencePlace", conferencePlace);
+        out.put("games", games);
+        out.put("fastBreakPoints", fastBreakPoints);
+        out.put("pointsInPaint", pointsInPaint);
+        out.put("secondChancePoints", secondChancePoints);
+        out.put("pointsOffTurnovers", pointsOffTurnovers);
+        out.put("points", points);
+        out.put("fieldGoalsMade", fieldGoalsMade);
+        out.put("fieldGoalsAttempted", fieldGoalsAttempted);
+        out.put("freeThrowsMade", freeThrowsMade);
+        out.put("freeThrowsAttempted", freeThrowsAttempted);
+        out.put("threePointsMade", threePointsMade);
+        out.put("threePointsAttempted", threePointsAttempted);
+        out.put("offReb", offReb);
+        out.put("defReb", defReb);
+        out.put("assists", assists);
+        out.put("pFouls", pFouls);
+        out.put("steals", steals);
+        out.put("turnovers", turnovers);
+        out.put("blocks", blocks);
+        out.put("plusMinus", plusMinus);
+
+        // Per game metrics
+        out.put("pointsPerGame", pointsPerGame());
+        out.put("assistsPerGame", assistsPerGame());
+        out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
+        out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
+        out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());
+        out.put("freeThrowsAttemptedPerGame", freeThrowsAttemptedPerGame());
+        out.put("threePointsMadePerGame", threePointsMadePerGame());
+        out.put("threePointsAttemptedPerGame", threePointsAttemptedPerGame());
+        out.put("defensiveReboundsPerGame", defensiveReboundsPerGame());
+        out.put("offensiveReboundsPerGame", offensiveReboundsPerGame());
+        out.put("reboundsPerGame", reboundsPerGame());
+        out.put("personalFoulsPerGame", personalFoulsPerGame());
+        out.put("stealsPerGame", stealsPerGame());
+        out.put("turnoversPerGame", turnoversPerGame());
+        out.put("blocksPerGame", blocksPerGame());
+        out.put("totalRebounds", totalRebounds());
+        return out;
+    }
+
+//    public void addStat(Team stat) {
+//        this.wins += stat.wins;
+//        this.losses += stat.losses;
+//        this.winsPastTen += stat.winsPastTen;
+//        this.lossesPastTen += stat.lossesPastTen;
+//        this.conferencePlace += stat.conferencePlace;
+//        this.games += stat.games;
+//        this.fastBreakPoints += stat.fastBreakPoints;
+//        this.pointsInPaint += stat.pointsInPaint;
+//        this.secondChancePoints += stat.secondChancePoints;
+//        this.pointsOffTurnovers += stat.pointsOffTurnovers;
+//        this.points += stat.points;
+//        this.fieldGoalsMade += stat.fieldGoalsMade;
+//        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
+//        this.freeThrowsMade += stat.freeThrowsMade;
+//        this.freeThrowsAttempted += stat.freeThrowsAttempted;
+//        this.threePointsMade += stat.threePointsMade;
+//        this.threePointsAttempted += stat.threePointsAttempted;
+//        this.offReb += stat.offReb;
+//        this.defReb += stat.defReb;
+//        this.assists += stat.assists;
+//        this.pFouls += stat.pFouls;
+//        this.steals += stat.steals;
+//        this.turnovers += stat.turnovers;
+//        this.blocks += stat.blocks;
+//        this.plusMinus += stat.plusMinus;
+//    }
+
+    //Changed addStat with map, statMap
+    public void addStat(Map<String, Object> statMap){
+        wins += (Integer) statMap.get("wins");
+        losses += (Integer) statMap.get("losses");
+        winsPastTen += (Integer) statMap.get("winsPastTen");
+        lossesPastTen += (Integer) statMap.get("lossesPastTen");
+        conferencePlace += (Integer) statMap.get("conferencePlace");
+        games += (Integer) statMap.get("games");
+        fastBreakPoints += (Integer) statMap.get("fastBreakPoints");
+        pointsInPaint += (Integer) statMap.get("pointsInPaint");
+        secondChancePoints += (Integer) statMap.get("secondChancePoints");
+        pointsOffTurnovers += (Integer) statMap.get("pointsOffTurnovers");
+        points += (Integer) statMap.get("points");
+        fieldGoalsMade += (Integer) statMap.get("fieldGoalsMade");
+        fieldGoalsAttempted += (Integer) statMap.get("fieldGoalsAttempted");
+        freeThrowsMade += (Integer) statMap.get("freeThrowsMade");
+        freeThrowsAttempted += (Integer) statMap.get("freeThrowsAttempted");
+        threePointsMade += (Integer) statMap.get("threePointsMade");
+        threePointsAttempted += (Integer) statMap.get("threePointsAttempted");
+        offReb += (Integer) statMap.get("offReb");
+        defReb += (Integer) statMap.get("defReb");
+        assists += (Integer) statMap.get("assists");
+        pFouls += (Integer) statMap.get("pFouls");
+        steals += (Integer) statMap.get("steals");
+        assists += (Integer) statMap.get("assists");
+        turnovers += (Integer) statMap.get("turnovers");
+        blocks += (Integer) statMap.get("blocks");
+        plusMinus += (Integer) statMap.get("plusMinus");
     }
 
     // TODO: Put in different file
