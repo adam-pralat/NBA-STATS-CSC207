@@ -13,8 +13,8 @@ public class ScheduleViewModel extends ViewModel {
 
     private ScheduleState state = new ScheduleState();
 
-    public ScheduleViewModel(String viewName) {
-        super(viewName);
+    public ScheduleViewModel() {
+        super("schedule");
     }
 
 

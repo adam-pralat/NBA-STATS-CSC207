@@ -110,7 +110,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "________________________________________________________\n" +
+        return "\n________________________________________________________\n" +
                 date + "\n" + status + '\n' + location + '\n' +
                 homeTeamCode + " | " + homeTeamName + " : " + homeTeamPoints + " - " +
                 awayTeamPoints + " : " + awayTeamName + " | " + awayTeamCode + '\n' +

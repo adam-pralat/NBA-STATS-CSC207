@@ -20,7 +20,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     final JButton exit;
     final JButton previous;
     final JButton next;
-    JLabel games;
+    JEditorPane games;
 
     public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel) {
         this.scheduleController = controller;
@@ -32,7 +32,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         date = new JLabel();
-        games = new JLabel();
+        games = new JEditorPane();
 
         JPanel buttons = new JPanel();
         exit = new JButton(ScheduleViewModel.EXIT_BUTTON_LABEL);
@@ -42,7 +42,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         buttons.add(exit);
         buttons.add(next);
 
-        exit.addActionListener(this);
+        exit.addActionListener(this); // TODO Implement Exit
         previous.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -81,7 +81,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         ScheduleState state = (ScheduleState) evt.getNewValue();
-        date.setText(String.valueOf(state.getDate()));
+        date.setText(state.getDate().toString());
         games.setText(state.getGames().toString());
     }
 }
