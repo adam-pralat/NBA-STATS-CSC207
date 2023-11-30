@@ -3,6 +3,7 @@ package view;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.schedule.ScheduleController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,27 +13,105 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
+
 public class HomeView extends JPanel implements ActionListener, PropertyChangeListener{
     public final String viewName = "home page";
     private final HomePageViewModel viewModel;
-    private final HomePageController controller;
+    private final HomePageController homeController;
+    private final ScheduleController scheduleController;
+    private JScrollPane playerInfoPane = new JScrollPane();
 
-    public HomeView(HomePageViewModel viewModel, HomePageController controller) {
+    private JButton playerStatsButton;
+    private JButton teamStatsButton;
+    private JButton playerComparisonButton;
+    private JButton scheduleButton;
+
+    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController) {
         this.viewModel = viewModel;
-        this.controller = controller;
+        this.homeController = homeController;
+        this.scheduleController = scheduleController;
 
         this.viewModel.addPropertyChangeListener(this);
         JLabel title = new JLabel(this.viewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.controller.execute();
-        JPanel playerInfo = new JPanel();
+        HomePageState state = this.viewModel.getState();
 
-        // TODO Note: the following line instantiates the "clear" button; it uses
-        //      a CLEAR_BUTTON_LABEL constant which is defined in the SignupViewModel class.
-        //      You need to add this "clear" button to the "buttons" panel.
-//        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
-//        buttons.add(clear);
+        // TODO: Dont call controller here, call on view being changed
+        // this.controller.execute();
+
+        JPanel t = new JPanel();
+
+        JLabel header = new JLabel("Page Title");
+        header.setFont(header.getFont().deriveFont(64.0F));
+
+        t.add(header);
+        this.add(t);
+
+        JPanel playerInfo = new JPanel();
+        playerInfo.add(playerInfoPane);
+        this.setFields(state);
+//        JTextArea playerName = new JTextArea(state.getPlayerFirstName() + " " + state.getPlayerLastName());
+//        playerName.setEditable(false);
+//        playerInfo.add(playerName);
+//
+//        JTextArea playerCountry = new JTextArea(state.getPlayerCountry());
+//        playerCountry.setEditable(false);
+//        playerInfo.add(playerCountry);
+//
+//        JTextArea playerTeam = new JTextArea(state.getPlayerTeam());
+//        playerTeam.setEditable(false);
+//        playerInfo.add(playerTeam);
+//
+//        JTextArea playerPPG = new JTextArea(Double.toString(state.getPlayerPointsPerGame()));
+//        playerPPG.setEditable(false);
+//        playerInfo.add(playerPPG);
+//
+//        JTextArea playerAPG = new JTextArea(Double.toString(state.getPlayerAssistsPerGame()));
+//        playerAPG.setEditable(false);
+//        playerInfo.add(playerAPG);
+//
+//        JTextArea playerFTP = new JTextArea(Double.toString(state.getPlayerFreeThrowPercentage()) + "%");
+//        playerFTP.setEditable(false);
+//        playerInfo.add(playerFTP);
+//
+//        JTextArea playerFGP = new JTextArea(Double.toString(state.getPlayerFieldGoalPercentage()) + "%");
+//        playerFGP.setEditable(false);
+//        playerInfo.add(playerFGP);
+//
+//        JTextArea playerMPG = new JTextArea(Double.toString(state.getplayerMinutesPerGame()));
+//        playerMPG.setEditable(false);
+//        playerInfo.add(playerMPG);
+
+        this.add(playerInfo);
+
+        JPanel teamInfo = new JPanel();
+
+        JPanel buttons = new JPanel();
+        scheduleButton = new JButton(viewModel.SCHEDULE_BUTTON_LABEL);
+        buttons.add(scheduleButton);
+        scheduleButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(scheduleButton)) {
+                            scheduleController.execute(LocalDate.now());
+                        }
+                    }
+                }
+        );
+
+        playerStatsButton = new JButton(viewModel.PLAYER_STATS_BUTTON_LABEL);
+        buttons.add(playerStatsButton);
+
+        teamStatsButton = new JButton(viewModel.TEAM_STATS_BUTTON_LABEL);
+        buttons.add(teamStatsButton);
+
+        playerComparisonButton = new JButton(viewModel.PLAYER_COMPARISON_BUTTON_LABEL);
+        buttons.add(playerComparisonButton);
+
+        this.add(buttons);
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -42,10 +121,23 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     public void propertyChange(PropertyChangeEvent evt) {
         HomePageState state = (HomePageState) evt.getNewValue();
         setFields(state);
-        System.out.println(state);
     }
 
     private void setFields(HomePageState state) {
-        // TODO - Set all text fields
+        //this.homeController.execute();
+        String[][] playerInfoData = {{
+                state.getPlayerFirstName() + " " + state.getPlayerLastName(),
+                state.getPlayerCountry(),
+                state.getPlayerTeam(),
+                Double.toString(state.getPlayerPointsPerGame()),
+                Double.toString(state.getPlayerAssistsPerGame()),
+                state.getPlayerFreeThrowPercentage() + "%",
+                state.getPlayerFieldGoalPercentage() + "%",
+                Double.toString(state.getPlayerMinutesPlayedPerGame())
+        }};
+        JTable playerInfoTable = new JTable(playerInfoData, this.viewModel.PLAYER_INFO_COLUMN_NAMES);
+        playerInfoPane.setViewportView(playerInfoTable);
+        System.out.println("AAAA");
     }
 }
+
