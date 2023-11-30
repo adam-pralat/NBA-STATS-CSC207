@@ -137,7 +137,6 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
         }};
         JTable playerInfoTable = new JTable(playerInfoData, this.viewModel.PLAYER_INFO_COLUMN_NAMES);
         playerInfoPane.setViewportView(playerInfoTable);
-        System.out.println("AAAA");
     }
 }
 
