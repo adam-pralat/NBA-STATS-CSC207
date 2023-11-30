@@ -3,8 +3,10 @@ package app;
 import data_access.HomePageDataAccessObject;
 import data_access.PlayerDataAccessObject;
 import data_access.TeamDataAccessObject;
+import data_access.PlayerComparisonDataAccessObject;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.player_stats.PlayerStatsPresenter;
 import use_case.player_stats.PlayerStatsInputData;
@@ -12,6 +14,7 @@ import use_case.player_stats.PlayerStatsInteractor;
 import use_case.player_stats.PlayerStatsOutputBoundary;
 import use_case.player_stats.PlayerStatsOutputData;
 import view.HomeView;
+import view.PlayerComparisonView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -30,20 +33,26 @@ public class Main {
 
         // This keeps track of and manages which view is currently showing.
         ViewManagerModel viewManagerModel = new ViewManagerModel();
-        //new ViewManager(views, cardLayout, viewManagerModel);
+        new ViewManager(views, cardLayout, viewManagerModel);
 
         // The data for the views, such as username and password, are in the ViewModels.
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
         HomePageViewModel homePageViewModel = new HomePageViewModel();
+        PlayerComparisonViewModel playerComparisonViewModel = new PlayerComparisonViewModel();
 
         PlayerDataAccessObject playerDAO = new PlayerDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         TeamDataAccessObject teamDAO = new TeamDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         HomePageDataAccessObject homeDAO = new HomePageDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
+        PlayerComparisonDataAccessObject playerComparisonDAO = new PlayerComparisonDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
 
         HomeView homeView = HomePageUseCaseFactory.create(viewManagerModel, homePageViewModel, homeDAO);
         views.add(homeView, homeView.viewName);
+
+        PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(viewManagerModel,
+                playerComparisonViewModel, playerComparisonDAO);
+        views.add(playerComparisonView, playerComparisonView.viewName);
 
         viewManagerModel.setActiveView(homeView.viewName);
         viewManagerModel.firePropertyChanged();

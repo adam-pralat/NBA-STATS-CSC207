@@ -15,6 +15,10 @@ import java.util.Map;
 
 public class PlayerComparisonDataAccessObject implements PlayerComparisonDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
+    private final String apiKey;
+
+    public PlayerComparisonDataAccessObject(String apiKey){ this.apiKey = apiKey; };
+
     public static void main(String args[]) {
         // System.out.println(existsById(100000));
     }

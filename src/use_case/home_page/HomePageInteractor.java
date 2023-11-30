@@ -38,8 +38,9 @@ public class HomePageInteractor implements HomePageInputBoundary {
             Team team = homePageDataAccessInterface.getTeamInfo(randomTeamID);
             Team teamRecord = homePageDataAccessInterface.getTeamYearlyRecord(randomTeamID, currSeason);
             Team teamStats = homePageDataAccessInterface.getTeamYearlyStats(randomTeamID, currSeason);
-            team.addStat(teamRecord);
-            team.addStat(teamStats);
+            // TODO: fix bug
+            //team.addStat(teamRecord);
+            //team.addStat(teamStats);
 
 
             // Create output data
