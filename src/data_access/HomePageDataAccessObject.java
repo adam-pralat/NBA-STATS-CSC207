@@ -3,6 +3,7 @@ package data_access;
 // Data access object to be used for home page data access interface where both team and player data needs to be accessed
 
 import entity.Player;
+import entity.PlayerStats;
 import entity.Team;
 import use_case.home_page.HomePageDataAccessInterface;
 
@@ -30,7 +31,7 @@ public class HomePageDataAccessObject implements HomePageDataAccessInterface {
     }
 
     @Override
-    public Map<String, Object> getPlayerYearlyStats(int playerID, int season) {
+    public PlayerStats getPlayerYearlyStats(int playerID, int season) {
         return playerDAO.getPlayerYearlyStats(playerID, season);
     }
 

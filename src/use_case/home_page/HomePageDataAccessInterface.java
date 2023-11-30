@@ -1,6 +1,7 @@
 package use_case.home_page;
 
 import entity.Player;
+import entity.PlayerStats;
 import entity.Team;
 
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 public interface HomePageDataAccessInterface {
     boolean playerExistsById(int playerID);
     Player getPlayerInfo(int playerID);
-    Map<String, Object> getPlayerYearlyStats(int playerID, int season);
+    PlayerStats getPlayerYearlyStats(int playerID, int season);
 
     boolean teamExistsById(int teamID);
 
