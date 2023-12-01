@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;
 import interface_adapter.schedule.ScheduleViewModel;
@@ -11,20 +12,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
 
 public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "Schedule";
+    public final String viewName = "schedule";
     private final ScheduleViewModel scheduleViewModel;
     private final ScheduleController scheduleController;
+    private final HomePageController homePageController;
     JLabel date;
     final JButton exit;
     final JButton previous;
     final JButton next;
     JEditorPane games;
 
-    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel) {
+    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel, HomePageController homePageController) {
         this.scheduleController = controller;
         this.scheduleViewModel = viewModel;
+        this.homePageController = homePageController;
 
         scheduleViewModel.addPropertyChangeListener(this);
 
@@ -43,6 +47,16 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         buttons.add(next);
 
         exit.addActionListener(this); // TODO Implement Exit
+        exit.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(exit)) {
+                            homePageController.execute();
+                        }
+                    }
+                }
+        );
         previous.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {

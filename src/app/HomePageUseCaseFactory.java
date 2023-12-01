@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePagePresenter;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.schedule.ScheduleController;
 import use_case.home_page.HomePageDataAccessInterface;
 import use_case.home_page.HomePageInputBoundary;
 import use_case.home_page.HomePageInteractor;
@@ -16,15 +17,14 @@ import java.io.IOException;
 public class HomePageUseCaseFactory {
     private HomePageUseCaseFactory() {}
 
-    public static HomeView create(
-            ViewManagerModel viewManagerModel, HomePageViewModel homePageViewModel, HomePageDataAccessInterface homePageDAO) {
+    public static HomeView create(HomePageViewModel homePageViewModel, HomePageController homePageController, ScheduleController scheduleController) {
 
-            HomePageController homePageController = createHomePageUseCase(viewManagerModel, homePageViewModel, homePageDAO);
-            return new HomeView(homePageViewModel, homePageController);
+            // HomePageController homePageController = createHomePageUseCase(viewManagerModel, homePageViewModel, homePageDAO);
+            return new HomeView(homePageViewModel, homePageController, scheduleController);
 
     }
 
-    private static HomePageController createHomePageUseCase(ViewManagerModel viewManagerModel, HomePageViewModel homePageViewModel, HomePageDataAccessInterface homeDataAccessObject) {
+    public static HomePageController createHomePageUseCase(ViewManagerModel viewManagerModel, HomePageViewModel homePageViewModel, HomePageDataAccessInterface homeDataAccessObject) {
 
         // Notice how we pass this method's parameters to the Presenter.
         HomePageOutputBoundary homePageOutputBoundary = new HomePagePresenter(homePageViewModel, viewManagerModel);
