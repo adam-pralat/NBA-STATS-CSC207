@@ -4,12 +4,12 @@ public class PlayerSeasonComparisonInputData {
     final private int id;
 
     // Two integers to store the seasons used for comparing a player's stats
-    // TODO: is season2 > season1 necessary?
     final private int season1;
     final private int season2;
 
     public PlayerSeasonComparisonInputData(int id, int season1, int season2) {
 
+        // TODO: is season2 > season1 necessary?
         // TODO: add checks for when the query season doesn't exist (does the api call return null if the player didn't play in the year given?)
 
         this.season1 = season1;

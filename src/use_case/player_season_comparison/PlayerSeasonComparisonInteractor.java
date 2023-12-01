@@ -1,5 +1,6 @@
 package use_case.player_season_comparison;
 
+import entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
@@ -23,10 +24,17 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
             playerSeasonComparisonPresenter.prepareFailView(("Player ID does not exist."));
         } else {
             try {
-                // TODO does season2 > season1 have to be true?
+                // create player profile info
+                Player playerSeason1Info = playerSeasonComparisonAccessObject.getPlayerInfo(id);
+                Player playerSeason2Info = playerSeasonComparisonAccessObject.getPlayerInfo(id);
+
                 // create maps for season1 and season2
                 Map<String, Object> season1PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season1);
                 Map<String, Object> season2PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season2);
+
+                // add the stats to respective Player instance
+                playerSeason1Info.addStat(season1PlayerStats);
+                playerSeason2Info.addStat(season2PlayerStats);
 
                 // this map is for storing the stat change over time
                 Map<String, Object> playerSeasonComparison = new HashMap<>();
@@ -45,8 +53,7 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
                     }
                 }
 
-                // TODO: should the second parameter here be true?
-                playerSeasonComparisonPresenter.prepareSuccessView(new PlayerSeasonComparisonOutputData(playerSeasonComparison, true));
+                playerSeasonComparisonPresenter.prepareSuccessView(new PlayerSeasonComparisonOutputData(playerSeason1Info.toMap(), playerSeason2Info.toMap(), playerSeasonComparison, true));
 
             } catch (Exception e) {
                 playerSeasonComparisonPresenter.prepareFailView(e.toString());
