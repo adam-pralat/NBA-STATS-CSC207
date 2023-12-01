@@ -1,5 +1,6 @@
 package app;
 
+import com.opencsv.exceptions.CsvException;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.id_information.IdInformationController;
 import interface_adapter.id_information.IdInformationViewModel;
@@ -37,6 +38,8 @@ public class PlayerComparisonUseCaseFactory {
                 idInformationViewModel);
     } catch (IOException e) {
         JOptionPane.showMessageDialog(null, "Could not open data file.");
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
