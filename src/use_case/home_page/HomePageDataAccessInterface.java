@@ -1,8 +1,6 @@
 package use_case.home_page;
 
-import entity.Player;
-import entity.PlayerStats;
-import entity.Team;
+import entity.*;
 
 import java.util.Map;
 
@@ -18,9 +16,9 @@ public interface HomePageDataAccessInterface {
 
     Team getTeamInfo(int teamID);
 
-    Team getTeamYearlyRecord(int teamID, int season); // Wins, Losses, past 10 wins, past 10 losses in given season
+    TeamRecord getTeamYearlyRecord(int teamID, int season); // Wins, Losses, past 10 wins, past 10 losses in given season
 
-    Team getTeamYearlyStats(int teamID, int season);
+    TeamStats getTeamYearlyStats(int teamID, int season);
 
     // TODO: Team data access
 }
