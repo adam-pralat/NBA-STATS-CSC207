@@ -10,12 +10,14 @@ import use_case.player_comparison.PlayerComparisonInteractor;
 import use_case.player_comparison.PlayerComparisonOutputBoundary;
 import view.PlayerComparisonView;
 
+import java.io.IOException;
+
 public class PlayerComparisonUseCaseFactory {
     private PlayerComparisonUseCaseFactory() {}
 
     public static PlayerComparisonView create(ViewManagerModel viewManagerModel,
                                               PlayerComparisonViewModel playerComparisonViewModel,
-                                              PlayerComparisonDataAccessInterface playerComparisonDAO) {
+                                              PlayerComparisonDataAccessInterface playerComparisonDAO) throws IOException {
         PlayerComparisonController playerComparisonController = createPlayerComparisonUseCase(viewManagerModel,
                 playerComparisonViewModel, playerComparisonDAO);
         return new PlayerComparisonView(playerComparisonController, playerComparisonViewModel);
