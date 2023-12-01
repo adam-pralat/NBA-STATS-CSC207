@@ -34,6 +34,7 @@ public class PlayerComparisonInteractor implements PlayerComparisonInputBoundary
                             season);
                     player2.addStat(seasonPlayerStats2);
                 }
+                playerComparisonPresenter.prepareSuccessView(new PlayerComparisonOutputData(player1.toMap(), player2.toMap(), true));
             } catch (Exception e) {
                 playerComparisonPresenter.prepareFailView(e.toString());
             }
