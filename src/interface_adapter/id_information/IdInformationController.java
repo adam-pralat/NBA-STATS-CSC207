@@ -1,6 +1,9 @@
 package interface_adapter.id_information;
 
+import com.opencsv.exceptions.CsvException;
 import use_case.id_information.IdInformationInputBoundary;
+
+import java.io.IOException;
 
 public class IdInformationController {
 
@@ -9,7 +12,7 @@ public class IdInformationController {
         this.idInformationInteractor = idInformationInteractor;
     }
 
-    public void execute(){
+    public void execute() throws IOException, CsvException {
         idInformationInteractor.execute();
     }
 }
