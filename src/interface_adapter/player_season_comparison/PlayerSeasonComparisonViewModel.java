@@ -22,9 +22,7 @@ public class PlayerSeasonComparisonViewModel extends ViewModel{
         support.addPropertyChangeListener(listener);
     }
 
-    public PlayerSeasonComparisonState getState() {
-        return state;
-    }
+    public PlayerSeasonComparisonState getState() {return state;}
 
     public void setState(PlayerSeasonComparisonState state) {
         this.state = state;
