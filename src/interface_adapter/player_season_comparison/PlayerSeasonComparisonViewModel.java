@@ -8,6 +8,8 @@ import java.beans.PropertyChangeSupport;
 
 public class PlayerSeasonComparisonViewModel extends ViewModel{
 
+    public static final String TITLE_LABEL = "Compare the Seasonal Stats of a Player";
+    public static final String COMPARE_BUTTON_LABEL = "Compare";
     private PlayerSeasonComparisonState state;
 
     public PlayerSeasonComparisonViewModel() {super("playerSeasonComparison");}
