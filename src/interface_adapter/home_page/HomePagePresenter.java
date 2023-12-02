@@ -1,7 +1,6 @@
 package interface_adapter.home_page;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.player_stats.PlayerStatsViewModel;
 import use_case.home_page.HomePageOutputBoundary;
 import use_case.home_page.HomePageOutputData;
 
@@ -31,7 +30,7 @@ public class HomePagePresenter implements HomePageOutputBoundary {
         state.setPlayerThreePointPercentage(response.getPlayerThreePointPercentage());
         state.setPlayerStealsPerGame(response.getPlayerStealsPerGame());
         state.setPlayerBlocksPerGame(response.getPlayerBlocksPerGame()); // Note, ignored turnovers for now
-        state.setPlayerTimePlayedPerGame(response.getPlayerTimePlayedPerGame());
+        state.setPlayerMinutesPlayedPerGame(response.getPlayerMinutesPlayedPerGame());
 
         // Team attributes
         state.setTeamName(response.getTeamName());
@@ -48,11 +47,11 @@ public class HomePagePresenter implements HomePageOutputBoundary {
         state.setTeamFieldGoalPercentage(response.getTeamFieldGoalPercentage());
         state.setTeamThreePointPercentage(response.getTeamThreePointPercentage());
 
-        this.viewManagerModel.setActiveView(homePageViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
-
         this.homePageViewModel.setState(state);
         this.homePageViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(homePageViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     };
 
    public void prepareFailView(String error) {

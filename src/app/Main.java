@@ -1,20 +1,25 @@
 package app;
 
+import data_access.GameDataAccessObject;
 import data_access.HomePageDataAccessObject;
 import data_access.PlayerDataAccessObject;
 import data_access.TeamDataAccessObject;
 import data_access.PlayerComparisonDataAccessObject;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.player_stats.PlayerStatsPresenter;
+import interface_adapter.schedule.ScheduleController;
+import interface_adapter.schedule.ScheduleViewModel;
 import use_case.player_stats.PlayerStatsInputData;
 import use_case.player_stats.PlayerStatsInteractor;
 import use_case.player_stats.PlayerStatsOutputBoundary;
 import use_case.player_stats.PlayerStatsOutputData;
 import view.HomeView;
 import view.PlayerComparisonView;
+import view.ScheduleView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -41,13 +46,22 @@ public class Main {
         // be observed by the Views.
         HomePageViewModel homePageViewModel = new HomePageViewModel();
         PlayerComparisonViewModel playerComparisonViewModel = new PlayerComparisonViewModel();
+        ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
 
         PlayerDataAccessObject playerDAO = new PlayerDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         TeamDataAccessObject teamDAO = new TeamDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         HomePageDataAccessObject homeDAO = new HomePageDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         PlayerComparisonDataAccessObject playerComparisonDAO = new PlayerComparisonDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
+        GameDataAccessObject gameDAO = new GameDataAccessObject(); // TODO: Input API key here
 
-        HomeView homeView = HomePageUseCaseFactory.create(viewManagerModel, homePageViewModel, homeDAO);
+        // TODO: Maybe use a builder here also??
+        ScheduleController scheduleController = ScheduleUseCaseFactory.createScheduleUseCase(viewManagerModel, scheduleViewModel, gameDAO);
+        HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
+
+        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController);
+        views.add(scheduleView, scheduleView.viewName);
+
+        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController);
         views.add(homeView, homeView.viewName);
 
         PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(viewManagerModel,

@@ -222,6 +222,8 @@ public class Player {
         plusMinus += (Integer) statMap.get("plusMinus");
     }
 
+    public double minutesPerGame() { return roundTwoDecimals(timePlayedPerGame()/60); }
+
     // TODO: Use facade here??
     // Per game methods
     private double statPerGame(int stat){

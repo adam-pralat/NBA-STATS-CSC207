@@ -1,8 +1,5 @@
 package use_case.home_page;
 
-import java.util.Hashtable;
-import java.util.Map;
-
 public class HomePageOutputData {
     private String playerFirstName;
     private String playerLastName;
@@ -18,7 +15,7 @@ public class HomePageOutputData {
     private double playerFreeThrowPercentage;
     private double playerFieldGoalPercentage;
     private double playerThreePointPercentage;
-    private double playerTimePlayedPerGame;
+    private double playerMinutesPlayedPerGame;
     private double playerStealsPerGame;
     private double playerTurnoversPerGame;
     private double playerBlocksPerGame;
@@ -57,7 +54,7 @@ public class HomePageOutputData {
         this.playerFreeThrowPercentage = playerFreeThrowPercentage;
         this.playerFieldGoalPercentage = playerFieldGoalPercentage;
         this.playerThreePointPercentage = playerThreePointPercentage;
-        this.playerTimePlayedPerGame = playerTimePlayedPerGame;
+        this.playerMinutesPlayedPerGame = playerTimePlayedPerGame;
         this.playerStealsPerGame = playerStealsPerGame;
         this.playerTurnoversPerGame = playerTurnoversPerGame;
         this.playerBlocksPerGame = playerBlocksPerGame;
@@ -117,8 +114,8 @@ public class HomePageOutputData {
         return playerThreePointPercentage;
     }
 
-    public double getPlayerTimePlayedPerGame() {
-        return playerTimePlayedPerGame;
+    public double getPlayerMinutesPlayedPerGame() {
+        return playerMinutesPlayedPerGame;
     }
 
     public double getPlayerStealsPerGame() {
