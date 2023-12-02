@@ -124,6 +124,11 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setBlocksPerGame1((playerStats2.get("blocksPerGame") != jsonNull) ? (playerStats2.get("blocksPerGame").toString()) : (""));
         state.setTimePlayedPerGame1((playerStats2.get("timePlayedPerGame") != jsonNull) ? (playerStats2.get("timePlayedPerGame").toString()) : (""));
 
+        // Percentage metrics for Player 2
+        state.setFreeThrowPercentage1((playerStats2.get("freeThrowPercentage") != jsonNull) ? (playerStats2.get("freeThrowPercentage").toString()) : (""));
+        state.setFieldGoalPercentage1((playerStats2.get("fieldGoalPercentage") != jsonNull) ? (playerStats2.get("fieldGoalPercentage").toString()) : (""));
+        state.setThreePointPercentage1((playerStats2.get("threePointPercentage") != jsonNull) ? (playerStats2.get("threePointPercentage").toString()) : (""));
+
         // Set view and fire property changes
         this.viewManagerModel.setActiveView(playerComparisonViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
