@@ -1,6 +1,7 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.SchedulePresenter;
 import interface_adapter.schedule.ScheduleViewModel;
@@ -13,15 +14,14 @@ import view.ScheduleView;
 public class ScheduleUseCaseFactory {
     private ScheduleUseCaseFactory() {}
 
-    public static ScheduleView create(
-            ViewManagerModel viewManagerModel, ScheduleViewModel scheduleViewModel, ScheduleDataAccessInterface scheduleDAO) {
+    public static ScheduleView create(ScheduleViewModel scheduleViewModel, ScheduleController scheduleController, HomePageController homePageController) {
 
-        ScheduleController scheduleController = createScheduleUseCase(viewManagerModel, scheduleViewModel, scheduleDAO);
-        return new ScheduleView(scheduleController, scheduleViewModel);
+        //ScheduleController scheduleController = createScheduleUseCase(viewManagerModel, scheduleViewModel, scheduleDAO);
+        return new ScheduleView(scheduleController, scheduleViewModel, homePageController);
 
     }
 
-    private static ScheduleController createScheduleUseCase(ViewManagerModel viewManagerModel, ScheduleViewModel scheduleViewModel, ScheduleDataAccessInterface scheduleDataAccessObject) {
+    public static ScheduleController createScheduleUseCase(ViewManagerModel viewManagerModel, ScheduleViewModel scheduleViewModel, ScheduleDataAccessInterface scheduleDataAccessObject) {
 
         ScheduleOutputBoundary scheduleOutputBoundary = new SchedulePresenter(scheduleViewModel, viewManagerModel);
 

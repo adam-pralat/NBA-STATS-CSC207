@@ -22,7 +22,7 @@ public class HomePageState {
     private double playerFreeThrowPercentage;
     private double playerFieldGoalPercentage;
     private double playerThreePointPercentage;
-    private double playerTimePlayedPerGame;
+    private double playerMinutesPlayedPerGame;
     private double playerStealsPerGame;
     private double playerTurnoversPerGame;
     private double playerBlocksPerGame;
@@ -63,7 +63,7 @@ public class HomePageState {
         this.playerFreeThrowPercentage = copy.playerFreeThrowPercentage;
         this.playerFieldGoalPercentage = copy.playerFieldGoalPercentage;
         this.playerThreePointPercentage = copy.playerThreePointPercentage;
-        this.playerTimePlayedPerGame = copy.playerTimePlayedPerGame;
+        this.playerMinutesPlayedPerGame = copy.playerMinutesPlayedPerGame;
         this.playerStealsPerGame = copy.playerStealsPerGame;
         this.playerTurnoversPerGame = copy.playerTurnoversPerGame;
         this.playerBlocksPerGame = copy.playerBlocksPerGame;
@@ -163,12 +163,12 @@ public class HomePageState {
         this.playerThreePointPercentage = playerThreePointPercentage;
     }
 
-    public double getPlayerTimePlayedPerGame() {
-        return playerTimePlayedPerGame;
+    public double getPlayerMinutesPlayedPerGame() {
+        return playerMinutesPlayedPerGame;
     }
 
-    public void setPlayerTimePlayedPerGame(double playerTimePlayedPerGame) {
-        this.playerTimePlayedPerGame = playerTimePlayedPerGame;
+    public void setPlayerMinutesPlayedPerGame(double playerMinutesPlayedPerGame) {
+        this.playerMinutesPlayedPerGame = playerMinutesPlayedPerGame;
     }
 
     public double getPlayerStealsPerGame() {
@@ -329,7 +329,7 @@ public class HomePageState {
                 ", playerFreeThrowPercentage=" + playerFreeThrowPercentage +
                 ", playerFieldGoalPercentage=" + playerFieldGoalPercentage +
                 ", playerThreePointPercentage=" + playerThreePointPercentage +
-                ", playerTimePlayedPerGame=" + playerTimePlayedPerGame +
+                ", playerMinutesPlayedPerGame=" + playerMinutesPlayedPerGame +
                 ", playerStealsPerGame=" + playerStealsPerGame +
                 ", playerTurnoversPerGame=" + playerTurnoversPerGame +
                 ", playerBlocksPerGame=" + playerBlocksPerGame +
