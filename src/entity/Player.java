@@ -201,25 +201,25 @@ public class Player {
         return Double.valueOf(df.format(num));
     }
 
-    public void addStat(Map<String, Object> statMap){
+    public void addStat(PlayerStats playerStats){
         // Assuming statMap contains all fields needed
-        gamesPlayed += (Integer) statMap.get("gamesPlayed");
-        points += (Integer) statMap.get("points");
-        assists += (Integer) statMap.get("assists");
-        timePlayed += (Integer) statMap.get("timePlayed");
-        fieldGoalsMade += (Integer) statMap.get("fieldGoalsMade");
-        fieldGoalsAttempted += (Integer) statMap.get("fieldGoalsAttempted");
-        freeThrowsMade += (Integer) statMap.get("freeThrowsMade");
-        freeThrowsAttempted += (Integer) statMap.get("freeThrowsAttempted");
-        threePointsMade += (Integer) statMap.get("threePointsMade");
-        threePointsAttempted += (Integer) statMap.get("threePointsAttempted");
-        offensiveRebounds += (Integer) statMap.get("offensiveRebounds");
-        defensiveRebounds += (Integer) statMap.get("defensiveRebounds");
-        personalFouls += (Integer) statMap.get("personalFouls");
-        steals += (Integer) statMap.get("steals");
-        turnovers += (Integer) statMap.get("turnovers");
-        blocks += (Integer) statMap.get("blocks");
-        plusMinus += (Integer) statMap.get("plusMinus");
+        gamesPlayed += playerStats.gamesPlayed;
+        points += playerStats.points;
+        assists += playerStats.assists;
+        timePlayed += playerStats.timePlayed;
+        fieldGoalsMade += playerStats.fieldGoalsMade;
+        fieldGoalsAttempted += playerStats.fieldGoalsAttempted;
+        freeThrowsMade += playerStats.freeThrowsMade;
+        freeThrowsAttempted += playerStats.freeThrowsAttempted;
+        threePointsMade += playerStats.threePointsMade;
+        threePointsAttempted += playerStats.threePointsAttempted;
+        offensiveRebounds += playerStats.offensiveRebounds;
+        defensiveRebounds += playerStats.defensiveRebounds;
+        personalFouls += playerStats.personalFouls;
+        steals += playerStats.steals;
+        turnovers += playerStats.turnovers;
+        blocks += playerStats.blocks;
+        plusMinus += playerStats.plusMinus;
     }
 
     public double minutesPerGame() { return roundTwoDecimals(timePlayedPerGame()/60); }

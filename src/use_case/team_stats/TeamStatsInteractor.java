@@ -1,6 +1,8 @@
 package use_case.team_stats;
 
 import entity.Team;
+import entity.TeamRecord;
+import entity.TeamStats;
 import interface_adapter.team_stats.TeamStatsPresenter;
 
 import java.util.Map;
@@ -31,10 +33,10 @@ public class TeamStatsInteractor implements TeamStatsInputBoundary {
                 //TODO method for yearly record, similar to Yearly stats
 
                 for(int season = 2015; season <= currSeason; season++) {
-                    Map<String, Object> seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamId, season);
+                    TeamStats seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamId, season);
                     team.addStat(seasonTeamStats);
-                    Map<String, Object> seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamId, season);
-                    team.addStat(seasonTeamRecord);
+                    TeamRecord seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamId, season);
+                    team.addRecord(seasonTeamRecord);
                 }
 
                 teamStatsOutputBoundary.prepareSuccessView(new TeamStatsOutputData(team.toMap(), true));

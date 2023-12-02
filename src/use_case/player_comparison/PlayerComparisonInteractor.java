@@ -1,6 +1,8 @@
 package use_case.player_comparison;
 
 import entity.Player;
+import entity.PlayerStats;
+
 import java.util.Map;
 
 public class PlayerComparisonInteractor implements PlayerComparisonInputBoundary {
