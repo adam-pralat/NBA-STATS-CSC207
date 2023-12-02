@@ -7,6 +7,7 @@ import use_case.player_season_comparison.PlayerSeasonComparisonOutputData;
 
 import java.util.Map;
 
+// TODO: Switch time played to minutes played
 public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOutputBoundary {
 
     private final PlayerSeasonComparisonViewModel playerSeasonComparisonViewModel;
@@ -151,7 +152,7 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setStealsPerGameDiff((playerSeasonComparisonStats.get("stealsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGameDiff((playerSeasonComparisonStats.get("turnoversPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGameDiff((playerSeasonComparisonStats.get("blocksPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGameDiff((playerSeasonComparisonStats.get("timePlayedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("timePlayedPerGame").toString()) : (""));
+        state.setTimePlayedPerGameDiff((playerSeasonComparisonStats.get("minutesPlayedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("minutesPlayedPerGame").toString()) : (""));
 
         // Percentage metrics for difference
         state.setFreeThrowPercentageDiff((playerSeasonComparisonStats.get("freeThrowPercentage") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowPercentage").toString()) : (""));

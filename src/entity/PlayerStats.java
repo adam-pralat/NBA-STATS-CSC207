@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerStats {
     public int gamesPlayed;
     public int points;
