@@ -5,9 +5,11 @@ import interface_adapter.id_information.IdInformationController;
 import interface_adapter.id_information.IdInformationState;
 import interface_adapter.id_information.IdInformationViewModel;
 import interface_adapter.player_comparison.PlayerComparisonController;
+import interface_adapter.player_comparison.PlayerComparisonState;
 import interface_adapter.player_comparison.PlayerComparisonViewModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -108,16 +110,83 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
         compare = new JButton(PlayerComparisonViewModel.COMPARE_BUTTON_LABEL);
         buttons.add(compare);
 
+        JTable table = new JTable();
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(team_players_1);
         this.add(team_players_2);
         this.add(buttons);
 
-//        String selectedOption = (String) dropdown1.getSelectedItem();
-//        String[] initialSubCategoryData = subCategoryMap.get(selectedOption);
-//        JComboBox<String> subCategoryDropdown = new JComboBox<>(initialSubCategoryData);
-//        this.add(subCategoryDropdown);
+        compare.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(compare)){
+                    String team1 = dropdown1.getSelectedItem().toString();
+                    String team2 = dropdown2.getSelectedItem().toString();
+                    String name1 = subdropdown1.getSelectedItem().toString();
+                    String name2 = subdropdown2.getSelectedItem().toString();
+                    int id1 = initial.get(team1).get(name1);
+                    int id2 = initial.get(team2).get(name2);
+                    controller.execute(id1, id2);
+                    PlayerComparisonState currentState = playerComparisonViewModel.getState();
+                    String[] columnNames = {"First Name", "Last Name", "Birth Date", "Country", "Height", "Weight",
+                            "Team", "Position", "Jersey Number", "Games Played", "Points", "Assists",
+                            "Time Played", "Field Goals Made", "Field Goals Attempted", "Free Throws Made",
+                            "Free Throws Attempted", "Three Points Made", "Three Points Attempted",
+                            "Offensive Rebounds", "Defensive Rebounds", "Personal Fouls", "Steals", "Turnovers",
+                            "Blocks", "+/-", "Points Per Game", "Assists Per Game", "Time Played Per Game",
+                            "Field Goals Made Per Game", "Field Goals Attempted Per Game", "Free Throws Made Per Game",
+                            "Free Throws Attempted Per Game", "Three Points Made Per Game",
+                            "Three Points Attempted Per Game", "Offensive Rebounds Per Game",
+                            "Defensive Rebounds Per Game", "Rebounds Per Game", "Personal Fouls Per Game",
+                            "Steals Per Game", "Turnovers Per Game", "Blocks Per Game", "+/- Per Game",
+                            "Free Throw Percentage", "Field Goal Percentage", "Three Points Percentage"};
+                    Object[][] data = {{currentState.getFirstName(), currentState.getLastName(),
+                            currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight(),
+                            currentState.getWeight(), currentState.getTeam(), currentState.getPosition(),
+                            currentState.getJerseyNumber(), currentState.getGamesPlayed(), currentState.getPoints(),
+                            currentState.getAssists(), currentState.getTimePlayed(), currentState.getFieldGoalsMade(),
+                            currentState.getFieldGoalsAttempted(), currentState.getFreeThrowsMade(),
+                            currentState.getFreeThrowsAttempted(), currentState.getThreePointsMade(),
+                            currentState.getThreePointsAttempted(), currentState.getOffensiveRebounds(),
+                            currentState.getDefensiveRebounds(), currentState.getPersonalFouls(), currentState.getSteals(),
+                            currentState.getTurnovers(), currentState.getBlocks(), currentState.getPlusMinus(),
+                            currentState.getPointsPerGame(), currentState.getAssistsPerGame(),
+                            currentState.getTimePlayedPerGame(), currentState.getFieldGoalsMadePerGame(),
+                            currentState.getFieldGoalsAttemptedPerGame(), currentState.getFreeThrowsMadePerGame(),
+                            currentState.getFreeThrowsAttemptedPerGame(), currentState.getThreePointsMadePerGame(),
+                            currentState.getThreePointsAttemptedPerGame(), currentState.getOffensiveReboundsPerGame(),
+                            currentState.getDefensiveReboundsPerGame(), currentState.getReboundsPerGame(),
+                            currentState.getPersonalFoulsPerGame(), currentState.getStealsPerGame(),
+                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(),
+                            currentState.getPlusMinusPerGame(), currentState.getFreeThrowPercentage(),
+                            currentState.getFieldGoalPercentage(), currentState.getThreePointPercentage()},
+                            {currentState.getFirstName1(), currentState.getLastName1(),
+                            currentState.getBirthDate1(), currentState.getCountry1(), currentState.getHeight1(),
+                            currentState.getWeight1(), currentState.getTeam1(), currentState.getPosition1(),
+                            currentState.getJerseyNumber1(), currentState.getGamesPlayed1(), currentState.getPoints1(),
+                            currentState.getAssists1(), currentState.getTimePlayed1(), currentState.getFieldGoalsMade1(),
+                            currentState.getFieldGoalsAttempted1(), currentState.getFreeThrowsMade1(),
+                            currentState.getFreeThrowsAttempted1(), currentState.getThreePointsMade1(),
+                            currentState.getThreePointsAttempted1(), currentState.getOffensiveRebounds1(),
+                            currentState.getDefensiveRebounds1(), currentState.getPersonalFouls1(), currentState.getSteals1(),
+                            currentState.getTurnovers1(), currentState.getBlocks1(), currentState.getPlusMinus1(),
+                            currentState.getPointsPerGame1(), currentState.getAssistsPerGame1(),
+                            currentState.getTimePlayedPerGame1(), currentState.getFieldGoalsMadePerGame1(),
+                            currentState.getFieldGoalsAttemptedPerGame1(), currentState.getFreeThrowsMadePerGame1(),
+                            currentState.getFreeThrowsAttemptedPerGame1(), currentState.getThreePointsMadePerGame1(),
+                            currentState.getThreePointsAttemptedPerGame1(), currentState.getOffensiveReboundsPerGame1(),
+                            currentState.getDefensiveReboundsPerGame1(), currentState.getReboundsPerGame1(),
+                            currentState.getPersonalFoulsPerGame1(), currentState.getStealsPerGame1(),
+                            currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(),
+                            currentState.getPlusMinusPerGame1(), currentState.getFreeThrowPercentage1(),
+                            currentState.getFieldGoalPercentage1(), currentState.getThreePointPercentage1()}};
+                    showPopup(data, columnNames);
+                    System.out.println(Arrays.deepToString(data));
+                }
+            }
+        });
     }
 
     public HashMap<String, HashMap<String, Integer>> initialise(List<String[]> lst){
@@ -144,22 +213,33 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
         return transformedMap;
     }
 
+    private void showPopup(Object[][] data, String[] columnNames) {
+        // Create a JDialog for the popup
+        JDialog popupDialog = new JDialog((Frame) null, "Popup with Table", true);
+        popupDialog.setSize(400, 300);
+
+        JPanel contentPanel = new JPanel(new GridLayout(2, 46));
+
+        for (int i = 0; i < 46; i++) {
+            JPanel panel = new JPanel();
+            panel.add(new JLabel(columnNames[i]));
+            contentPanel.add(panel);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(contentPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        popupDialog.getContentPane().setLayout(new BorderLayout());
+        popupDialog.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        popupDialog.setLocationRelativeTo(this);
+
+        popupDialog.setVisible(true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-//        dropdown1.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() == ItemEvent.SELECTED) {
-//                    // Retrieve the selected category
-//                    String selectedCategory = (String) dropdown1.getSelectedItem();
-//
-//                    // Update the second dropdown based on the selected category
-//                    String[] subCategoryData = subCategoryMap.get(selectedCategory);
-//                    DefaultComboBoxModel<String> subCategoryModel = new DefaultComboBoxModel<>(subCategoryData);
-//                    subCategoryDropdown.setModel(subCategoryModel);
-//                }
-//            }
-//        });
+
     }
 
     @Override
