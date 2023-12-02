@@ -3,6 +3,7 @@ package view;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.schedule.ScheduleController;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private final HomePageViewModel viewModel;
     private final HomePageController homeController;
     private final ScheduleController scheduleController;
+    private final PlayerComparisonController playerComparisonController;
     private JScrollPane playerInfoPane = new JScrollPane();
 
     private JButton playerStatsButton;
@@ -27,10 +29,11 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private JButton playerComparisonButton;
     private JButton scheduleButton;
 
-    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController) {
+    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController) {
         this.viewModel = viewModel;
         this.homeController = homeController;
         this.scheduleController = scheduleController;
+        this.playerComparisonController = playerComparisonController;
 
         this.viewModel.addPropertyChangeListener(this);
         JLabel title = new JLabel(this.viewModel.TITLE_LABEL);
@@ -110,6 +113,16 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
 
         playerComparisonButton = new JButton(viewModel.PLAYER_COMPARISON_BUTTON_LABEL);
         buttons.add(playerComparisonButton);
+        playerComparisonButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(playerComparisonButton)) {
+                            playerComparisonController.execute(1, 2); // TODO: Note, passed in ids 1 and 2 for now
+                        }
+                    }
+                }
+        );
 
         this.add(buttons);
     }

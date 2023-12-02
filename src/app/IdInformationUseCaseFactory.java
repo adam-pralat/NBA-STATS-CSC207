@@ -14,13 +14,13 @@ public class IdInformationUseCaseFactory {
 
     private IdInformationUseCaseFactory() {}
 
-    private static IdInformationController createIdInformationUseCase(IdInformationViewModel idInformationViewModel, IdInformationDataAccessInterface idInformationDataAccessObject) throws IOException {
+    private static IdInformationController createIdInformationUseCase(IdInformationViewModel idInformationViewModel, IdInformationDataAccessInterface idInformationDataAccessObject){ //TODO: Note removed for now: throws IOException {
         IdInformationOutputBoundary idInformationOutputBoundary = new IdInformationPresenter(idInformationViewModel);
         IdInformationInputBoundary idInformationInteractor = new IdInformationInteractor(idInformationDataAccessObject, idInformationOutputBoundary);
         return new IdInformationController(idInformationInteractor);
     }
 
-    public static IdInformationController getController(IdInformationViewModel idInformationViewModel, IdInformationDataAccessInterface idInformationDataAccessInterface) throws IOException {
+    public static IdInformationController getController(IdInformationViewModel idInformationViewModel, IdInformationDataAccessInterface idInformationDataAccessInterface) {//TODO: Note removed for now: throws IOException {
         return createIdInformationUseCase(idInformationViewModel, idInformationDataAccessInterface);
     }
 }

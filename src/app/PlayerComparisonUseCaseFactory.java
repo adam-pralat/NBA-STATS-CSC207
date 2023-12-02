@@ -2,6 +2,7 @@ package app;
 
 import com.opencsv.exceptions.CsvException;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.id_information.IdInformationController;
 import interface_adapter.id_information.IdInformationViewModel;
 import interface_adapter.player_comparison.PlayerComparisonController;
@@ -22,20 +23,18 @@ import static app.IdInformationUseCaseFactory.getController;
 public class PlayerComparisonUseCaseFactory {
     private PlayerComparisonUseCaseFactory() {}
 
-    public static PlayerComparisonView create(ViewManagerModel viewManagerModel,
-                                              PlayerComparisonViewModel playerComparisonViewModel,
-                                              PlayerComparisonDataAccessInterface playerComparisonDAO,
+    public static PlayerComparisonView create(PlayerComparisonViewModel playerComparisonViewModel,
+                                              PlayerComparisonController playerComparisonController,
+                                              IdInformationController idInformationController,
                                               IdInformationViewModel idInformationViewModel,
-                                              IdInformationDataAccessInterface idInformationDataAccessInterface)
-            throws IOException {
-        try{
-        PlayerComparisonController playerComparisonController = createPlayerComparisonUseCase(viewManagerModel,
-                playerComparisonViewModel, playerComparisonDAO);
-        IdInformationController idInformationController = getController(idInformationViewModel, idInformationDataAccessInterface);
+                                              HomePageController homePageController) {
+            // TODO: RemovedL throws IOException {
+       try{
         return new PlayerComparisonView(playerComparisonController,
                 playerComparisonViewModel,
                 idInformationController,
-                idInformationViewModel);
+                idInformationViewModel,
+                homePageController);
     } catch (IOException e) {
         JOptionPane.showMessageDialog(null, "Could not open data file.");
         } catch (CsvException e) {
@@ -44,7 +43,7 @@ public class PlayerComparisonUseCaseFactory {
         return null;
     }
 
-    private static PlayerComparisonController createPlayerComparisonUseCase(
+    public static PlayerComparisonController createPlayerComparisonUseCase(
             ViewManagerModel viewManagerModel,
             PlayerComparisonViewModel playerComparisonViewModel,
             PlayerComparisonDataAccessInterface playerComparisonDataAccessObject) {

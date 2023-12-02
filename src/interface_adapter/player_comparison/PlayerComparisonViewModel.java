@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class PlayerComparisonViewModel extends ViewModel {
     public static final String COMPARE_BUTTON_LABEL = "Compare";
     public static final String TITLE_LABEL = "Compare Two Players";
+    public static final String EXIT_BUTTON_LABEL = "Exit";
 
     private PlayerComparisonState state = new PlayerComparisonState();
 
