@@ -215,15 +215,20 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
 
     private void showPopup(Object[][] data, String[] columnNames) {
         // Create a JDialog for the popup
-        JDialog popupDialog = new JDialog((Frame) null, "Popup with Table", true);
+        JDialog popupDialog = new JDialog((Frame) null, data[0][0].toString() + " " + data[0][1].toString() +
+                " compared with " + data[1][0].toString() + " " + data[1][1].toString(), true);
         popupDialog.setSize(400, 300);
 
-        JPanel contentPanel = new JPanel(new GridLayout(2, 46));
+        JPanel contentPanel = new JPanel(new GridLayout(3, 46));
+        Object[][] n = {columnNames, data[0], data[1]};
 
-        for (int i = 0; i < 46; i++) {
-            JPanel panel = new JPanel();
-            panel.add(new JLabel(columnNames[i]));
-            contentPanel.add(panel);
+        for (Object[] rowData : n) {
+            for (Object cellData : rowData) {
+                JLabel label = new JLabel((String) cellData);
+                label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                contentPanel.add(label);
+            }
         }
 
         JScrollPane scrollPane = new JScrollPane(contentPanel);
