@@ -1,6 +1,8 @@
 package data_access;
 
 import entity.Team;
+import entity.TeamRecord;
+import entity.TeamStats;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,7 +77,7 @@ public class TeamDataAccessObject {
         }
     }
 
-    public Team getYearlyRecord(int teamID, int season) throws JSONException{
+    public TeamRecord getYearlyRecord(int teamID, int season) throws JSONException{
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=" + season + "&team=" + teamID)
@@ -90,47 +92,19 @@ public class TeamDataAccessObject {
 
             // TODO: Use teamBuilder to make team with addStat...?
             // Return a team with only the relevant fields filled (Makes easier to build team object from stats)
-            return new Team(
-                    teamID,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                   "",
-                    new ArrayList<>(),
+            return new TeamRecord(
                     (teamRecordJSON.get("win") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("total")) : 0,
                     (teamRecordJSON.get("loss") != jsonNull &&  teamRecordJSON.getJSONObject("loss").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("total")) : 0,
                     (teamRecordJSON.get("win") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("lastTen")) : 0,
                     (teamRecordJSON.get("loss") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("lastTen")) : 0,
-                    (teamRecordJSON.get("conference") != jsonNull &&  teamRecordJSON.getJSONObject("conference").get("rank") != jsonNull) ? (teamRecordJSON.getJSONObject("conference").getInt("rank")) : 0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
+                    (teamRecordJSON.get("conference") != jsonNull &&  teamRecordJSON.getJSONObject("conference").get("rank") != jsonNull) ? (teamRecordJSON.getJSONObject("conference").getInt("rank")) : 0
             );
         } catch (Exception e) {
             throw new JSONException(e);
         }
     }
 
-    public Team getTeamYearlyStats(int teamID, int season) throws JSONException{
+    public TeamStats getTeamYearlyStats(int teamID, int season) throws JSONException{
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -146,20 +120,7 @@ public class TeamDataAccessObject {
 
             // TODO: Use teamBuilder to make team with addStat...?
             // Return a team with only the relevant fields filled (Makes easier to build team object from stats)
-            return new Team(
-                    teamID,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    new ArrayList<>(),
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
+            return new TeamStats(
                     (teamStatsJSON.get("games") != jsonNull) ? (teamStatsJSON.getInt("games")) : 0,
                     (teamStatsJSON.get("fastBreakPoints") != jsonNull) ? (teamStatsJSON.getInt("fastBreakPoints")) : 0,
                     (teamStatsJSON.get("pointsInPaint") != jsonNull) ? (teamStatsJSON.getInt("pointsInPaint")) : 0,

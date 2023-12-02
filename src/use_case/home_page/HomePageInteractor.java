@@ -1,8 +1,7 @@
 package use_case.home_page;
 
 
-import entity.Player;
-import entity.Team;
+import entity.*;
 
 import java.util.Map;
 import java.util.Random;
@@ -31,15 +30,15 @@ public class HomePageInteractor implements HomePageInputBoundary {
         try {
             // Get season stats for the current season
             Player player = homePageDataAccessInterface.getPlayerInfo(randomPlayerID);
-            Map<String, Object> currentSeasonPlayerStats = homePageDataAccessInterface.getPlayerYearlyStats(randomPlayerID, currSeason);
+            PlayerStats currentSeasonPlayerStats = homePageDataAccessInterface.getPlayerYearlyStats(randomPlayerID, currSeason);
             player.addStat(currentSeasonPlayerStats);
 
 
             Team team = homePageDataAccessInterface.getTeamInfo(randomTeamID);
-            Team teamRecord = homePageDataAccessInterface.getTeamYearlyRecord(randomTeamID, currSeason);
-            Team teamStats = homePageDataAccessInterface.getTeamYearlyStats(randomTeamID, currSeason);
-            // team.addStat(teamRecord);
-            // team.addStat(teamStats);
+            TeamRecord teamRecord = homePageDataAccessInterface.getTeamYearlyRecord(randomTeamID, currSeason);
+            TeamStats teamStats = homePageDataAccessInterface.getTeamYearlyStats(randomTeamID, currSeason);
+            team.addRecord(teamRecord);
+            team.addStat(teamStats);
 
 
             // Create output data

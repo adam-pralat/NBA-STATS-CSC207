@@ -1,10 +1,12 @@
 package data_access;
 
 import entity.Player;
+import entity.PlayerStats;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import use_case.player_comparison.PlayerComparisonDataAccessInterface;
 import use_case.player_stats.PlayerStatsDataAccessInterface;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.Map;
 
 // TODO: Issue - API rate limit is hit + Get FG% and 3P% and FT%
 
-public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
+public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
     private final String apiKey;
 
@@ -109,8 +111,7 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
         }
     }
 
-    public Map<String, Object> getPlayerYearlyStats(int playerID, int season) {
-        Map<String, Object> playerStats = new HashMap<String, Object>();
+    public PlayerStats getPlayerYearlyStats(int playerID, int season) {
         OkHttpClient playerStatsClient = new OkHttpClient();
 
         Request playerStatsRequest = new Request.Builder()
@@ -192,25 +193,25 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface {
                 plusMinus += Integer.parseInt(gameJSONObject.getString("plusMinus"));
             }
 
-            // Set player attributes
-            playerStats.put("gamesPlayed", gamesPlayed);
-            playerStats.put("points", points);
-            playerStats.put("assists", assists);
-            playerStats.put("timePlayed", timePlayed);
-            playerStats.put("fieldGoalsMade", fieldGoalsMade);
-            playerStats.put("fieldGoalsAttempted", fieldGoalsAttempted);
-            playerStats.put("freeThrowsMade", freeThrowsMade);
-            playerStats.put("freeThrowsAttempted", freeThrowsAttempted);
-            playerStats.put("threePointsMade", threePointsMade);
-            playerStats.put("threePointsAttempted", threePointsAttempted);
-            playerStats.put("offensiveRebounds", offensiveRebounds);
-            playerStats.put("defensiveRebounds", defensiveRebounds);
-            playerStats.put("personalFouls", personalFouls);
-            playerStats.put("steals", steals);
-            playerStats.put("turnovers", turnovers);
-            playerStats.put("blocks", blocks);
-            playerStats.put("plusMinus", plusMinus);
-            return playerStats;
+            return new PlayerStats(
+                gamesPlayed,
+                points,
+                assists,
+                timePlayed,
+                fieldGoalsMade,
+                fieldGoalsAttempted,
+                freeThrowsMade,
+                freeThrowsAttempted,
+                threePointsMade,
+                threePointsAttempted,
+                offensiveRebounds,
+                defensiveRebounds,
+                personalFouls,
+                steals,
+                turnovers,
+                blocks,
+                plusMinus
+            );
         }
         catch (IOException | JSONException e) {
             throw new RuntimeException(e);
