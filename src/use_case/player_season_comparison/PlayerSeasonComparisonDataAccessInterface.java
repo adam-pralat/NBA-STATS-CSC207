@@ -1,6 +1,7 @@
 package use_case.player_season_comparison;
 
 import entity.Player;
+import entity.PlayerStats;
 import org.json.JSONException;
 
 import java.util.Map;
@@ -10,5 +11,5 @@ public interface PlayerSeasonComparisonDataAccessInterface {
 
     // TODO: is getPlayerInfo really needed?
     Player getPlayerInfo(int playerID);
-    Map<String, Object> getPlayerYearlyStats(int playerID, int season);
+    PlayerStats getPlayerYearlyStats(int playerID, int season);
 }
