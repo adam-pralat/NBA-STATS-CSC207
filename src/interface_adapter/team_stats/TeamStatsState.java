@@ -15,7 +15,7 @@ public class TeamStatsState {
     private String city;
     private String logo;
     private String conference;
-    private ArrayList<Player> players; // Players list or string to be decided.
+    private String players; // Players list or string to be decided.
 
     // Wins/Losses
     private String wins;
@@ -260,11 +260,11 @@ public class TeamStatsState {
         this.conference = conference;
     }
 
-    public ArrayList<Player> getPlayers() {
+    public String getPlayers() {
         return players;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
+    public void setPlayers(String players) {
         this.players = players;
     }
 
