@@ -1,6 +1,8 @@
 package use_case.player_season_comparison;
 
 import entity.Player;
+import entity.PlayerStats;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
@@ -29,29 +31,31 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
                 Player playerSeason2Info = playerSeasonComparisonAccessObject.getPlayerInfo(id);
 
                 // create maps for season1 and season2
-                Map<String, Object> season1PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season1);
-                Map<String, Object> season2PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season2);
+                PlayerStats season1PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season1);
+                PlayerStats season2PlayerStats = playerSeasonComparisonAccessObject.getPlayerYearlyStats(id, season2);
 
                 // add the stats to respective Player instance
                 playerSeason1Info.addStat(season1PlayerStats);
                 playerSeason2Info.addStat(season2PlayerStats);
 
                 // this map is for storing the stat change over time
-                Map<String, Object> playerSeasonComparison = new HashMap<>();
+//                Map<String, Object> playerSeasonComparison = new HashMap<>();
+//
+//                // set up iterator to set up playerStatComparison Map
+//                Iterator<Map.Entry<String, Object>> iterator = season2PlayerStats.entrySet().iterator();
+//
+//                // iterate through the season2 stats, and from it, subtract season1 stats
+//                // then put those values in playerStatComparison
+//                while (iterator.hasNext()) {
+//                    Map.Entry<String, Object> entry = iterator.next();
+//                    if (season1PlayerStats.containsKey(entry.getKey())) {
+//                        int statDiff;
+//                        statDiff = (int) entry.getValue() - (int) season1PlayerStats.get(entry.getKey());
+//                        playerSeasonComparison.put(entry.getKey(), statDiff);
+//                    }
+//                }
 
-                // set up iterator to set up playerStatComparison Map
-                Iterator<Map.Entry<String, Object>> iterator = season2PlayerStats.entrySet().iterator();
-
-                // iterate through the season2 stats, and from it, subtract season1 stats
-                // then put those values in playerStatComparison
-                while (iterator.hasNext()) {
-                    Map.Entry<String, Object> entry = iterator.next();
-                    if (season1PlayerStats.containsKey(entry.getKey())) {
-                        int statDiff;
-                        statDiff = (int) entry.getValue() - (int) season1PlayerStats.get(entry.getKey());
-                        playerSeasonComparison.put(entry.getKey(), statDiff);
-                    }
-                }
+                Map<String, Object> playerSeasonComparison = playerSeason2Info.getDiff(playerSeason1Info);
 
                 playerSeasonComparisonPresenter.prepareSuccessView(new PlayerSeasonComparisonOutputData(playerSeason1Info.toMap(), playerSeason2Info.toMap(), playerSeasonComparison, true));
 

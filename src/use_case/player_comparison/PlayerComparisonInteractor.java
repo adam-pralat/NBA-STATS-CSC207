@@ -1,6 +1,8 @@
 package use_case.player_comparison;
 
 import entity.Player;
+import entity.PlayerStats;
+
 import java.util.Map;
 
 public class PlayerComparisonInteractor implements PlayerComparisonInputBoundary {
@@ -26,14 +28,11 @@ public class PlayerComparisonInteractor implements PlayerComparisonInputBoundary
                 int currSeason = 2023;
                 Player player1 = playerComparisonAccessObject.getPlayerInfo(id1);
                 Player player2 = playerComparisonAccessObject.getPlayerInfo(id2);
-                for (int season = 2015; season <= currSeason; season++) {
-                    Map<String, Object> seasonPlayerStats1 = playerComparisonAccessObject.getPlayerYearlyStats(id1,
-                            season);
-                    player1.addStat(seasonPlayerStats1);
-                    Map<String, Object> seasonPlayerStats2 = playerComparisonAccessObject.getPlayerYearlyStats(id2,
-                            season);
-                    player2.addStat(seasonPlayerStats2);
-                }
+                PlayerStats seasonPlayerStats1 = playerComparisonAccessObject.getPlayerYearlyStats(id1, currSeason);
+                player1.addStat(seasonPlayerStats1);
+                PlayerStats seasonPlayerStats2 = playerComparisonAccessObject.getPlayerYearlyStats(id2, currSeason);
+                player2.addStat(seasonPlayerStats2);
+                playerComparisonPresenter.prepareSuccessView(new PlayerComparisonOutputData(player1.toMap(), player2.toMap(), true));
             } catch (Exception e) {
                 playerComparisonPresenter.prepareFailView(e.toString());
             }
