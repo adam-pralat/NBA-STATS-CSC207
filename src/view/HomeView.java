@@ -3,6 +3,7 @@ package view;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.schedule.ScheduleController;
 
 import javax.swing.*;
@@ -20,75 +21,96 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private final HomePageViewModel viewModel;
     private final HomePageController homeController;
     private final ScheduleController scheduleController;
+    private final PlayerComparisonController playerComparisonController;
     private JScrollPane playerInfoPane = new JScrollPane();
 
     private JButton playerStatsButton;
     private JButton teamStatsButton;
     private JButton playerComparisonButton;
     private JButton scheduleButton;
+    private JPanel playerInfo;
+    private JPanel pageTitle;
+    private JPanel teamInfo;
+    private JLabel title;
+    private JPanel buttons;
+    private JLabel teamHeader;
+    private JLabel playerHeader;
+    private String[] playerRowData;
+    private String[] teamRowData;
 
-    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController) {
+
+    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController) {
         this.viewModel = viewModel;
         this.homeController = homeController;
         this.scheduleController = scheduleController;
+        this.playerComparisonController = playerComparisonController;
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.viewModel.addPropertyChangeListener(this);
-        JLabel title = new JLabel(this.viewModel.TITLE_LABEL);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title = new JLabel(this.viewModel.TITLE_LABEL);
 
         HomePageState state = this.viewModel.getState();
 
-        // TODO: Dont call controller here, call on view being changed
-        // this.controller.execute();
+        pageTitle = new JPanel();
 
-        JPanel t = new JPanel();
+        JLabel header = new JLabel(viewModel.PAGE_TITLE);
+        header.setFont(header.getFont().deriveFont(viewModel.PAGE_TITLE_FONT_SIZE));
+        pageTitle.add(header);
 
-        JLabel header = new JLabel("Page Title");
-        header.setFont(header.getFont().deriveFont(64.0F));
+        playerHeader = new JLabel(viewModel.PLAYER_HEADER);
+        playerHeader.setFont(playerHeader.getFont().deriveFont(viewModel.HEADER_FONT_SIZE));
 
-        t.add(header);
-        this.add(t);
+        playerInfo = new JPanel(new GridLayout(13, 2));
+        playerRowData = new String[]{
+                state.getPlayerFirstName() + " " + state.getPlayerLastName(), state.getPlayerBirthDate(), state.getPlayerCountry(), state.getPlayerTeam(),
+                String.valueOf(state.getPlayerPointsPerGame()), String.valueOf(state.getPlayerAssistsPerGame()), String.valueOf(state.getPlayerFreeThrowPercentage()),
+                String.valueOf(state.getPlayerFieldGoalPercentage()), String.valueOf(state.getPlayerThreePointPercentage()), String.valueOf(state.getPlayerMinutesPlayedPerGame()),
+                String.valueOf(state.getPlayerStealsPerGame()), String.valueOf(state.getPlayerTurnoversPerGame()), String.valueOf(state.getPlayerBlocksPerGame())
+        };
 
-        JPanel playerInfo = new JPanel();
-        playerInfo.add(playerInfoPane);
-        this.setFields(state);
-//        JTextArea playerName = new JTextArea(state.getPlayerFirstName() + " " + state.getPlayerLastName());
-//        playerName.setEditable(false);
-//        playerInfo.add(playerName);
-//
-//        JTextArea playerCountry = new JTextArea(state.getPlayerCountry());
-//        playerCountry.setEditable(false);
-//        playerInfo.add(playerCountry);
-//
-//        JTextArea playerTeam = new JTextArea(state.getPlayerTeam());
-//        playerTeam.setEditable(false);
-//        playerInfo.add(playerTeam);
-//
-//        JTextArea playerPPG = new JTextArea(Double.toString(state.getPlayerPointsPerGame()));
-//        playerPPG.setEditable(false);
-//        playerInfo.add(playerPPG);
-//
-//        JTextArea playerAPG = new JTextArea(Double.toString(state.getPlayerAssistsPerGame()));
-//        playerAPG.setEditable(false);
-//        playerInfo.add(playerAPG);
-//
-//        JTextArea playerFTP = new JTextArea(Double.toString(state.getPlayerFreeThrowPercentage()) + "%");
-//        playerFTP.setEditable(false);
-//        playerInfo.add(playerFTP);
-//
-//        JTextArea playerFGP = new JTextArea(Double.toString(state.getPlayerFieldGoalPercentage()) + "%");
-//        playerFGP.setEditable(false);
-//        playerInfo.add(playerFGP);
-//
-//        JTextArea playerMPG = new JTextArea(Double.toString(state.getplayerMinutesPerGame()));
-//        playerMPG.setEditable(false);
-//        playerInfo.add(playerMPG);
+        for (int rowNum=0; rowNum<viewModel.PLAYER_ROW_NAMES.length; rowNum++){
+            // Add stat label
+            JLabel label = new JLabel(viewModel.PLAYER_ROW_NAMES[rowNum]);
+            label.setHorizontalAlignment(JLabel.HORIZONTAL);
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            playerInfo.add(label);
 
-        this.add(playerInfo);
+            // Add stat
+            JLabel stat = new JLabel(playerRowData[rowNum]);
+            stat.setHorizontalAlignment(JLabel.HORIZONTAL);
+            stat.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            playerInfo.add(stat);
+        }
 
-        JPanel teamInfo = new JPanel();
+        teamHeader = new JLabel(viewModel.TEAM_HEADER);
+        teamHeader.setFont(teamHeader.getFont().deriveFont(viewModel.HEADER_FONT_SIZE));
 
-        JPanel buttons = new JPanel();
+        teamInfo = new JPanel(new GridLayout(13, 2));
+        teamRowData = new String[]{
+                state.getTeamName(), state.getTeamNickname(), state.getTeamCode(),
+                state.getConference(), String.valueOf(state.getConferencePlace()), String.valueOf(state.getTeamWins()),
+                String.valueOf(state.getTeamLosses()), String.valueOf(state.getTeamsWinsLastTen()), String.valueOf(state.getTeamsLossesLastTen()),
+                String.valueOf(state.getTeamPointsPerGame()), state.getTeamFreeThrowPercentage() + "%", state.getTeamFieldGoalPercentage() + "%",
+                state.getTeamThreePointPercentage() + "%"
+        };
+
+        for (int rowNum=0; rowNum<viewModel.TEAM_ROW_NAMES.length; rowNum++){
+            // Add stat label
+            JLabel label = new JLabel(viewModel.TEAM_ROW_NAMES[rowNum]);
+            label.setHorizontalAlignment(JLabel.HORIZONTAL);
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            teamInfo.add(label);
+
+            // Add stat
+            JLabel stat = new JLabel(teamRowData[rowNum]);
+            stat.setHorizontalAlignment(JLabel.HORIZONTAL);
+            stat.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            teamInfo.add(stat);
+        }
+
+
+        buttons = new JPanel();
         scheduleButton = new JButton(viewModel.SCHEDULE_BUTTON_LABEL);
         buttons.add(scheduleButton);
         scheduleButton.addActionListener(
@@ -110,8 +132,33 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
 
         playerComparisonButton = new JButton(viewModel.PLAYER_COMPARISON_BUTTON_LABEL);
         buttons.add(playerComparisonButton);
+        playerComparisonButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(playerComparisonButton)) {
+                            playerComparisonController.execute(1, 2); // TODO: Note, passed in ids 1 and 2 for now
+                        }
+                    }
+                }
+        );
 
+        pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playerHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playerInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        teamInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        teamHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttons.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(title);
+        this.add(pageTitle);
+        this.add(playerHeader);
+        this.add(playerInfo);
+        this.add(teamHeader);
+        this.add(teamInfo);
         this.add(buttons);
+
+        // TODO: Dont call controller here, call on view being changed?? - For now it is called now
+        this.homeController.execute();
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -124,19 +171,67 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     }
 
     private void setFields(HomePageState state) {
-        //this.homeController.execute();
-        String[][] playerInfoData = {{
-                state.getPlayerFirstName() + " " + state.getPlayerLastName(),
-                state.getPlayerCountry(),
-                state.getPlayerTeam(),
-                Double.toString(state.getPlayerPointsPerGame()),
-                Double.toString(state.getPlayerAssistsPerGame()),
-                state.getPlayerFreeThrowPercentage() + "%",
-                state.getPlayerFieldGoalPercentage() + "%",
-                Double.toString(state.getPlayerMinutesPlayedPerGame())
-        }};
-        JTable playerInfoTable = new JTable(playerInfoData, this.viewModel.PLAYER_INFO_COLUMN_NAMES);
-        playerInfoPane.setViewportView(playerInfoTable);
+        this.removeAll();
+        playerRowData = new String[]{
+                state.getPlayerFirstName() + " " + state.getPlayerLastName(), state.getPlayerBirthDate(), state.getPlayerCountry(), state.getPlayerTeam(),
+                String.valueOf(state.getPlayerPointsPerGame()), String.valueOf(state.getPlayerAssistsPerGame()), state.getPlayerFreeThrowPercentage() + "%",
+                state.getPlayerFieldGoalPercentage() + "%", state.getPlayerThreePointPercentage() + "%", String.valueOf(state.getPlayerMinutesPlayedPerGame()),
+                String.valueOf(state.getPlayerStealsPerGame()), String.valueOf(state.getPlayerTurnoversPerGame()), String.valueOf(state.getPlayerBlocksPerGame())
+        };
+
+        //this.remove(playerInfo);
+        // playerInfo.removeAll();
+        playerInfo = new JPanel(new GridLayout(13, 2));
+        for (int rowNum=0; rowNum<viewModel.PLAYER_ROW_NAMES.length; rowNum++){
+            // Add stat label
+            JLabel label = new JLabel(viewModel.PLAYER_ROW_NAMES[rowNum]);
+            label.setHorizontalAlignment(JLabel.HORIZONTAL);
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            playerInfo.add(label);
+
+            // Add stat
+            JLabel stat = new JLabel(playerRowData[rowNum]);
+            stat.setHorizontalAlignment(JLabel.HORIZONTAL);
+            stat.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            playerInfo.add(stat);
+        }
+
+        // teamInfo
+        teamInfo = new JPanel(new GridLayout(13, 2));
+        teamRowData = new String[]{
+                state.getTeamName(), state.getTeamNickname(), state.getTeamCode(),
+                state.getConference(), String.valueOf(state.getConferencePlace()), String.valueOf(state.getTeamWins()),
+                String.valueOf(state.getTeamLosses()), String.valueOf(state.getTeamsWinsLastTen()), String.valueOf(state.getTeamsLossesLastTen()),
+                String.valueOf(state.getTeamPointsPerGame()), state.getTeamFreeThrowPercentage() + "%", state.getTeamFieldGoalPercentage() + "%",
+                state.getTeamThreePointPercentage() + "%"
+        };
+
+        for (int rowNum=0; rowNum<viewModel.TEAM_ROW_NAMES.length; rowNum++){
+            // Add stat label
+            JLabel label = new JLabel(viewModel.TEAM_ROW_NAMES[rowNum]);
+            label.setHorizontalAlignment(JLabel.HORIZONTAL);
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            teamInfo.add(label);
+
+            // Add stat
+            JLabel stat = new JLabel(teamRowData[rowNum]);
+            stat.setHorizontalAlignment(JLabel.HORIZONTAL);
+            stat.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            teamInfo.add(stat);
+        }
+
+        pageTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playerHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playerInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        teamInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        teamHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttons.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(pageTitle);
+        this.add(playerHeader);
+        this.add(playerInfo);
+        this.add(teamHeader);
+        this.add(teamInfo);
+        this.add(buttons);
     }
 }
 

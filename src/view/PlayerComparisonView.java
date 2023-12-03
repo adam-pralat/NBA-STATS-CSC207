@@ -1,12 +1,14 @@
 package view;
 
 import com.opencsv.exceptions.CsvException;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.id_information.IdInformationController;
 import interface_adapter.id_information.IdInformationState;
 import interface_adapter.id_information.IdInformationViewModel;
 import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.player_comparison.PlayerComparisonState;
 import interface_adapter.player_comparison.PlayerComparisonViewModel;
+import interface_adapter.schedule.ScheduleViewModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +38,7 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
     private final JPanel team_players_2 = new JPanel();
     private final JComboBox<String> dropdown1 = new JComboBox<>(TEAM_NAMES);
     private final JComboBox<String> dropdown2 = new JComboBox<>(TEAM_NAMES);
+    private final JButton exit;
 //
 //    private final Map<String, String[]> subCategoryMap = format(PlayerComparisonViewModel.TeamPlayerIds);
 //
@@ -45,11 +48,13 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
     private final PlayerComparisonController playerComparisonController;
     private final IdInformationViewModel idInformationViewModel;
     private final IdInformationController idInformationController;
+    private final HomePageController homePageController;
 
     public PlayerComparisonView(PlayerComparisonController controller,
                                 PlayerComparisonViewModel playerComparisonViewModel,
                                 IdInformationController idInformationController,
-                                IdInformationViewModel idInformationViewModel) throws IOException, CsvException {
+                                IdInformationViewModel idInformationViewModel,
+                                HomePageController homePageController) throws IOException, CsvException {
         idInformationController.execute();
         IdInformationState currentState = idInformationViewModel.getState();
         HashMap<String, HashMap<String, Integer>> initial = initialise(currentState.getData());
@@ -60,6 +65,7 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
         this.playerComparisonViewModel = playerComparisonViewModel;
         this.idInformationController = idInformationController;
         this.idInformationViewModel = idInformationViewModel;
+        this.homePageController = homePageController;
         playerComparisonViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(PlayerComparisonViewModel.TITLE_LABEL);
@@ -106,6 +112,19 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
         });
 
         JPanel buttons = new JPanel();
+        exit = new JButton(playerComparisonViewModel.EXIT_BUTTON_LABEL);
+        exit.addActionListener(this);
+        exit.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(exit)) {
+                            homePageController.execute();
+                        }
+                    }
+                }
+        );
+        buttons.add(exit);
 
         compare = new JButton(PlayerComparisonViewModel.COMPARE_BUTTON_LABEL);
         buttons.add(compare);
