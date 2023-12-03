@@ -96,15 +96,41 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                     int teamId = //TODO;
                     controller.execute(teamId);
                     TeamStatsState state = teamStatsViewModel.getState();
-                    String[] columnNames = {"Name", "Nickname", "Code", "Conference", "ConferencePlace",
-                            "Wins", "Losses", "WinsPastTen", "LossesPastTen", "PointsPerGame",
-                            "FreeThrowPercentage", "FieldGoalPercentage", "ThreePointPercentage"};
-                    Object[][] data = {{state.getName(), state.getNickname(), state.getCode(), state.getConference(),
-                            String.valueOf(state.getConferencePlace()), String.valueOf(state.getWins()),
-                            String.valueOf(state.getLosses()), String.valueOf(state.getWinsPastTen()),
-                            String.valueOf(state.getLossesPastTen()), String.valueOf(state.getPointsPerGame()),
-                            state.getFreeThrowPercentage() + "%", state.getFieldGoalPercentage() + "%",
-                            state.getThreePointPercentage() + "%"}};
+                    String[] columnNames = {"Name", "Nickname", "Code", "City", "Logo", "Conference", "Players", "Wins", "Losses",
+                            "WinsPastTen", "LossesPastTen", "ConferencePlace", "Games", "FastBreakPoints",
+                            "PointsInPaint", "SecondChancePoints", "PointsOffTurnovers", "Points", "FieldGoalsMade",
+                            "FieldGoalsAttempted", "FreeThrowsMade", "FreeThrowsAttempted", "ThreePointsMade",
+                            "ThreePointsAttempted", "OffReb", "DefReb", "Assists", "PFouls", "Steals", "Turnovers",
+                            "Blocks", "PlusMinus", "PointsPerGame", "AssistsPerGame", "FieldGoalsMadePerGame",
+                            "FieldGoalsAttemptedPerGame", "FreeThrowsMadePerGame", "FreeThrowsAttemptedPerGame",
+                            "ThreePointsMadePerGame", "ThreePointsAttemptedPerGame", "OffensiveReboundsPerGame",
+                            "DefensiveReboundsPerGame", "ReboundsPerGame", "PersonalFoulsPerGame", "StealsPerGame",
+                            "TurnoversPerGame", "BlocksPerGame", "PlusMinusPerGame", "FieldGoalPercentage",
+                            "FreeThrowPercentage", "ThreePointPercentage"};
+
+                    Object[][] data = {
+                            {
+                                    state.getName(), state.getNickname(), state.getCode(), state.getCity(), state.getLogo(),
+                                    state.getConference(), state.getPlayers(), state.getWins(), state.getLosses(),
+                                    state.getWinsPastTen(), state.getLossesPastTen(), state.getConferencePlace(), state.getGames(),
+                                    state.getFastBreakPoints(), state.getPointsInPaint(), state.getSecondChancePoints(),
+                                    state.getPointsOffTurnovers(), state.getPoints(), state.getFieldGoalsMade(),
+                                    state.getFieldGoalsAttempted(), state.getFreeThrowsMade(), state.getFreeThrowsAttempted(),
+                                    state.getThreePointsMade(), state.getThreePointsAttempted(), state.getOffReb(),
+                                    state.getDefReb(), state.getAssists(), state.getpFouls(), state.getSteals(),
+                                    state.getTurnovers(), state.getBlocks(), state.getPlusMinus(), state.getPointsPerGame(),
+                                    state.getAssistsPerGame(), state.getFieldGoalsMadePerGame(), state.getFieldGoalsAttemptedPerGame(),
+                                    state.getFreeThrowsMadePerGame(), state.getFreeThrowsAttemptedPerGame(),
+                                    state.getThreePointsMadePerGame(), state.getThreePointsAttemptedPerGame(),
+                                    state.getOffensiveReboundsPerGame(), state.getDefensiveReboundsPerGame(),
+                                    state.getReboundsPerGame(), state.getPersonalFoulsPerGame(), state.getStealsPerGame(),
+                                    state.getTurnoversPerGame(), state.getBlocksPerGame(), state.getPlusMinusPerGame(),
+                                    String.format("%.2f%%", Integer.parseInt(state.getFieldGoalPercentage()) / 100.0),
+                                    String.format("%.2f%%", Integer.parseInt(state.getFreeThrowPercentage()) / 100.0),
+                                    String.format("%.2f%%", Integer.parseInt(state.getThreePointPercentage()) / 100.0)
+                            }
+                    };
+
                     showPopup(data, columnNames);
                     System.out.println(Arrays.deepToString(data));
                 }
