@@ -7,7 +7,7 @@ import use_case.team_stats.TeamStatsOutputData;
 
 import java.util.Map;
 
-public class TeamStatsPresenter {
+public class TeamStatsPresenter implements TeamStatsOutputBoundary{
 
     private final TeamStatsViewModel teamStatsViewModel;
     private ViewManagerModel viewManagerModel;

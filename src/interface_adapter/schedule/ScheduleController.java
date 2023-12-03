@@ -6,7 +6,6 @@ import use_case.schedule.ScheduleInputData;
 import java.time.LocalDate;
 
 public class ScheduleController {
-
     final ScheduleInputBoundary scheduleUseCaseInteractor;
 
     public ScheduleController(ScheduleInputBoundary scheduleUseCaseInteractor) {
