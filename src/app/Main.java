@@ -67,7 +67,7 @@ public class Main {
 
         PlayerComparisonController playerComparisonController = PlayerComparisonUseCaseFactory.createPlayerComparisonUseCase(viewManagerModel, playerComparisonViewModel, playerDAO);
         PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(playerComparisonViewModel, playerComparisonController, idInformationController, idInformationViewModel, homePageController);
-        // views.add(playerComparisonView, playerComparisonView.viewName);
+        views.add(playerComparisonView, playerComparisonView.viewName);
 
         HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController);
         views.add(homeView, homeView.viewName);
