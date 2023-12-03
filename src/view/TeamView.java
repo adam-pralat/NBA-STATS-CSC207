@@ -14,11 +14,14 @@ import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 
 public class TeamView extends JPanel implements ActionListener, PropertyChangeListener {
 
     // Choose a team first and then view the stats for the team.
     public final String viewName = "team stats";
+    private Map<String, Integer> teamNameToIdMap;
     public static final String[] TEAM_NAMES = {
             "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets",
             "Charlotte Hornets", "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks",
@@ -29,6 +32,8 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             "Phoenix Suns", "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs",
             "Toronto Raptors", "Utah Jazz", "Washington Wizards"
     };
+    // int[] possibleTeamIDs = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24,
+    // 25, 26, 27, 28, 29, 30, 31, 38, 41};
 
     private final TeamStatsViewModel teamStatsViewModel;
     private final TeamStatsController teamStatsController;
@@ -42,6 +47,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
         this.teamStatsController = controller;
         this.teamStatsViewModel = teamStatsViewModel;
         this.homePageController = homePageController;
+        teamNameToIdMap = initialiseTeamNameIdMap();
         teamStatsViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Team Statistics");
@@ -54,6 +60,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     String teamSelected = (String) teamDropdown.getSelectedItem();
                     // Perform action based on team selected
+                    teamStatsLabel.setText("Selected team: " + teamSelected);
                 }
             }
         });
@@ -92,9 +99,9 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(viewStatsButton)) {
-                    String team = teamDropdown.getSelectedItem().toString();
-                    int teamId = //TODO;
-                    controller.execute(teamId);
+                    String teamName = (String) teamDropdown.getSelectedItem();
+                    int teamId = teamNameToIdMap.get(teamName);
+                    teamStatsController.execute(teamId);
                     TeamStatsState state = teamStatsViewModel.getState();
                     String[] columnNames = {"Name", "Nickname", "Code", "City", "Logo", "Conference", "Players", "Wins", "Losses",
                             "WinsPastTen", "LossesPastTen", "ConferencePlace", "Games", "FastBreakPoints",
@@ -137,6 +144,23 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             }
         });
     }
+
+    public Map<String, Integer> initialiseTeamNameIdMap() {
+        Map<String, Integer> initial = new HashMap<>();
+        Integer[] possibleTeamIDs = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24,
+                25, 26, 27, 28, 29, 30, 31, 38, 41};
+        for (int i = 0; i < TEAM_NAMES.length; i++) {
+            initial.put(TEAM_NAMES[i], possibleTeamIDs[i]);
+        }
+        // You must ensure that TEAM_NAMES and possibleTeamIDs are the same length
+        // and correspond correctly before running this code.
+        return initial;
+    }
+
+    //Those are the team names , and each team should have a unique id, and you could make a hashmap of teams so their ids within teamview and
+    //then use that in dropdowns, then there is a method that gets the things selected in dropdown and use that to exectue team stats.
+
+
 
     private void showPopup(Object[][] data, String[] columnNames) {
         JDialog popupDialog = new JDialog(JOptionPane.getFrameForComponent(this),
