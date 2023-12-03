@@ -11,6 +11,7 @@ import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleViewModel;
+import interface_adapter.team_stats.TeamStatsController;
 import view.HomeView;
 import view.PlayerComparisonView;
 import view.ScheduleView;
@@ -50,14 +51,15 @@ public class Main {
         TeamDataAccessObject teamDAO = new TeamDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         HomePageDataAccessObject homeDAO = new HomePageDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         //PlayerComparisonDataAccessObject playerComparisonDAO = playerDAO; //new PlayerComparisonDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
-        GameDataAccessObject gameDAO = new GameDataAccessObject(); // TODO: Input API key here
+        GameDataAccessObject gameDAO = new GameDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         IdInformationDataAccessObject IDDAO = new IdInformationDataAccessObject();
 
         // TODO: Maybe use a builder here also??
         ScheduleController scheduleController = ScheduleUseCaseFactory.createScheduleUseCase(viewManagerModel, scheduleViewModel, gameDAO);
         HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
 
-        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController);
+        TeamStatsController teamStatsController = new TeamStatsController();
+        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController, teamStatsController);
         views.add(scheduleView, scheduleView.viewName);
 
 
