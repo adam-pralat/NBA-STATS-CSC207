@@ -1,92 +1,99 @@
 package entity;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class GameTest extends TestCase {
+class GameTest {
     private Game game;
-
-    public void setUp() throws Exception {
-        super.setUp();
+    @BeforeEach
+    void setUp() {
         game = new Game(
                 1,
-                "2023-01-01",
+                LocalDateTime.of(2015, 10, 2, 20, 30, 0, 0),
                 "Finished",
-                "Amway Center, Orlando, FL",
-                "Orlando Magic",
-                "ORL",
-                "String for image URL",
-                1,
-                2,
-                2,
-                "Toronto Raptors",
-                "TOR",
-                "String for image URL",
-                2,
-                1,
-                4
+                "Staples Center, Los Angeles, CA",
+                16,
+                "LA Clippers",
+                "LAC",
+                "https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png",
+                103,
+                9,
+                "Denver Nuggets",
+                "DEN",
+                "https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png",
+                96
         );
     }
 
-    public void testGetStatus() {
+    @Test
+    void getId() {
+        assertEquals(game.getId(), 1);
+    }
+
+    @Test
+    void getDateTime() {
+        assertEquals(game.getDateTime(), LocalDateTime.of(2015, 10, 2, 20, 30, 0, 0));
+    }
+
+    @Test
+    void getStatus() {
         assertEquals(game.getStatus(), "Finished");
     }
 
-    public void testSetStatus() {
-        game.setStatus("In Progress");
-        assertEquals(game.getStatus(), "In Progress");
+    @Test
+    void getLocation() {
+        assertEquals(game.getLocation(), "Staples Center, Los Angeles, CA");
     }
 
-    public void testGetHomeTeamWins() {
-        assertEquals(game.getHomeTeamWins(), 1);
+    @Test
+    void getHomeTeamID() {
+        assertEquals(game.getHomeTeamID(), 16);
     }
 
-    public void testSetHomeTeamWins() {
-        game.setHomeTeamWins(5);
-        assertEquals(game.getHomeTeamWins(), 5);
+    @Test
+    void getHomeTeamName() {
+        assertEquals(game.getHomeTeamName(), "LA Clippers");
     }
 
-    public void testGetHomeTeamLosses() {
-        assertEquals(game.getHomeTeamLosses(), 2);
+    @Test
+    void getHomeTeamCode() {
+        assertEquals(game.getHomeTeamCode(), "LAC");
     }
 
-    public void testSetHomeTeamLosses() {
-        game.setHomeTeamLosses(10);
-        assertEquals(game.getHomeTeamLosses(), 10);
+    @Test
+    void getHomeTeamLogo() {
+        assertEquals(game.getHomeTeamLogo(), "https://upload.wikimedia.org/wikipedia/fr/d/d6/Los_Angeles_Clippers_logo_2010.png");
     }
 
-    public void testGetHomeTeamPoints() {
-        assertEquals(game.getHomeTeamPoints(), 2);
+    @Test
+    void getHomeTeamPoints() {
+        assertEquals(game.getHomeTeamPoints(), 103);
     }
 
-    public void testSetHomeTeamPoints() {
-        game.setHomeTeamPoints(4);
-        assertEquals(game.getHomeTeamPoints(), 4);
+    @Test
+    void getAwayTeamID() {
+        assertEquals(game.getAwayTeamID(), 9);
     }
 
-    public void testGetAwayTeamWins() {
-        assertEquals(game.getAwayTeamWins(), 2);
+    @Test
+    void getAwayTeamName() {
+        assertEquals(game.getAwayTeamName(), "Denver Nuggets");
     }
 
-    public void testSetAwayTeamWins() {
-        game.setAwayTeamWins(10);
-        assertEquals(game.getAwayTeamWins(), 10);
+    @Test
+    void getAwayTeamCode() {
+        assertEquals(game.getAwayTeamCode(), "DEN");
     }
 
-    public void testGetAwayTeamLosses() {
-        assertEquals(game.getAwayTeamLosses(), 1);
+    @Test
+    void getAwayTeamLogo() {
+        assertEquals(game.getAwayTeamLogo(), "https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Nuggets_de_Denver_2018.png/180px-Nuggets_de_Denver_2018.png");
     }
 
-    public void testSetAwayTeamLosses() {
-        game.setAwayTeamLosses(5);
-        assertEquals(game.getAwayTeamLosses(), 5);
-    }
-
-    public void testGetAwayTeamPoints() {
-        assertEquals(game.getAwayTeamPoints(), 4);
-    }
-
-    public void testSetAwayTeamPoints() {
-        game.setAwayTeamPoints(40);
-        assertEquals(game.getAwayTeamPoints(), 40);
+    @Test
+    void getAwayTeamPoints() {
+        assertEquals(game.getAwayTeamPoints(), 96);
     }
 }
