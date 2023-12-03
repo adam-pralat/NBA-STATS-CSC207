@@ -8,7 +8,6 @@ import use_case.schedule.ScheduleOutputData;
 import java.util.Map;
 
 public class SchedulePresenter implements ScheduleOutputBoundary {
-
     private final ScheduleViewModel scheduleViewModel;
     private ViewManagerModel viewManagerModel;
 
