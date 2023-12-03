@@ -1,7 +1,6 @@
 package view;
 
 import entity.Game;
-import entity.Team;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;

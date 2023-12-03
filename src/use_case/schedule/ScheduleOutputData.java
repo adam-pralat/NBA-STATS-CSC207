@@ -22,4 +22,7 @@ public class ScheduleOutputData {
     public LocalDate getDate() {
         return date;
     }
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
+    }
 }
