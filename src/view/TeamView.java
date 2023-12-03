@@ -75,6 +75,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(viewStatsButton)) {
                     String team = teamDropdown.getSelectedItem().toString();
+                    //TODO: get id from team selected and pass it to controller to execute.
                     TeamStatsState state = teamStatsViewModel.getState();
                     String[] columnNames = {"Name", "Nickname", "Code", "Conference", "ConferencePlace",
                             "Wins", "Losses", "WinsPastTen", "LossesPastTen", "PointsPerGame",
