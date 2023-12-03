@@ -25,9 +25,6 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         Map<String, Object> season2PlayerStats = response.getPlayerSeason2Stats();
 
         // Get State
-        if (playerSeasonComparisonViewModel.getState() == null) {
-            System.out.println("bruh");
-        }
         PlayerSeasonComparisonState state = this.playerSeasonComparisonViewModel.getState();
 
         // Set all state attributes. If an attribute is null, it is set to be an empty string
