@@ -66,7 +66,9 @@ public class TestDAO implements HomePageDataAccessInterface {
                 1,
                 1,
                 1,
-                1
+                1,
+                "Toronto Raptors",
+                "G"
         );
     }
 
