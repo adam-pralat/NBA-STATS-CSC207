@@ -19,6 +19,7 @@ public class TeamStatsPresenter implements TeamStatsOutputBoundary{
     }
 
 
+    @Override
     public void prepareSuccessView(TeamStatsOutputData response) {
         Map<String, Object> teamStats = response.getTeamStats();
 
@@ -71,6 +72,7 @@ public class TeamStatsPresenter implements TeamStatsOutputBoundary{
         this.viewManagerModel.firePropertyChanged();
     }
 
+    @Override
     public void prepareFailView(String error) {
         TeamStatsState state = teamStatsViewModel.getState();
         state.setTeamStatsError("Sorry, we could not get the stats for the team you requested. Please try again.");
