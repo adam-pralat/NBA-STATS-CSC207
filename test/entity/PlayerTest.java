@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 
 import java.util.Map;
 
+
+// TODO: Rewrite tests with new player stats
 public class PlayerTest extends TestCase {
     private Player player;
 
