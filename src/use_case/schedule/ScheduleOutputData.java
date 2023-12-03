@@ -19,8 +19,10 @@ public class ScheduleOutputData {
     public Map<Integer, Game> getGames() {
         return games;
     }
-
     public LocalDate getDate() {
         return date;
+    }
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
     }
 }

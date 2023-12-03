@@ -135,6 +135,48 @@ public class Player {
                 ", plusMinus=" + plusMinus +
                 '}';
     }
+    public Map<String, Object> getDiff(Player other){
+        Map<String, Object> out = new HashMap<>();
+        out.put("gamesPlayed", gamesPlayed - other.gamesPlayed);
+        out.put("points", points - other.points);
+        out.put("assists", assists - other.assists);
+        out.put("minutesPlayed", minutesPlayed() - other.minutesPlayed());
+        out.put("fieldGoalsMade", fieldGoalsMade - other.fieldGoalsMade);
+        out.put("fieldGoalsAttempted", fieldGoalsAttempted - other.fieldGoalsAttempted);
+        out.put("freeThrowsMade", freeThrowsMade - other.freeThrowsMade);
+        out.put("freeThrowsAttempted", freeThrowsAttempted - other.freeThrowsAttempted);
+        out.put("threePointsMade", threePointsMade - other.threePointsMade);
+        out.put("threePointsAttempted", threePointsAttempted - other.threePointsAttempted);
+        out.put("offensiveRebounds", offensiveRebounds - other.offensiveRebounds);
+        out.put("defensiveRebounds", defensiveRebounds - other.defensiveRebounds);
+        out.put("personalFouls", personalFouls - other.personalFouls);
+        out.put("steals", steals - other.steals);
+        out.put("turnovers", turnovers - other.turnovers);
+        out.put("blocks", blocks - other.blocks);
+        out.put("plusMinus", plusMinus - other.plusMinus);
+        out.put("pointsPerGame", pointsPerGame() - other.pointsPerGame());
+        out.put("assistsPerGame", assistsPerGame() - other.assistsPerGame());
+        out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame() - other.fieldGoalsMadePerGame());
+        out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame() - other.fieldGoalsAttemptedPerGame());
+        out.put("freeThrowsMadePerGame", freeThrowsMadePerGame() - other.freeThrowsMadePerGame());
+        out.put("freeThrowsAttemptedPerGame", freeThrowsAttemptedPerGame() - other.freeThrowsAttemptedPerGame());
+        out.put("threePointsMadePerGame", threePointsMadePerGame() - other.threePointsMadePerGame());
+        out.put("threePointsAttemptedPerGame", threePointsAttemptedPerGame() - other.threePointsAttemptedPerGame());
+        out.put("defensiveReboundsPerGame", defensiveReboundsPerGame() - other.defensiveReboundsPerGame());
+        out.put("offensiveReboundsPerGame", offensiveReboundsPerGame() - other.offensiveReboundsPerGame());
+        out.put("reboundsPerGame", reboundsPerGame() - other.reboundsPerGame());
+        out.put("personalFoulsPerGame", personalFoulsPerGame() - other.personalFoulsPerGame());
+        out.put("stealsPerGame", stealsPerGame() - other.stealsPerGame());
+        out.put("turnoversPerGame", turnoversPerGame() - other.turnoversPerGame());
+        out.put("blocksPerGame", blocksPerGame() - other.blocksPerGame());
+        out.put("minutesPlayedPerGame", minutesPerGame() - other.minutesPerGame());
+
+        // Percentages
+        out.put("fieldGoalPercentage", roundTwoDecimals(fieldGoalPercentage()) - roundTwoDecimals(other.fieldGoalPercentage()));
+        out.put("threePointPercentage", roundTwoDecimals(threePointPercentage()) - roundTwoDecimals(other.threePointPercentage()));
+        out.put("freeThrowPercentage", roundTwoDecimals(freeThrowPercentage()) - roundTwoDecimals(other.freeThrowPercentage()));
+        return out;
+    }
 
     public Map<String, Object> toMap(){
         Map<String, Object> out = new HashMap<>();
@@ -156,6 +198,7 @@ public class Player {
         out.put("points", points);
         out.put("assists", assists);
         out.put("timePlayed", timePlayed);
+        out.put("minutesPlayed", minutesPlayed());
         out.put("fieldGoalsMade", fieldGoalsMade);
         out.put("fieldGoalsAttempted", fieldGoalsAttempted);
         out.put("freeThrowsMade", freeThrowsMade);
@@ -173,6 +216,7 @@ public class Player {
         // Per game metrics
         out.put("pointsPerGame", pointsPerGame());
         out.put("assistsPerGame", assistsPerGame());
+        out.put("minutesPlayedPerGame", minutesPerGame());
         out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
         out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
         out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());
@@ -201,28 +245,31 @@ public class Player {
         return Double.valueOf(df.format(num));
     }
 
-    public void addStat(Map<String, Object> statMap){
+    public void addStat(PlayerStats playerStats){
         // Assuming statMap contains all fields needed
-        gamesPlayed += (Integer) statMap.get("gamesPlayed");
-        points += (Integer) statMap.get("points");
-        assists += (Integer) statMap.get("assists");
-        timePlayed += (Integer) statMap.get("timePlayed");
-        fieldGoalsMade += (Integer) statMap.get("fieldGoalsMade");
-        fieldGoalsAttempted += (Integer) statMap.get("fieldGoalsAttempted");
-        freeThrowsMade += (Integer) statMap.get("freeThrowsMade");
-        freeThrowsAttempted += (Integer) statMap.get("freeThrowsAttempted");
-        threePointsMade += (Integer) statMap.get("threePointsMade");
-        threePointsAttempted += (Integer) statMap.get("threePointsAttempted");
-        offensiveRebounds += (Integer) statMap.get("offensiveRebounds");
-        defensiveRebounds += (Integer) statMap.get("defensiveRebounds");
-        personalFouls += (Integer) statMap.get("personalFouls");
-        steals += (Integer) statMap.get("steals");
-        turnovers += (Integer) statMap.get("turnovers");
-        blocks += (Integer) statMap.get("blocks");
-        plusMinus += (Integer) statMap.get("plusMinus");
+        gamesPlayed += playerStats.gamesPlayed;
+        points += playerStats.points;
+        assists += playerStats.assists;
+        timePlayed += playerStats.timePlayed;
+        fieldGoalsMade += playerStats.fieldGoalsMade;
+        fieldGoalsAttempted += playerStats.fieldGoalsAttempted;
+        freeThrowsMade += playerStats.freeThrowsMade;
+        freeThrowsAttempted += playerStats.freeThrowsAttempted;
+        threePointsMade += playerStats.threePointsMade;
+        threePointsAttempted += playerStats.threePointsAttempted;
+        offensiveRebounds += playerStats.offensiveRebounds;
+        defensiveRebounds += playerStats.defensiveRebounds;
+        personalFouls += playerStats.personalFouls;
+        steals += playerStats.steals;
+        turnovers += playerStats.turnovers;
+        blocks += playerStats.blocks;
+        plusMinus += playerStats.plusMinus;
+        position = playerStats.position;
+        team = playerStats.team;
     }
 
-    public double minutesPerGame() { return roundTwoDecimals(timePlayedPerGame()/60); }
+    public double minutesPerGame() { return statPerGame(minutesPlayed()); }
+    public double minutesPlayed(){ return roundTwoDecimals(timePlayedPerGame()/60); }
 
     // TODO: Use facade here??
     // Per game methods
@@ -232,6 +279,18 @@ public class Player {
         } else {
             return 0.0;
         }
+    }
+
+    private double statPerGame(double stat){
+        if (gamesPlayed != 0) {
+            return roundTwoDecimals(stat / (double) gamesPlayed);
+        } else {
+            return 0.0;
+        }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double pointsPerGame() { return statPerGame(points);}
@@ -279,10 +338,6 @@ public class Player {
         } else {
             return 0.0;
         }
-    }
-
-    public int id(){
-        return this.id;
     }
 
     public int getAssists() {
@@ -404,7 +459,7 @@ public class Player {
         this.points = points;
     }
 
-    public double getTimePlayed() {
+    public int getTimePlayed() {
         return timePlayed;
     }
 

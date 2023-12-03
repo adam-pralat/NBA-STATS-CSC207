@@ -1,14 +1,10 @@
 package interface_adapter.schedule;
 
-import entity.Game;
 import interface_adapter.ViewManagerModel;
 import use_case.schedule.ScheduleOutputBoundary;
 import use_case.schedule.ScheduleOutputData;
 
-import java.util.Map;
-
 public class SchedulePresenter implements ScheduleOutputBoundary {
-
     private final ScheduleViewModel scheduleViewModel;
     private ViewManagerModel viewManagerModel;
 
@@ -33,6 +29,11 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         ScheduleState scheduleState = scheduleViewModel.getState();
+        scheduleState.setError(error);
+        viewManagerModel.setActiveView(scheduleViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+
+        scheduleViewModel.setState(scheduleState);
         scheduleViewModel.firePropertyChanged();
     }
 }

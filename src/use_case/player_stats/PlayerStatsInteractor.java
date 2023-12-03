@@ -1,6 +1,7 @@
 package use_case.player_stats;
 
 import entity.Player;
+import entity.PlayerStats;
 import interface_adapter.player_stats.PlayerStatsPresenter;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class PlayerStatsInteractor implements PlayerStatsInputBoundary {
                 Player player = playerStatsAccessObject.getPlayerInfo(id);
 
                 for(int season = 2015; season <= currSeason; season++) {
-                    Map<String, Object> seasonPlayerStats = playerStatsAccessObject.getPlayerYearlyStats(id, season);
+                    PlayerStats seasonPlayerStats = playerStatsAccessObject.getPlayerYearlyStats(id, season);
                     player.addStat(seasonPlayerStats);
                 }
 

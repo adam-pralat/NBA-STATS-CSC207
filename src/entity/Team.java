@@ -183,33 +183,44 @@ public class Team {
         return out;
     }
 
-//    public void addStat(Team stat) {
-//        this.wins += stat.wins;
-//        this.losses += stat.losses;
-//        this.winsPastTen += stat.winsPastTen;
-//        this.lossesPastTen += stat.lossesPastTen;
-//        this.conferencePlace += stat.conferencePlace;
-//        this.games += stat.games;
-//        this.fastBreakPoints += stat.fastBreakPoints;
-//        this.pointsInPaint += stat.pointsInPaint;
-//        this.secondChancePoints += stat.secondChancePoints;
-//        this.pointsOffTurnovers += stat.pointsOffTurnovers;
-//        this.points += stat.points;
-//        this.fieldGoalsMade += stat.fieldGoalsMade;
-//        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
-//        this.freeThrowsMade += stat.freeThrowsMade;
-//        this.freeThrowsAttempted += stat.freeThrowsAttempted;
-//        this.threePointsMade += stat.threePointsMade;
-//        this.threePointsAttempted += stat.threePointsAttempted;
-//        this.offReb += stat.offReb;
-//        this.defReb += stat.defReb;
-//        this.assists += stat.assists;
-//        this.pFouls += stat.pFouls;
-//        this.steals += stat.steals;
-//        this.turnovers += stat.turnovers;
-//        this.blocks += stat.blocks;
-//        this.plusMinus += stat.plusMinus;
+//    public void addRecord(){
+//        this.wins += record.wins;
+//        this.losses += record.losses;
+//        this.winsPastTen += record.winsPastTen;
+//        this.lossesPastTen += record.lossesPastTen;
+//        this.conferencePlace += record.conferencePlace;
 //    }
+
+    public void addStat(TeamStats stat) {
+        this.games += stat.games;
+        this.fastBreakPoints += stat.fastBreakPoints;
+        this.pointsInPaint += stat.pointsInPaint;
+        this.secondChancePoints += stat.secondChancePoints;
+        this.pointsOffTurnovers += stat.pointsOffTurnovers;
+        this.points += stat.points;
+        this.fieldGoalsMade += stat.fieldGoalsMade;
+        this.fieldGoalsAttempted += stat.fieldGoalsAttempted;
+        this.freeThrowsMade += stat.freeThrowsMade;
+        this.freeThrowsAttempted += stat.freeThrowsAttempted;
+        this.threePointsMade += stat.threePointsMade;
+        this.threePointsAttempted += stat.threePointsAttempted;
+        this.offReb += stat.offReb;
+        this.defReb += stat.defReb;
+        this.assists += stat.assists;
+        this.pFouls += stat.pFouls;
+        this.steals += stat.steals;
+        this.turnovers += stat.turnovers;
+        this.blocks += stat.blocks;
+        this.plusMinus += stat.plusMinus;
+    }
+
+    public void addRecord(TeamRecord record){
+        wins += record.wins;
+        losses += record.losses;
+        winsPastTen += record.winsPastTen;
+        lossesPastTen += record.lossesPastTen;
+        conferencePlace = record.conferencePlace;
+    }
 
     //Changed addStat with map, statMap
     public void addStat(Map<String, Object> statMap){
