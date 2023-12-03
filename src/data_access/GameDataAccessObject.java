@@ -5,7 +5,6 @@ import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.schedule.ScheduleDataAccessInterface;
-
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -31,6 +30,7 @@ public class GameDataAccessObject implements ScheduleDataAccessInterface {
     }
 
     public Map<Integer, Game> getSomeGames(LocalDate dateWanted, LocalDate dateGiven) {
+        // Makes API call with given date (GMT)
         OkHttpClient client = new OkHttpClient();
         Map<Integer, Game> games = new HashMap<>();
 
@@ -47,7 +47,7 @@ public class GameDataAccessObject implements ScheduleDataAccessInterface {
             JSONObject responseGameInfoJSON = new JSONObject(response.body().string());
             JSONArray gamesJSON = responseGameInfoJSON.getJSONArray("response");
 
-            // Iterates through each game, adding them to the
+            // Iterates through each game
             for (Object game : gamesJSON) {
                 JSONObject gameJSON = (JSONObject) game;
 
@@ -77,7 +77,6 @@ public class GameDataAccessObject implements ScheduleDataAccessInterface {
                     homeTeamPoints = homeScores.getInt("points");
                 }
 
-
                 // Away Team info
                 JSONObject awayTeam = gameJSON.getJSONObject("teams").getJSONObject("visitors");
                 JSONObject awayScores = gameJSON.getJSONObject("scores").getJSONObject("visitors");
@@ -90,7 +89,6 @@ public class GameDataAccessObject implements ScheduleDataAccessInterface {
                 if(!awayScores.isNull("points")) {
                     awayTeamPoints = awayScores.getInt("points");
                 }
-
 
                 // Creates Game object
                 Game currGame = new Game(gameID,

@@ -5,18 +5,18 @@ import java.time.LocalDateTime;
 public class Game {
     private final int id; // API game-ID
     private final LocalDateTime dateTime;
-    private String status;
+    private final String status;
     private final String location;
     private final Integer homeTeamID;
     private final String homeTeamName;
     private final String homeTeamCode;
     private final String homeTeamLogo;
-    private int homeTeamPoints;
-    private int awayTeamID;
+    private final int homeTeamPoints;
+    private final int awayTeamID;
     private final String awayTeamName;
     private final String awayTeamCode;
     private final String awayTeamLogo;
-    private int awayTeamPoints;
+    private final int awayTeamPoints;
 
     public Game(int id,
                 LocalDateTime dateTime,
