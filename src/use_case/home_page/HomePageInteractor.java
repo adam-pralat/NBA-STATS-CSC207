@@ -70,13 +70,12 @@ public class HomePageInteractor implements HomePageInputBoundary {
                     team.fieldGoalPercentage(),
                     team.threePointPercentage(),
                     false
-
             );
 
             // Call output boundary with output data passed in
             homePageOutputBoundary.prepareSuccessView(outputData);
         } catch(RuntimeException e) {
-            homePageOutputBoundary.prepareFailView(e.toString());
+            homePageOutputBoundary.prepareFailView("Error in accessing data.");
         }
 
     }
