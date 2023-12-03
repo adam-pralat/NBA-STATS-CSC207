@@ -162,8 +162,8 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             "Steals Per Game", "Turnovers Per Game", "Blocks Per Game",
                             "Free Throw Percentage", "Field Goal Percentage", "Three Points Percentage"};
                     Object[][] data = {{currentState.getFirstName(), currentState.getLastName(),
-                            currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight(),
-                            currentState.getWeight(), currentState.getGamesPlayed(), currentState.getPoints(),
+                            currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight() + " m",
+                            currentState.getWeight() + " kg", currentState.getGamesPlayed(), currentState.getPoints(),
                             currentState.getAssists(), currentState.getTimePlayed(), currentState.getFieldGoalsMade(),
                             currentState.getFieldGoalsAttempted(), currentState.getFreeThrowsMade(),
                             currentState.getFreeThrowsAttempted(), currentState.getThreePointsMade(),
@@ -177,11 +177,11 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             currentState.getThreePointsAttemptedPerGame(), currentState.getOffensiveReboundsPerGame(),
                             currentState.getDefensiveReboundsPerGame(), currentState.getReboundsPerGame(),
                             currentState.getPersonalFoulsPerGame(), currentState.getStealsPerGame(),
-                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(), currentState.getFreeThrowPercentage(),
-                            currentState.getFieldGoalPercentage(), currentState.getThreePointPercentage()},
+                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(), currentState.getFreeThrowPercentage() + "%",
+                            currentState.getFieldGoalPercentage() + "%", currentState.getThreePointPercentage() + "%"},
                             {currentState.getFirstName1(), currentState.getLastName1(),
-                            currentState.getBirthDate1(), currentState.getCountry1(), currentState.getHeight1(),
-                            currentState.getWeight1(), currentState.getGamesPlayed1(), currentState.getPoints1(),
+                            currentState.getBirthDate1(), currentState.getCountry1(), currentState.getHeight1() + " m",
+                            currentState.getWeight1() + " kg", currentState.getGamesPlayed1(), currentState.getPoints1(),
                             currentState.getAssists1(), currentState.getTimePlayed1(), currentState.getFieldGoalsMade1(),
                             currentState.getFieldGoalsAttempted1(), currentState.getFreeThrowsMade1(),
                             currentState.getFreeThrowsAttempted1(), currentState.getThreePointsMade1(),
@@ -195,8 +195,8 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             currentState.getThreePointsAttemptedPerGame1(), currentState.getOffensiveReboundsPerGame1(),
                             currentState.getDefensiveReboundsPerGame1(), currentState.getReboundsPerGame1(),
                             currentState.getPersonalFoulsPerGame1(), currentState.getStealsPerGame1(),
-                            currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(), currentState.getFreeThrowPercentage1(),
-                            currentState.getFieldGoalPercentage1(), currentState.getThreePointPercentage1()}};
+                            currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(), currentState.getFreeThrowPercentage1() + "%",
+                            currentState.getFieldGoalPercentage1() + "%", currentState.getThreePointPercentage1() + "%"}};
                     showPopup(data, columnNames);
                 }
             }
