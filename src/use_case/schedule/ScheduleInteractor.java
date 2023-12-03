@@ -21,8 +21,8 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         try {
             Map<Integer, Game> games = dataAccessObject.getGames(date);
             schedulePresenter.prepareSuccessView(new ScheduleOutputData(date, games, false));
-        } catch (Exception e) {
-            schedulePresenter.prepareFailView(e.toString());
+        } catch (RuntimeException e) {
+            schedulePresenter.prepareFailView("Runtime error.");
         }
     }
 }

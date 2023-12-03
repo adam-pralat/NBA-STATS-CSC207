@@ -165,7 +165,9 @@ public class PlayerTest extends TestCase {
                 1,
                 1,
                 1,
-                1
+                1,
+                "Toronto Raptors",
+                "G"
         );
         Player other = new Player(
                 1,
@@ -215,6 +217,8 @@ public class PlayerTest extends TestCase {
         assertEquals(other.getTurnovers(), 1);
         assertEquals(other.getBlocks(), 1);
         assertEquals(other.getPlusMinus(), 1);
+        assertEquals(other.getTeam(), "Toronto Raptors");
+        assertEquals(other.getPosition(), "G");
     }
 
     public void testMinutesPerGame() {

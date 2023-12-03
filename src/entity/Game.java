@@ -7,7 +7,7 @@ public class Game {
     private final LocalDateTime dateTime;
     private final String status;
     private final String location;
-    private final Integer homeTeamID;
+    private final int homeTeamID;
     private final String homeTeamName;
     private final String homeTeamCode;
     private final String homeTeamLogo;

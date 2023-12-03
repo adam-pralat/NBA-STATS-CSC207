@@ -8,7 +8,7 @@ import java.util.Map;
 public class ScheduleOutputData {
     private final Map<Integer, Game> games;
     private final LocalDate date;
-    private boolean useCaseFailed;
+    private final boolean useCaseFailed;
 
     public ScheduleOutputData(LocalDate date, Map<Integer, Game> games, boolean useCaseFailed) {
         this.date = date;
