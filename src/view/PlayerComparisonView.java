@@ -150,7 +150,7 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                     controller.execute(id1, id2);
                     PlayerComparisonState currentState = playerComparisonViewModel.getState();
                     String[] columnNames = {"First Name", "Last Name", "Birth Date", "Country", "Height", "Weight",
-                            "Team", "Position", "Jersey Number", "Games Played", "Points", "Assists",
+                            "Games Played", "Points", "Assists",
                             "Time Played", "Field Goals Made", "Field Goals Attempted", "Free Throws Made",
                             "Free Throws Attempted", "Three Points Made", "Three Points Attempted",
                             "Offensive Rebounds", "Defensive Rebounds", "Personal Fouls", "Steals", "Turnovers",
@@ -159,12 +159,11 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             "Free Throws Attempted Per Game", "Three Points Made Per Game",
                             "Three Points Attempted Per Game", "Offensive Rebounds Per Game",
                             "Defensive Rebounds Per Game", "Rebounds Per Game", "Personal Fouls Per Game",
-                            "Steals Per Game", "Turnovers Per Game", "Blocks Per Game", "+/- Per Game",
+                            "Steals Per Game", "Turnovers Per Game", "Blocks Per Game",
                             "Free Throw Percentage", "Field Goal Percentage", "Three Points Percentage"};
                     Object[][] data = {{currentState.getFirstName(), currentState.getLastName(),
                             currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight(),
-                            currentState.getWeight(), currentState.getTeam(), currentState.getPosition(),
-                            currentState.getJerseyNumber(), currentState.getGamesPlayed(), currentState.getPoints(),
+                            currentState.getWeight(), currentState.getGamesPlayed(), currentState.getPoints(),
                             currentState.getAssists(), currentState.getTimePlayed(), currentState.getFieldGoalsMade(),
                             currentState.getFieldGoalsAttempted(), currentState.getFreeThrowsMade(),
                             currentState.getFreeThrowsAttempted(), currentState.getThreePointsMade(),
@@ -178,13 +177,11 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             currentState.getThreePointsAttemptedPerGame(), currentState.getOffensiveReboundsPerGame(),
                             currentState.getDefensiveReboundsPerGame(), currentState.getReboundsPerGame(),
                             currentState.getPersonalFoulsPerGame(), currentState.getStealsPerGame(),
-                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(),
-                            currentState.getPlusMinusPerGame(), currentState.getFreeThrowPercentage(),
+                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(), currentState.getFreeThrowPercentage(),
                             currentState.getFieldGoalPercentage(), currentState.getThreePointPercentage()},
                             {currentState.getFirstName1(), currentState.getLastName1(),
                             currentState.getBirthDate1(), currentState.getCountry1(), currentState.getHeight1(),
-                            currentState.getWeight1(), currentState.getTeam1(), currentState.getPosition1(),
-                            currentState.getJerseyNumber1(), currentState.getGamesPlayed1(), currentState.getPoints1(),
+                            currentState.getWeight1(), currentState.getGamesPlayed1(), currentState.getPoints1(),
                             currentState.getAssists1(), currentState.getTimePlayed1(), currentState.getFieldGoalsMade1(),
                             currentState.getFieldGoalsAttempted1(), currentState.getFreeThrowsMade1(),
                             currentState.getFreeThrowsAttempted1(), currentState.getThreePointsMade1(),
@@ -198,11 +195,9 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
                             currentState.getThreePointsAttemptedPerGame1(), currentState.getOffensiveReboundsPerGame1(),
                             currentState.getDefensiveReboundsPerGame1(), currentState.getReboundsPerGame1(),
                             currentState.getPersonalFoulsPerGame1(), currentState.getStealsPerGame1(),
-                            currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(),
-                            currentState.getPlusMinusPerGame1(), currentState.getFreeThrowPercentage1(),
+                            currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(), currentState.getFreeThrowPercentage1(),
                             currentState.getFieldGoalPercentage1(), currentState.getThreePointPercentage1()}};
                     showPopup(data, columnNames);
-                    System.out.println(Arrays.deepToString(data));
                 }
             }
         });
@@ -236,9 +231,9 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
         // Create a JDialog for the popup
         JDialog popupDialog = new JDialog((Frame) null, data[0][0].toString() + " " + data[0][1].toString() +
                 " compared with " + data[1][0].toString() + " " + data[1][1].toString(), true);
-        popupDialog.setSize(400, 300);
+        popupDialog.setSize(800, 500);
 
-        JPanel contentPanel = new JPanel(new GridLayout(3, 46));
+        JPanel contentPanel = new JPanel(new GridLayout(3, 42));
         Object[][] n = {columnNames, data[0], data[1]};
 
         for (Object[] rowData : n) {
