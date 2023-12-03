@@ -264,6 +264,8 @@ public class Player {
         turnovers += playerStats.turnovers;
         blocks += playerStats.blocks;
         plusMinus += playerStats.plusMinus;
+        position = playerStats.position;
+        team = playerStats.team;
     }
 
     public double minutesPerGame() { return statPerGame(minutesPlayed()); }
