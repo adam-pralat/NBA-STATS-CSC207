@@ -207,14 +207,6 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 awayPanel.add(awayTeam);
                 awayTeam.setAlignmentX(CENTER_ALIGNMENT);
 
-                // TODO Get wins and losses for each team
-                JLabel homeRecord = new JLabel("(" + " - " + ")");
-                homeRecord.setAlignmentX(CENTER_ALIGNMENT);
-                homePanel.add(homeRecord);
-                JLabel awayRecord = new JLabel("(" + " - " + ")");
-                awayRecord.setAlignmentX(CENTER_ALIGNMENT);
-                awayPanel.add(awayRecord);
-
                 // Separates Games in View
                 gamesPanel.add(Box.createVerticalStrut(20));
                 JLabel separator = new JLabel("<>".repeat(30));
