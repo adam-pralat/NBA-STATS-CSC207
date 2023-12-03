@@ -285,6 +285,10 @@ public class Player {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     public double pointsPerGame() { return statPerGame(points);}
     public double assistsPerGame(){ return statPerGame(assists);}
 
@@ -330,10 +334,6 @@ public class Player {
         } else {
             return 0.0;
         }
-    }
-
-    public int id(){
-        return this.id;
     }
 
     public int getAssists() {
@@ -455,7 +455,7 @@ public class Player {
         this.points = points;
     }
 
-    public double getTimePlayed() {
+    public int getTimePlayed() {
         return timePlayed;
     }
 
