@@ -15,10 +15,10 @@ import view.ScheduleView;
 public class ScheduleUseCaseFactory {
     private ScheduleUseCaseFactory() {}
 
-    public static ScheduleView create(ScheduleViewModel scheduleViewModel, ScheduleController scheduleController, HomePageController homePageController) { // TODO TeamStatsController teamStatsController
+    public static ScheduleView create(ScheduleViewModel scheduleViewModel, ScheduleController scheduleController, HomePageController homePageController, TeamStatsController teamStatsController) {
 
         //ScheduleController scheduleController = createScheduleUseCase(viewManagerModel, scheduleViewModel, scheduleDAO);
-        return new ScheduleView(scheduleController, scheduleViewModel, homePageController); // TODO teamStatsController
+        return new ScheduleView(scheduleController, scheduleViewModel, homePageController, teamStatsController);
 
     }
 

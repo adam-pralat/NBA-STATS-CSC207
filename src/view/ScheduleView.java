@@ -1,6 +1,7 @@
 package view;
 
 import entity.Game;
+import entity.Team;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;
@@ -24,18 +25,18 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     private final ScheduleViewModel scheduleViewModel;
     private final ScheduleController scheduleController;
     private final HomePageController homePageController;
-    // private final TeamStatsController teamStatsController;
+    private final TeamStatsController teamStatsController;
     private final JLabel date;
     private final JButton exit;
     private final JButton previous;
     private final JButton next;
     private final JPanel gamesPanel;
 
-    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel, HomePageController homePageController) { // TODO TeamStatsController teamStatsController}
+    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel, HomePageController homePageController, TeamStatsController teamStatsController) {
         this.scheduleController = controller;
         this.scheduleViewModel = viewModel;
         this.homePageController = homePageController;
-        // this.teamStatsController = teamStatsController;
+        this.teamStatsController = teamStatsController;
 
         scheduleViewModel.addPropertyChangeListener(this);
 
@@ -207,6 +208,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 awayTeam.setAlignmentX(CENTER_ALIGNMENT);
 
                 // TODO Get wins and losses for each team
+                Team
                 JLabel homeRecord = new JLabel("(" + " - " + ")");
                 homeRecord.setAlignmentX(CENTER_ALIGNMENT);
                 homePanel.add(homeRecord);
@@ -224,7 +226,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(e.getSource().equals(homeTeam)) {
-                            // TODO teamStatsController.execute(games.get(ID).getHomeTeamID());
+                            teamStatsController.execute(games.get(ID).getHomeTeamID());
                         }
                     }
                 });
@@ -233,7 +235,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(e.getSource().equals(homeTeam)) {
-                            // TODO teamStatsController.execute(games.get(ID).getAwayTeamID());
+                            teamStatsController.execute(games.get(ID).getAwayTeamID());
                         }
                     }
                 });
