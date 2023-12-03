@@ -23,9 +23,11 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
     public void prepareSuccessView(PlayerSeasonComparisonOutputData response) {
         Map<String, Object> season1PlayerStats = response.getPlayerSeason1Stats();
         Map<String, Object> season2PlayerStats = response.getPlayerSeason2Stats();
-        Map<String, Object> playerSeasonComparisonStats = response.getPlayerSeasonComparison();
 
         // Get State
+        if (playerSeasonComparisonViewModel.getState() == null) {
+            System.out.println("bruh");
+        }
         PlayerSeasonComparisonState state = this.playerSeasonComparisonViewModel.getState();
 
         // Set all state attributes. If an attribute is null, it is set to be an empty string
@@ -117,47 +119,6 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setBlocksPerGame1((season2PlayerStats.get("blocksPerGame") != jsonNull) ? (season2PlayerStats.get("blocksPerGame").toString()) : (""));
         state.setTimePlayedPerGame1((season2PlayerStats.get("timePlayedPerGame") != jsonNull) ? (season2PlayerStats.get("timePlayedPerGame").toString()) : (""));
 
-        // Cumulative statistics difference
-        state.setGamesPlayedDiff((playerSeasonComparisonStats.get("gamesPlayed") != jsonNull) ? (playerSeasonComparisonStats.get("gamesPlayed").toString()) : (""));
-        state.setPointsDiff((playerSeasonComparisonStats.get("points") != jsonNull) ? (playerSeasonComparisonStats.get("points").toString()) : (""));
-        state.setAssistsDiff((playerSeasonComparisonStats.get("assists") != jsonNull) ? (playerSeasonComparisonStats.get("assists").toString()) : (""));
-        state.setTimePlayedDiff((playerSeasonComparisonStats.get("timePlayed") != jsonNull) ? (playerSeasonComparisonStats.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
-        state.setFieldGoalsMadeDiff((playerSeasonComparisonStats.get("fieldGoalsMade") != jsonNull) ? (playerSeasonComparisonStats.get("fieldGoalsMade").toString()) : (""));
-        state.setFieldGoalsAttemptedDiff((playerSeasonComparisonStats.get("fieldGoalsAttempted") != jsonNull) ? (playerSeasonComparisonStats.get("fieldGoalsAttempted").toString()) : (""));
-        state.setFreeThrowsMadeDiff((playerSeasonComparisonStats.get("freeThrowsMade") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowsMade").toString()) : (""));
-        state.setFreeThrowsAttemptedDiff((playerSeasonComparisonStats.get("freeThrowsAttempted") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowsAttempted").toString()) : (""));
-        state.setThreePointsMadeDiff((playerSeasonComparisonStats.get("threePointsMade") != jsonNull) ? (playerSeasonComparisonStats.get("threePointsMade").toString()) : (""));
-        state.setThreePointsAttemptedDiff((playerSeasonComparisonStats.get("threePointsAttempted") != jsonNull) ? (playerSeasonComparisonStats.get("threePointsAttempted").toString()) : (""));
-        state.setOffensiveReboundsDiff((playerSeasonComparisonStats.get("offensiveRebounds") != jsonNull) ? (playerSeasonComparisonStats.get("offensiveRebounds").toString()) : (""));
-        state.setDefensiveReboundsDiff((playerSeasonComparisonStats.get("defensiveRebounds") != jsonNull) ? (playerSeasonComparisonStats.get("defensiveRebounds").toString()) : (""));
-        state.setPersonalFoulsDiff((playerSeasonComparisonStats.get("personalFouls") != jsonNull) ? (playerSeasonComparisonStats.get("personalFouls").toString()) : (""));
-        state.setStealsDiff((playerSeasonComparisonStats.get("steals") != jsonNull) ? (playerSeasonComparisonStats.get("steals").toString()) : (""));
-        state.setTurnoversDiff((playerSeasonComparisonStats.get("turnovers") != jsonNull) ? (playerSeasonComparisonStats.get("turnovers").toString()) : (""));
-        state.setBlocksDiff((playerSeasonComparisonStats.get("blocks") != jsonNull) ? (playerSeasonComparisonStats.get("blocks").toString()) : (""));
-        state.setPlusMinusDiff((playerSeasonComparisonStats.get("plusMinus") != jsonNull) ? (playerSeasonComparisonStats.get("plusMinus").toString()) : (""));
-
-        // Per game statistics for difference
-        state.setPointsPerGameDiff((playerSeasonComparisonStats.get("pointsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("pointsPerGame").toString()) : (""));
-        state.setAssistsPerGameDiff((playerSeasonComparisonStats.get("assistsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("assistsPerGame").toString()) : (""));
-        state.setFieldGoalsMadePerGameDiff((playerSeasonComparisonStats.get("fieldGoalsMadePerGame") != jsonNull) ? (playerSeasonComparisonStats.get("fieldGoalsMadePerGame").toString()) : (""));
-        state.setFieldGoalsAttemptedPerGameDiff((playerSeasonComparisonStats.get("fieldGoalsAttemptedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("fieldGoalsAttemptedPerGame").toString()) : (""));
-        state.setFreeThrowsMadePerGameDiff((playerSeasonComparisonStats.get("freeThrowsMadePerGame") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowsMadePerGame").toString()) : (""));
-        state.setFreeThrowsAttemptedPerGameDiff((playerSeasonComparisonStats.get("freeThrowsAttemptedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowsAttemptedPerGame").toString()) : (""));
-        state.setThreePointsMadePerGameDiff((playerSeasonComparisonStats.get("threePointsMadePerGame") != jsonNull) ? (playerSeasonComparisonStats.get("threePointsMadePerGame").toString()) : (""));
-        state.setThreePointsAttemptedPerGameDiff((playerSeasonComparisonStats.get("threePointsAttemptedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("threePointsAttemptedPerGame").toString()) : (""));
-        state.setDefensiveReboundsPerGameDiff((playerSeasonComparisonStats.get("defensiveReboundsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("defensiveReboundsPerGame").toString()) : (""));
-        state.setOffensiveReboundsPerGameDiff((playerSeasonComparisonStats.get("offensiveReboundsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("offensiveReboundsPerGame").toString()) : (""));
-        state.setReboundsPerGameDiff((playerSeasonComparisonStats.get("reboundsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("reboundsPerGame").toString()) : (""));
-        state.setPersonalFoulsPerGameDiff((playerSeasonComparisonStats.get("personalFoulsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("personalFoulsPerGame").toString()) : (""));
-        state.setStealsPerGameDiff((playerSeasonComparisonStats.get("stealsPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("stealsPerGame").toString()) : (""));
-        state.setTurnoversPerGameDiff((playerSeasonComparisonStats.get("turnoversPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("turnoversPerGame").toString()) : (""));
-        state.setBlocksPerGameDiff((playerSeasonComparisonStats.get("blocksPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGameDiff((playerSeasonComparisonStats.get("minutesPlayedPerGame") != jsonNull) ? (playerSeasonComparisonStats.get("minutesPlayedPerGame").toString()) : (""));
-
-        // Percentage metrics for difference
-        state.setFreeThrowPercentageDiff((playerSeasonComparisonStats.get("freeThrowPercentage") != jsonNull) ? (playerSeasonComparisonStats.get("freeThrowPercentage").toString()) : (""));
-        state.setFieldGoalPercentageDiff((playerSeasonComparisonStats.get("fieldGoalPercentage") != jsonNull) ? (playerSeasonComparisonStats.get("fieldGoalPercentage").toString()) : (""));
-        state.setThreePointPercentageDiff((playerSeasonComparisonStats.get("threePointPercentage") != jsonNull) ? (playerSeasonComparisonStats.get("threePointPercentage").toString()) : (""));
 
         // Set view and fire property changes
         this.viewManagerModel.setActiveView(playerSeasonComparisonViewModel.getViewName());

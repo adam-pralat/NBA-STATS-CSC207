@@ -4,6 +4,7 @@ import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.player_comparison.PlayerComparisonController;
+import interface_adapter.player_season_comparison.PlayerSeasonComparisonController;
 import interface_adapter.schedule.ScheduleController;
 
 import javax.swing.*;
@@ -22,12 +23,15 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private final HomePageController homeController;
     private final ScheduleController scheduleController;
     private final PlayerComparisonController playerComparisonController;
+    private final PlayerSeasonComparisonController playerSeasonComparisonController;
+
     private JScrollPane playerInfoPane = new JScrollPane();
 
     private JButton playerStatsButton;
     private JButton teamStatsButton;
     private JButton playerComparisonButton;
     private JButton scheduleButton;
+    private JButton playerSeasonComparisonButton;
     private JPanel playerInfo;
     private JPanel pageTitle;
     private JPanel teamInfo;
@@ -39,11 +43,12 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private String[] teamRowData;
 
 
-    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController) {
+    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController, PlayerSeasonComparisonController playerSeasonComparisonController) {
         this.viewModel = viewModel;
         this.homeController = homeController;
         this.scheduleController = scheduleController;
         this.playerComparisonController = playerComparisonController;
+        this.playerSeasonComparisonController = playerSeasonComparisonController;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -138,6 +143,19 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(playerComparisonButton)) {
                             playerComparisonController.execute(1, 2); // TODO: Note, passed in ids 1 and 2 for now
+                        }
+                    }
+                }
+        );
+
+        playerSeasonComparisonButton = new JButton(viewModel.PLAYER_SEASON_COMPARISON_BUTTON_LABEL);
+        buttons.add(playerSeasonComparisonButton);
+        playerSeasonComparisonButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(playerSeasonComparisonButton)) {
+                            playerSeasonComparisonController.execute(265, 2022, 2023); // TODO: Note, passedin id 1 and seasons 2015 and 2023 for now
                         }
                     }
                 }
