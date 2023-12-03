@@ -36,8 +36,8 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setCountry((playerStats1.get("country") != jsonNull) ? (playerStats1.get("country").toString()) : (""));
         state.setHeight((playerStats1.get("height") != jsonNull) ? (playerStats1.get("height").toString()) : (""));
         state.setWeight((playerStats1.get("weight") != jsonNull) ? (playerStats1.get("weight").toString()) : (""));
-        state.setFirstName((playerStats1.get("team") != jsonNull) ? (playerStats1.get("team").toString()) : (""));
-        state.setFirstName((playerStats1.get("position") != jsonNull) ? (playerStats1.get("position").toString()) : (""));
+        state.setTeam((playerStats1.get("team") != jsonNull) ? (playerStats1.get("team").toString()) : (""));
+        state.setPosition((playerStats1.get("position") != jsonNull) ? (playerStats1.get("position").toString()) : (""));
 
         // Cumulative statistics for Player 1
         state.setGamesPlayed((playerStats1.get("gamesPlayed") != jsonNull) ? (playerStats1.get("gamesPlayed").toString()) : (""));
