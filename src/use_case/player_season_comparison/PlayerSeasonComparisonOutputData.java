@@ -6,13 +6,11 @@ import java.util.Map;
 public class PlayerSeasonComparisonOutputData {
     private Map<String, Object> playerSeason1Stats = new Hashtable<>();
     private Map<String, Object> playerSeason2Stats = new Hashtable<>();
-    private Map<String, Object> playerSeasonComparison = new Hashtable<>();
     private boolean useCaseFailed;
 
-    public PlayerSeasonComparisonOutputData(Map<String, Object> playerSeason1Stats, Map<String, Object> playerSeason2Stats, Map<String, Object> playerSeasonComparison, boolean useCaseFailed) {
+    public PlayerSeasonComparisonOutputData(Map<String, Object> playerSeason1Stats, Map<String, Object> playerSeason2Stats, boolean useCaseFailed) {
         this.playerSeason1Stats = playerSeason1Stats;
         this.playerSeason2Stats = playerSeason2Stats;
-        this.playerSeasonComparison = playerSeasonComparison;
         this.useCaseFailed = useCaseFailed;
     }
 
@@ -22,7 +20,4 @@ public class PlayerSeasonComparisonOutputData {
         return this.playerSeason2Stats;
     }
 
-    public Map<String, Object> getPlayerSeasonComparison() {
-        return this.playerSeasonComparison;
-    }
 }

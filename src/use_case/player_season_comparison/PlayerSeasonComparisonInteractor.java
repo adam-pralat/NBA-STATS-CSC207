@@ -55,9 +55,7 @@ public class PlayerSeasonComparisonInteractor implements PlayerSeasonComparisonI
 //                    }
 //                }
 
-                Map<String, Object> playerSeasonComparison = playerSeason2Info.getDiff(playerSeason1Info);
-
-                playerSeasonComparisonPresenter.prepareSuccessView(new PlayerSeasonComparisonOutputData(playerSeason1Info.toMap(), playerSeason2Info.toMap(), playerSeasonComparison, true));
+                playerSeasonComparisonPresenter.prepareSuccessView(new PlayerSeasonComparisonOutputData(playerSeason1Info.toMap(), playerSeason2Info.toMap(), true));
 
             } catch (Exception e) {
                 playerSeasonComparisonPresenter.prepareFailView(e.toString());

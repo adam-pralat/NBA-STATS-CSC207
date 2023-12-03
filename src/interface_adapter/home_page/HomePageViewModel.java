@@ -12,6 +12,8 @@ public class HomePageViewModel extends ViewModel {
     public String PLAYER_STATS_BUTTON_LABEL = "View Player Statistics";
     public String TEAM_STATS_BUTTON_LABEL = "View Team Statistics";
     public String PLAYER_COMPARISON_BUTTON_LABEL = "Compare Two Players";
+    public String PLAYER_SEASON_COMPARISON_BUTTON_LABEL = "Compare Stats of a Player By Season";
+
     public String[] PLAYER_ROW_NAMES = {
             "Name", "Birth Date", "Country", "Team",
             "Points Per Game", "Assists Per Game", "Free Throw Percentage",
