@@ -11,7 +11,6 @@ import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleViewModel;
-import interface_adapter.team_stats.TeamStatsController;
 import view.HomeView;
 import view.PlayerComparisonView;
 import view.ScheduleView;
@@ -58,8 +57,7 @@ public class Main {
         ScheduleController scheduleController = ScheduleUseCaseFactory.createScheduleUseCase(viewManagerModel, scheduleViewModel, gameDAO);
         HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
 
-        TeamStatsController teamStatsController = new TeamStatsController();
-        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController, teamStatsController);
+        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController);
         views.add(scheduleView, scheduleView.viewName);
 
 
