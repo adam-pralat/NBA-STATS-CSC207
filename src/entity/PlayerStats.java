@@ -21,8 +21,10 @@ public class PlayerStats {
     public int turnovers;
     public int blocks;
     public int plusMinus;
+    public String team;
+    public String position;
 
-    public PlayerStats(int gamesPlayed, int points, int assists, int timePlayed, int fieldGoalsMade, int fieldGoalsAttempted, int freeThrowsMade, int freeThrowsAttempted, int threePointsMade, int threePointsAttempted, int offensiveRebounds, int defensiveRebounds, int personalFouls, int steals, int turnovers, int blocks, int plusMinus) {
+    public PlayerStats(int gamesPlayed, int points, int assists, int timePlayed, int fieldGoalsMade, int fieldGoalsAttempted, int freeThrowsMade, int freeThrowsAttempted, int threePointsMade, int threePointsAttempted, int offensiveRebounds, int defensiveRebounds, int personalFouls, int steals, int turnovers, int blocks, int plusMinus, String team, String position) {
         this.gamesPlayed = gamesPlayed;
         this.points = points;
         this.assists = assists;
@@ -40,5 +42,7 @@ public class PlayerStats {
         this.turnovers = turnovers;
         this.blocks = blocks;
         this.plusMinus = plusMinus;
+        this.team = team;
+        this.position = position;
     }
 }
