@@ -58,7 +58,7 @@ public class PlayerStatsState {
     private String blocksPerGame;
     private String plusMinusPerGame;
 
-    // Percentage metrics TODO: Add error fields
+    // Percentage metrics
     private String freeThrowPercentage;
     private String fieldGoalPercentage;
     private String threePointPercentage;
@@ -99,6 +99,30 @@ public class PlayerStatsState {
     private String turnoversError = null;
     private String blocksError = null;
     private String plusMinusError = null;
+
+    // Statistic metrics for per game
+    private String pointsPerGameError = null;
+    private String assistsPerGameError = null;
+    private String timePlayedPerGameError = null; // How much time the player has played (In seconds)
+    private String fieldGoalsMadePerGameError = null;
+    private String fieldGoalsAttemptedPerGameError = null;
+    private String freeThrowsMadePerGameError = null;
+    private String freeThrowsAttemptedPerGameError = null;
+    private String threePointsMadePerGameError = null;
+    private String threePointsAttemptedPerGameError = null;
+    private String offensiveReboundsPerGameError = null;
+    private String defensiveReboundsPerGameError = null;
+    private String reboundsPerGameError = null;
+    private String personalFoulsPerGameError = null;
+    private String stealsPerGameError = null;
+    private String turnoversPerGameError = null;
+    private String blocksPerGameError = null;
+    private String plusMinusPerGameError = null;
+
+    // Percentage metrics
+    private String freeThrowPercentageError = null;
+    private String fieldGoalPercentageError = null;
+    private String threePointPercentageError = null;
 
     public PlayerStatsState(PlayerStatsState copy) {
 
@@ -165,27 +189,47 @@ public class PlayerStatsState {
 
         // Per game metrics
         pointsPerGame = copy.pointsPerGame;
+        pointsPerGameError = copy.pointsPerGameError;
         assistsPerGame = copy.assistsPerGame;
+        assistsPerGameError = copy.assistsPerGameError;
         timePlayedPerGame = copy.timePlayedPerGame; // How much time the player has played (In seconds)
+        timePlayedPerGameError = copy.timePlayedPerGameError;
         fieldGoalsMadePerGame = copy.fieldGoalsMadePerGame;
+        fieldGoalsMadePerGameError = copy.fieldGoalsMadePerGameError;
         fieldGoalsAttemptedPerGame = copy.fieldGoalsAttemptedPerGame;
+        fieldGoalsAttemptedPerGameError = copy.fieldGoalsAttemptedPerGameError;
         freeThrowsMadePerGame = copy.freeThrowsMadePerGame;
+        freeThrowsMadePerGameError = copy.freeThrowsMadePerGameError;
         freeThrowsAttemptedPerGame = copy.freeThrowsAttemptedPerGame;
+        freeThrowsAttemptedPerGameError = copy.freeThrowsAttemptedPerGameError;
         threePointsMadePerGame = copy.threePointsMadePerGame;
+        threePointsMadePerGameError = copy.threePointsMadePerGameError;
         threePointsAttemptedPerGame = copy.threePointsAttemptedPerGame;
+        threePointsAttemptedPerGameError = copy.threePointsAttemptedPerGameError;
         offensiveReboundsPerGame = copy.offensiveReboundsPerGame;
+        offensiveReboundsPerGameError = copy.offensiveReboundsPerGameError;
         defensiveReboundsPerGame = copy.defensiveReboundsPerGame;
+        defensiveReboundsPerGameError = copy.defensiveReboundsPerGameError;
         reboundsPerGame = copy.reboundsPerGame;
+        reboundsPerGameError = copy.reboundsPerGameError;
         personalFoulsPerGame = copy.personalFoulsPerGame;
+        personalFoulsPerGameError = copy.personalFoulsPerGameError;
         stealsPerGame = copy.stealsPerGame;
+        stealsPerGameError = copy.stealsPerGameError;
         turnoversPerGame = copy.turnoversPerGame;
+        turnoversPerGameError = copy.turnoversPerGameError;
         blocksPerGame = copy.blocksPerGame;
+        blocksPerGameError = copy.blocksPerGameError;
         plusMinusPerGame = copy.plusMinusPerGame;
+        plusMinusPerGameError = copy.plusMinusPerGameError;
 
         // Percentage metrics
         freeThrowPercentage = copy.freeThrowPercentage;
+        freeThrowPercentageError = copy.freeThrowPercentageError;
         fieldGoalPercentage = copy.fieldGoalPercentage;
+        fieldGoalPercentageError = copy.fieldGoalPercentageError;
         threePointPercentage = copy.threePointPercentage;
+        threePointPercentageError = copy.threePointPercentageError;
 
     }
 
@@ -790,5 +834,165 @@ public class PlayerStatsState {
 
     public void setPlusMinusError(String plusMinusError) {
         this.plusMinusError = plusMinusError;
+    }
+
+    public String getPointsPerGameError() {
+        return pointsPerGameError;
+    }
+
+    public void setPointsPerGameError(String pointsPerGameError) {
+        this.pointsPerGameError = pointsPerGameError;
+    }
+
+    public String getAssistsPerGameError() {
+        return assistsPerGameError;
+    }
+
+    public void setAssistsPerGameError(String assistsPerGameError) {
+        this.assistsPerGameError = assistsPerGameError;
+    }
+
+    public String getTimePlayedPerGameError() {
+        return timePlayedPerGameError;
+    }
+
+    public void setTimePlayedPerGameError(String timePlayedPerGameError) {
+        this.timePlayedPerGameError = timePlayedPerGameError;
+    }
+
+    public String getFieldGoalsMadePerGameError() {
+        return fieldGoalsMadePerGameError;
+    }
+
+    public void setFieldGoalsMadePerGameError(String fieldGoalsMadePerGameError) {
+        this.fieldGoalsMadePerGameError = fieldGoalsMadePerGameError;
+    }
+
+    public String getFieldGoalsAttemptedPerGameError() {
+        return fieldGoalsAttemptedPerGameError;
+    }
+
+    public void setFieldGoalsAttemptedPerGameError(String fieldGoalsAttemptedPerGameError) {
+        this.fieldGoalsAttemptedPerGameError = fieldGoalsAttemptedPerGameError;
+    }
+
+    public String getFreeThrowsMadePerGameError() {
+        return freeThrowsMadePerGameError;
+    }
+
+    public void setFreeThrowsMadePerGameError(String freeThrowsMadePerGameError) {
+        this.freeThrowsMadePerGameError = freeThrowsMadePerGameError;
+    }
+
+    public String getFreeThrowsAttemptedPerGameError() {
+        return freeThrowsAttemptedPerGameError;
+    }
+
+    public void setFreeThrowsAttemptedPerGameError(String freeThrowsAttemptedPerGameError) {
+        this.freeThrowsAttemptedPerGameError = freeThrowsAttemptedPerGameError;
+    }
+
+    public String getThreePointsMadePerGameError() {
+        return threePointsMadePerGameError;
+    }
+
+    public void setThreePointsMadePerGameError(String threePointsMadePerGameError) {
+        this.threePointsMadePerGameError = threePointsMadePerGameError;
+    }
+
+    public String getThreePointsAttemptedPerGameError() {
+        return threePointsAttemptedPerGameError;
+    }
+
+    public void setThreePointsAttemptedPerGameError(String threePointsAttemptedPerGameError) {
+        this.threePointsAttemptedPerGameError = threePointsAttemptedPerGameError;
+    }
+
+    public String getOffensiveReboundsPerGameError() {
+        return offensiveReboundsPerGameError;
+    }
+
+    public void setOffensiveReboundsPerGameError(String offensiveReboundsPerGameError) {
+        this.offensiveReboundsPerGameError = offensiveReboundsPerGameError;
+    }
+
+    public String getDefensiveReboundsPerGameError() {
+        return defensiveReboundsPerGameError;
+    }
+
+    public void setDefensiveReboundsPerGameError(String defensiveReboundsPerGameError) {
+        this.defensiveReboundsPerGameError = defensiveReboundsPerGameError;
+    }
+
+    public String getReboundsPerGameError() {
+        return reboundsPerGameError;
+    }
+
+    public void setReboundsPerGameError(String reboundsPerGameError) {
+        this.reboundsPerGameError = reboundsPerGameError;
+    }
+
+    public String getPersonalFoulsPerGameError() {
+        return personalFoulsPerGameError;
+    }
+
+    public void setPersonalFoulsPerGameError(String personalFoulsPerGameError) {
+        this.personalFoulsPerGameError = personalFoulsPerGameError;
+    }
+
+    public String getStealsPerGameError() {
+        return stealsPerGameError;
+    }
+
+    public void setStealsPerGameError(String stealsPerGameError) {
+        this.stealsPerGameError = stealsPerGameError;
+    }
+
+    public String getTurnoversPerGameError() {
+        return turnoversPerGameError;
+    }
+
+    public void setTurnoversPerGameError(String turnoversPerGameError) {
+        this.turnoversPerGameError = turnoversPerGameError;
+    }
+
+    public String getBlocksPerGameError() {
+        return blocksPerGameError;
+    }
+
+    public void setBlocksPerGameError(String blocksPerGameError) {
+        this.blocksPerGameError = blocksPerGameError;
+    }
+
+    public String getPlusMinusPerGameError() {
+        return plusMinusPerGameError;
+    }
+
+    public void setPlusMinusPerGameError(String plusMinusPerGameError) {
+        this.plusMinusPerGameError = plusMinusPerGameError;
+    }
+
+    public String getFreeThrowPercentageError() {
+        return freeThrowPercentageError;
+    }
+
+    public void setFreeThrowPercentageError(String freeThrowPercentageError) {
+        this.freeThrowPercentageError = freeThrowPercentageError;
+    }
+
+    public String getFieldGoalPercentageError() {
+        return fieldGoalPercentageError;
+    }
+
+    public void setFieldGoalPercentageError(String fieldGoalPercentageError) {
+        this.fieldGoalPercentageError = fieldGoalPercentageError;
+    }
+
+    public String getThreePointPercentageError() {
+        return threePointPercentageError;
+    }
+
+    public void setThreePointPercentageError(String threePointPercentageError) {
+        this.threePointPercentageError = threePointPercentageError;
     }
 }

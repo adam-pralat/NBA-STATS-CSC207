@@ -11,7 +11,6 @@ import interface_adapter.player_stats.PlayerStatsState;
 import interface_adapter.player_stats.PlayerStatsViewModel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +19,11 @@ import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlayerView extends JPanel implements ActionListener, PropertyChangeListener{
+public class PlayerStatsView extends JPanel implements ActionListener, PropertyChangeListener{
     public final String viewName = "Player Stats View";
     private final JButton getStats;
 
@@ -71,7 +69,7 @@ public class PlayerView extends JPanel implements ActionListener, PropertyChange
         this.homePageController = homePageController;
         playerStatsViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(PlayerSeasonComparisonViewModel.TITLE_LABEL);
+        JLabel title = new JLabel(PlayerStatsViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel titleLabel = new JLabel("Select Team: ");
@@ -111,6 +109,7 @@ public class PlayerView extends JPanel implements ActionListener, PropertyChange
         buttons.add(exit);
 
         getStats = new JButton(PlayerStatsViewModel.GET_STATS_BUTTON_LABEL);
+        buttons.add(getStats);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
@@ -193,8 +192,8 @@ public class PlayerView extends JPanel implements ActionListener, PropertyChange
                 " Stats", true);
         popupDialog.setSize(1200, 400);
 
-        JPanel contentPanel = new JPanel(new GridLayout(3, 42));
-        Object[][] n = {columnNames,
+        JPanel contentPanel = new JPanel(new GridLayout(2, 42));
+        Object[][] n = {columnNames, data};
 
         for (Object[] rowData : n) {
             for (Object cellData : rowData) {
