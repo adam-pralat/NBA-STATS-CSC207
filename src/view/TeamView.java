@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.team_stats.TeamStatsController;
 import interface_adapter.team_stats.TeamStatsViewModel;
 import interface_adapter.team_stats.TeamStatsState;
@@ -31,13 +32,16 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
 
     private final TeamStatsViewModel teamStatsViewModel;
     private final TeamStatsController teamStatsController;
+    private final HomePageController homePageController;
     private final JComboBox<String> teamDropdown;
     private final JButton viewStatsButton;
     private final JLabel teamStatsLabel;
+    private final JButton exit;
 
-    public TeamView(TeamStatsController controller, TeamStatsViewModel teamStatsViewModel) {
+    public TeamView(TeamStatsController controller, TeamStatsViewModel teamStatsViewModel, HomePageController homePageController) {
         this.teamStatsController = controller;
         this.teamStatsViewModel = teamStatsViewModel;
+        this.homePageController = homePageController;
         teamStatsViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Team Statistics");
@@ -60,6 +64,8 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
         teamStatsLabel = new JLabel();
         teamStatsLabel.setVerticalAlignment(JLabel.TOP);
 
+        exit = new JButton("Exit");
+
         JPanel selectionPanel = new JPanel();
         selectionPanel.add(new JLabel("Select Team: "));
         selectionPanel.add(teamDropdown);
@@ -69,13 +75,26 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
         this.add(selectionPanel);
         this.add(viewStatsButton);
         this.add(teamStatsLabel);
+        this.add(exit);
+
+        exit.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(exit)) {
+                            homePageController.execute();
+                        }
+                    }
+                }
+        );
 
         viewStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(viewStatsButton)) {
                     String team = teamDropdown.getSelectedItem().toString();
-                    //TODO: get id from team selected and pass it to controller to execute.
+                    int teamId = //TODO;
+                    controller.execute(teamId);
                     TeamStatsState state = teamStatsViewModel.getState();
                     String[] columnNames = {"Name", "Nickname", "Code", "Conference", "ConferencePlace",
                             "Wins", "Losses", "WinsPastTen", "LossesPastTen", "PointsPerGame",
