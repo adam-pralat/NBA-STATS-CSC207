@@ -198,6 +198,7 @@ public class Player {
         out.put("points", points);
         out.put("assists", assists);
         out.put("timePlayed", timePlayed);
+        out.put("minutesPlayed", minutesPlayed());
         out.put("fieldGoalsMade", fieldGoalsMade);
         out.put("fieldGoalsAttempted", fieldGoalsAttempted);
         out.put("freeThrowsMade", freeThrowsMade);
@@ -215,6 +216,7 @@ public class Player {
         // Per game metrics
         out.put("pointsPerGame", pointsPerGame());
         out.put("assistsPerGame", assistsPerGame());
+        out.put("minutesPlayedPerGame", minutesPerGame());
         out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
         out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
         out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());

@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
+import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterface;
 import use_case.player_stats.PlayerStatsDataAccessInterface;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 // TODO: Issue - API rate limit is hit + Get FG% and 3P% and FT%
 
-public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface {
+public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface, PlayerSeasonComparisonDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
     private final String apiKey;
 
