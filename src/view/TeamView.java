@@ -148,7 +148,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
     public Map<String, Integer> initialiseTeamNameIdMap() {
         Map<String, Integer> initial = new HashMap<>();
         Integer[] possibleTeamIDs = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24,
-                25, 26, 27, 28, 29, 30, 31, 38, 41};
+                25, 26, 27, 28, 29, 30, 31, 38, 40, 41};
         for (int i = 0; i < TEAM_NAMES.length; i++) {
             initial.put(TEAM_NAMES[i], possibleTeamIDs[i]);
         }
