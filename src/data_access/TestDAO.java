@@ -71,7 +71,9 @@ public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessI
                 1,
                 1,
                 1,
-                1
+                1,
+                "Toronto Raptors",
+                "G"
         );
     }
 
