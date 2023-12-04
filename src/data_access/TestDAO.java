@@ -5,6 +5,7 @@ import org.json.JSONException;
 import use_case.home_page.HomePageDataAccessInterface;
 import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterface;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
+import use_case.player_stats.PlayerStatsDataAccessInterface;
 import use_case.schedule.ScheduleDataAccessInterface;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 // TODO: Rewrite tests with new player stats
 // Data access object that returns filler data for testing purposes
-public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface {
+public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface {
     @Override
     public boolean playerExistsById(int playerID) {
         return true;

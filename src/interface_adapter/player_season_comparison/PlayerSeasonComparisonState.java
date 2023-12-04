@@ -106,6 +106,7 @@ public class PlayerSeasonComparisonState {
     private String threePointPercentage1;
 
     public PlayerSeasonComparisonState(PlayerSeasonComparisonState copy) {
+        playerSeasonComparisonError = copy.playerSeasonComparisonError;
         // Season 1 info
         // Profile information for Season 1
         firstName = copy.firstName;
@@ -856,5 +857,9 @@ public class PlayerSeasonComparisonState {
 
     public void setThreePointPercentage1(String threePointPercentage1) {
         this.threePointPercentage1 = threePointPercentage1;
+    }
+
+    public String getPlayerSeasonComparisonError() {
+        return playerSeasonComparisonError;
     }
 }

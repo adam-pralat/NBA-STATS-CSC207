@@ -17,7 +17,7 @@ public class HomePageInteractorTest extends TestCase {
                 assertEquals(response.getPlayerLastName(), "B");
                 assertEquals(response.getPlayerBirthDate(), "2000-01-01");
                 assertEquals(response.getPlayerCountry(), "Canada");
-                assertEquals(response.getPlayerTeam(), ""); // Todo: Implement when changes to player DAO and PlayerStats are made
+                assertEquals(response.getPlayerTeam(), "Toronto Raptors");
                 assertEquals(response.getPlayerPointsPerGame(), 1.0);
                 assertEquals(response.getPlayerAssistsPerGame(), 1.0);
                 assertEquals(response.getPlayerFreeThrowPercentage(), 100.0);
