@@ -18,4 +18,8 @@ public class PlayerComparisonOutputData {
     public Map<String, Object> getPlayerStats1() { return this.playerStats1; }
 
     public Map<String, Object> getPlayerStats2() { return this.playerStats2; }
+
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
+    }
 }
