@@ -175,7 +175,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
 
     @NotNull
     private static JLabel getjLabel(String cellData) {
-        JLabel label = new JLabel(cellData);
+        JLabel label = new JLabel();
 
         // If logo, convert to icon
         if(cellData.contains(".png")) {
@@ -189,6 +189,8 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
+        } else{
+            label.setText(cellData);
         }
         label.setHorizontalAlignment(JLabel.HORIZONTAL);
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
