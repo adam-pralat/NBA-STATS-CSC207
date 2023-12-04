@@ -4,6 +4,7 @@ import interface_adapter.home_page.HomePageController;
 import interface_adapter.team_stats.TeamStatsController;
 import interface_adapter.team_stats.TeamStatsViewModel;
 import interface_adapter.team_stats.TeamStatsState;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
@@ -155,9 +158,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                     label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     contentPanel.add(label);
                 } else {
-                    JLabel label = new JLabel((String) cellData);
-                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
-                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    JLabel label = getjLabel((String) cellData);
                     contentPanel.add(label);
                 }
             }
@@ -170,6 +171,28 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
 
         popupDialog.setLocationRelativeTo(this);
         popupDialog.setVisible(true);
+    }
+
+    @NotNull
+    private static JLabel getjLabel(String cellData) {
+        JLabel label = new JLabel(cellData);
+
+        // If logo, convert to icon
+        if(cellData.contains(".png")) {
+            try {
+                ImageIcon teamIcon = new ImageIcon(new URL(cellData));
+                Image originalImage = teamIcon.getImage();
+                Image scaledImage = originalImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                ImageIcon teamLogo = new ImageIcon(scaledImage);
+
+                label.setIcon(teamLogo);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        label.setHorizontalAlignment(JLabel.HORIZONTAL);
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        return label;
     }
 
     @Override
