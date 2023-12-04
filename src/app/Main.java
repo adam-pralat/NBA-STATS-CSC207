@@ -82,7 +82,7 @@ public class Main {
         assert playerComparisonView != null;
         views.add(playerComparisonView, playerComparisonView.viewName);
 
-        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController);
+        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController, teamStatsController);
         views.add(homeView, homeView.viewName);
 
         PlayerSeasonComparisonView playerSeasonComparisonView;
