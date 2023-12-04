@@ -5,13 +5,15 @@ import org.json.JSONException;
 import use_case.home_page.HomePageDataAccessInterface;
 import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterface;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
+import use_case.player_stats.PlayerStatsDataAccessInterface;
 import use_case.schedule.ScheduleDataAccessInterface;
+import use_case.team_stats.TeamStatsDataAccessInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerComparisonDataAccessInterface {
+public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerComparisonDataAccessInterface, PlayerStatsDataAccessInterface, TeamStatsDataAccessInterface {
     // HomePage methods
     @Override
     public boolean playerExistsById(int playerID) {
@@ -38,6 +40,11 @@ public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataA
 
     @Override
     public Team getTeamInfo(int teamID) {
+        throw new RuntimeException();
+    }
+
+    @Override
+    public TeamRecord getYearlyRecord(int teamID, int season) {
         throw new RuntimeException();
     }
 

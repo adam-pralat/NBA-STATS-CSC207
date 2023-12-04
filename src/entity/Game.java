@@ -103,4 +103,24 @@ public class Game {
     public int getAwayTeamPoints() {
         return awayTeamPoints;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                ", status='" + status + '\'' +
+                ", location='" + location + '\'' +
+                ", homeTeamID=" + homeTeamID +
+                ", homeTeamName='" + homeTeamName + '\'' +
+                ", homeTeamCode='" + homeTeamCode + '\'' +
+                ", homeTeamLogo='" + homeTeamLogo + '\'' +
+                ", homeTeamPoints=" + homeTeamPoints +
+                ", awayTeamID=" + awayTeamID +
+                ", awayTeamName='" + awayTeamName + '\'' +
+                ", awayTeamCode='" + awayTeamCode + '\'' +
+                ", awayTeamLogo='" + awayTeamLogo + '\'' +
+                ", awayTeamPoints=" + awayTeamPoints +
+                '}';
+    }
 }
