@@ -40,6 +40,23 @@ public class TeamStatsPresenter implements TeamStatsOutputBoundary{
         state.setLossesPastTen((teamStats.get("lossesPastTen") != jsonNull) ? (teamStats.get("lossesPastTen").toString()) : (""));
         state.setConferencePlace((teamStats.get("conferencePlace") != jsonNull) ? (teamStats.get("conferencePlace").toString()) : (""));
 
+        // Per game metrics
+        state.setPointsPerGame((teamStats.get("pointsPerGame") != jsonNull) ? (teamStats.get("pointsPerGame").toString()) : (""));
+        state.setAssistsPerGame((teamStats.get("assistsPerGame") != jsonNull) ? (teamStats.get("assistsPerGame").toString()) : (""));
+        state.setFieldGoalsMadePerGame((teamStats.get("fieldGoalsMadePerGame") != jsonNull) ? (teamStats.get("fieldGoalsMadePerGame").toString()) : (""));
+        state.setFieldGoalsAttemptedPerGame((teamStats.get("fieldGoalsAttemptedPerGame") != jsonNull) ? (teamStats.get("fieldGoalsAttemptedPerGame").toString()) : (""));
+        state.setFreeThrowsMadePerGame((teamStats.get("freeThrowsMadePerGame") != jsonNull) ? (teamStats.get("freeThrowsMadePerGame").toString()) : (""));
+        state.setFreeThrowsAttemptedPerGame((teamStats.get("freeThrowsAttemptedPerGame") != jsonNull) ? (teamStats.get("freeThrowsAttemptedPerGame").toString()) : (""));
+        state.setThreePointsMadePerGame((teamStats.get("threePointsMadePerGame") != jsonNull) ? (teamStats.get("threePointsMadePerGame").toString()) : (""));
+        state.setThreePointsAttemptedPerGame((teamStats.get("threePointsAttemptedPerGame") != jsonNull) ? (teamStats.get("threePointsAttemptedPerGame").toString()) : (""));
+        state.setOffensiveReboundsPerGame((teamStats.get("offensiveReboundsPerGame") != jsonNull) ? (teamStats.get("offensiveReboundsPerGame").toString()) : (""));
+        state.setDefensiveReboundsPerGame((teamStats.get("defensiveReboundsPerGame") != jsonNull) ? (teamStats.get("defensiveReboundsPerGame").toString()) : (""));
+        state.setReboundsPerGame((teamStats.get("reboundsPerGame") != jsonNull) ? (teamStats.get("reboundsPerGame").toString()) : (""));
+        state.setPersonalFoulsPerGame((teamStats.get("personalFoulsPerGame") != jsonNull) ? (teamStats.get("personalFoulsPerGame").toString()) : (""));
+        state.setStealsPerGame((teamStats.get("stealsPerGame") != jsonNull) ? (teamStats.get("stealsPerGame").toString()) : (""));
+        state.setTurnoversPerGame((teamStats.get("turnoversPerGame") != jsonNull) ? (teamStats.get("turnoversPerGame").toString()) : (""));
+        state.setBlocksPerGame((teamStats.get("blocksPerGame") != jsonNull) ? (teamStats.get("blocksPerGame").toString()) : (""));
+
         state.setGames((teamStats.get("games") != jsonNull) ? (teamStats.get("games").toString()) : (""));
         state.setFastBreakPoints((teamStats.get("fastBreakPoints") != jsonNull) ? (teamStats.get("fastBreakPoints").toString()) : (""));
         state.setPointsInPaint((teamStats.get("pointsInPaint") != jsonNull) ? (teamStats.get("pointsInPaint").toString()) : (""));
