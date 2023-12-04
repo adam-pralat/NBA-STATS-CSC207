@@ -1,7 +1,5 @@
 package use_case.player_comparison;
 
-import java.util.ArrayList;
-
 public class PlayerComparisonInputData {
     final private int id1;
     final private int id2;
@@ -17,11 +15,4 @@ public class PlayerComparisonInputData {
     int getId1() {return id1;}
 
     int getId2() {return id2;}
-
-    ArrayList<Integer> getBothId() {
-        ArrayList<Integer> Ids = new ArrayList<>();
-        Ids.add(id1);
-        Ids.add(id2);
-        return Ids;
-    }
 }
