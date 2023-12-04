@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePagePresenter;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonController;
 import interface_adapter.schedule.ScheduleController;
@@ -19,10 +20,10 @@ import java.io.IOException;
 public class HomePageUseCaseFactory {
     private HomePageUseCaseFactory() {}
 
-    public static HomeView create(HomePageViewModel homePageViewModel, HomePageController homePageController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController, PlayerSeasonComparisonController playerSeasonComparisonController) {
+    public static HomeView create(HomePageViewModel homePageViewModel, HomePageController homePageController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController, PlayerSeasonComparisonController playerSeasonComparisonController, PlayerStatsController playerStatsController) {
 
             // HomePageController homePageController = createHomePageUseCase(viewManagerModel, homePageViewModel, homePageDAO);
-            return new HomeView(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController);
+            return new HomeView(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController);
 
     }
 

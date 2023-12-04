@@ -168,10 +168,13 @@ public class Team {
         out.put("assistsPerGame", assistsPerGame());
         out.put("fieldGoalsMadePerGame", fieldGoalsMadePerGame());
         out.put("fieldGoalsAttemptedPerGame", fieldGoalsAttemptedPerGame());
+        out.put("fieldGoalPercentage", fieldGoalPercentage());
         out.put("freeThrowsMadePerGame", freeThrowsMadePerGame());
         out.put("freeThrowsAttemptedPerGame", freeThrowsAttemptedPerGame());
+        out.put("freeThrowPercentage", freeThrowPercentage());
         out.put("threePointsMadePerGame", threePointsMadePerGame());
         out.put("threePointsAttemptedPerGame", threePointsAttemptedPerGame());
+        out.put("threePointPercentage", threePointPercentage());
         out.put("defensiveReboundsPerGame", defensiveReboundsPerGame());
         out.put("offensiveReboundsPerGame", offensiveReboundsPerGame());
         out.put("reboundsPerGame", reboundsPerGame());

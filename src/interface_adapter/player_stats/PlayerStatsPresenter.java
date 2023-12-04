@@ -7,7 +7,7 @@ import use_case.player_stats.PlayerStatsOutputData;
 
 import java.util.Map;
 
-// TODO: ROund percentage values and convert seconds to minutes and seconds
+// TODO: Round percentage values and convert seconds to minutes and seconds
 public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
 
     private final PlayerStatsViewModel playerStatsViewModel;
