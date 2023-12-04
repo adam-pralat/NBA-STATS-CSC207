@@ -40,7 +40,7 @@ public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
         state.setGamesPlayed((playerStats.get("gamesPlayed") != jsonNull) ? (playerStats.get("gamesPlayed").toString()) : (""));
         state.setPoints((playerStats.get("points") != jsonNull) ? (playerStats.get("points").toString()) : (""));
         state.setAssists((playerStats.get("assists") != jsonNull) ? (playerStats.get("assists").toString()) : (""));
-        state.setTimePlayed((playerStats.get("timePlayed") != jsonNull) ? (playerStats.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setTimePlayed((playerStats.get("minutesPlayed") != jsonNull) ? (playerStats.get("minutesPlayed").toString()) : ("")); // Convert to minutes/seconds
         state.setFieldGoalsMade((playerStats.get("fieldGoalsMade") != jsonNull) ? (playerStats.get("fieldGoalsMade").toString()) : (""));
         state.setFieldGoalsAttempted((playerStats.get("fieldGoalsAttempted") != jsonNull) ? (playerStats.get("fieldGoalsAttempted").toString()) : (""));
         state.setFreeThrowsMade((playerStats.get("freeThrowsMade") != jsonNull) ? (playerStats.get("freeThrowsMade").toString()) : (""));
@@ -71,8 +71,7 @@ public class PlayerStatsPresenter implements PlayerStatsOutputBoundary {
         state.setStealsPerGame((playerStats.get("stealsPerGame") != jsonNull) ? (playerStats.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGame((playerStats.get("turnoversPerGame") != jsonNull) ? (playerStats.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGame((playerStats.get("blocksPerGame") != jsonNull) ? (playerStats.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGame((playerStats.get("timePlayedPerGame") != jsonNull) ? (playerStats.get("timePlayedPerGame").toString()) : (""));
-
+        state.setTimePlayedPerGame((playerStats.get("minutesPlayedPerGame") != jsonNull) ? (playerStats.get("minutesPlayedPerGame").toString()) : (""));
         // Percentage metrics
         state.setFreeThrowPercentage((playerStats.get("freeThrowPercentage") != jsonNull) ? (playerStats.get("freeThrowPercentage").toString()) : (""));
         state.setFieldGoalPercentage((playerStats.get("fieldGoalPercentage") != jsonNull) ? (playerStats.get("fieldGoalPercentage").toString()) : (""));

@@ -231,6 +231,7 @@ public class Player {
         out.put("turnoversPerGame", turnoversPerGame());
         out.put("blocksPerGame", blocksPerGame());
         out.put("timePlayedPerGame", timePlayedPerGame());
+        out.put("minutesPlayedPerGame", minutesPerGame());
 
         // Percentages
         out.put("fieldGoalPercentage", roundTwoDecimals(fieldGoalPercentage()));
@@ -269,7 +270,7 @@ public class Player {
     }
 
     public double minutesPerGame() { return statPerGame(minutesPlayed()); }
-    public double minutesPlayed(){ return roundTwoDecimals(timePlayedPerGame()/60); }
+    public double minutesPlayed(){ return roundTwoDecimals(timePlayed/60); }
 
     // TODO: Use facade here??
     // Per game methods

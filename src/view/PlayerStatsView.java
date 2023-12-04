@@ -127,10 +127,10 @@ public class PlayerStatsView extends JPanel implements ActionListener, PropertyC
                     PlayerStatsState currentState = playerStatsViewModel.getState();
                     String[] columnNames = {"First Name", "Last Name", "Birth Date", "Country", "Height", "Weight",
                             "Games Played", "Points", "Assists",
-                            "Time Played", "Field Goals Made", "Field Goals Attempted", "Free Throws Made",
+                            "Minutes Played", "Field Goals Made", "Field Goals Attempted", "Free Throws Made",
                             "Free Throws Attempted", "Three Points Made", "Three Points Attempted",
                             "Offensive Rebounds", "Defensive Rebounds", "Personal Fouls", "Steals", "Turnovers",
-                            "Blocks", "+/-", "Points Per Game", "Assists Per Game", "Time Played Per Game",
+                            "Blocks", "+/-", "Points Per Game", "Assists Per Game", "Minutes Played Per Game",
                             "Field Goals Made Per Game", "Field Goals Attempted Per Game", "Free Throws Made Per Game",
                             "Free Throws Attempted Per Game", "Three Points Made Per Game",
                             "Three Points Attempted Per Game", "Offensive Rebounds Per Game",

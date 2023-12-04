@@ -43,7 +43,7 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setGamesPlayed((playerStats1.get("gamesPlayed") != jsonNull) ? (playerStats1.get("gamesPlayed").toString()) : (""));
         state.setPoints((playerStats1.get("points") != jsonNull) ? (playerStats1.get("points").toString()) : (""));
         state.setAssists((playerStats1.get("assists") != jsonNull) ? (playerStats1.get("assists").toString()) : (""));
-        state.setTimePlayed((playerStats1.get("timePlayed") != jsonNull) ? (playerStats1.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setTimePlayed((playerStats1.get("minutesPlayed") != jsonNull) ? (playerStats1.get("minutesPlayed").toString()) : ("")); // Convert to minutes/seconds
         state.setFieldGoalsMade((playerStats1.get("fieldGoalsMade") != jsonNull) ? (playerStats1.get("fieldGoalsMade").toString()) : (""));
         state.setFieldGoalsAttempted((playerStats1.get("fieldGoalsAttempted") != jsonNull) ? (playerStats1.get("fieldGoalsAttempted").toString()) : (""));
         state.setFreeThrowsMade((playerStats1.get("freeThrowsMade") != jsonNull) ? (playerStats1.get("freeThrowsMade").toString()) : (""));
@@ -74,7 +74,7 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setStealsPerGame((playerStats1.get("stealsPerGame") != jsonNull) ? (playerStats1.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGame((playerStats1.get("turnoversPerGame") != jsonNull) ? (playerStats1.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGame((playerStats1.get("blocksPerGame") != jsonNull) ? (playerStats1.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGame((playerStats1.get("timePlayedPerGame") != jsonNull) ? (playerStats1.get("timePlayedPerGame").toString()) : (""));
+        state.setTimePlayedPerGame((playerStats1.get("minutesPlayedPerGame") != jsonNull) ? (playerStats1.get("minutesPlayedPerGame").toString()) : (""));
 
         // Percentage metrics for Player 1
         state.setFreeThrowPercentage((playerStats1.get("freeThrowPercentage") != jsonNull) ? (playerStats1.get("freeThrowPercentage").toString()) : (""));
@@ -95,7 +95,7 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setGamesPlayed1((playerStats2.get("gamesPlayed") != jsonNull) ? (playerStats2.get("gamesPlayed").toString()) : (""));
         state.setPoints1((playerStats2.get("points") != jsonNull) ? (playerStats2.get("points").toString()) : (""));
         state.setAssists1((playerStats2.get("assists") != jsonNull) ? (playerStats2.get("assists").toString()) : (""));
-        state.setTimePlayed1((playerStats2.get("timePlayed") != jsonNull) ? (playerStats2.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setTimePlayed1((playerStats2.get("minutesPlayed") != jsonNull) ? (playerStats2.get("minutesPlayed").toString()) : ("")); // Convert to minutes/seconds
         state.setFieldGoalsMade1((playerStats2.get("fieldGoalsMade") != jsonNull) ? (playerStats2.get("fieldGoalsMade").toString()) : (""));
         state.setFieldGoalsAttempted1((playerStats2.get("fieldGoalsAttempted") != jsonNull) ? (playerStats2.get("fieldGoalsAttempted").toString()) : (""));
         state.setFreeThrowsMade1((playerStats2.get("freeThrowsMade") != jsonNull) ? (playerStats2.get("freeThrowsMade").toString()) : (""));
@@ -126,7 +126,7 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setStealsPerGame1((playerStats2.get("stealsPerGame") != jsonNull) ? (playerStats2.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGame1((playerStats2.get("turnoversPerGame") != jsonNull) ? (playerStats2.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGame1((playerStats2.get("blocksPerGame") != jsonNull) ? (playerStats2.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGame1((playerStats2.get("timePlayedPerGame") != jsonNull) ? (playerStats2.get("timePlayedPerGame").toString()) : (""));
+        state.setTimePlayedPerGame1((playerStats2.get("minutesPlayedPerGame") != jsonNull) ? (playerStats2.get("minutesPlayedPerGame").toString()) : (""));
 
         // Percentage metrics for Player 2
         state.setFreeThrowPercentage1((playerStats2.get("freeThrowPercentage") != jsonNull) ? (playerStats2.get("freeThrowPercentage").toString()) : (""));
