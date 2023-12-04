@@ -51,6 +51,7 @@ public class Main {
         IdInformationViewModel idInformationViewModel = new IdInformationViewModel();
         PlayerSeasonComparisonViewModel playerSeasonComparisonViewModel = new PlayerSeasonComparisonViewModel();
         TeamStatsViewModel teamStatsViewModel = new TeamStatsViewModel();
+        PlayerStatsViewModel playerStatsViewModel = new PlayerStatsViewModel();
 
 
         PlayerDataAccessObject playerDAO = new PlayerDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
@@ -65,6 +66,7 @@ public class Main {
         HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
         TeamStatsController teamStatsController = TeamStatsUseCaseFactory.createTeamStatsUseCase(viewManagerModel, teamStatsViewModel, teamDAO);
         PlayerSeasonComparisonController playerSeasonComparisonController = PlayerSeasonComparisonUseCaseFactory.createPlayerSeasonComparisonUseCase(viewManagerModel, playerSeasonComparisonViewModel, playerDAO);
+        PlayerStatsController playerStatsController = PlayerStatsUseCaseFactory.createPlayerStatsUseCase(viewManagerModel, playerStatsViewModel, playerDAO);
 
         ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController, teamStatsController);
         views.add(scheduleView, scheduleView.viewName);
