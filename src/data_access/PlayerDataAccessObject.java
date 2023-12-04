@@ -11,10 +11,6 @@ import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterfa
 import use_case.player_stats.PlayerStatsDataAccessInterface;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-// TODO: Issue - API rate limit is hit + Get FG% and 3P% and FT%
 
 public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface, PlayerSeasonComparisonDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
@@ -22,10 +18,6 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
 
     public PlayerDataAccessObject(String apiKey) {
         this.apiKey = apiKey;
-    }
-
-    public static void main(String args[]) {
-        // System.out.println(existsById(100000));
     }
 
     public boolean existsById(int playerID) throws JSONException {
@@ -83,7 +75,7 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
                     (playerInfoJSON.get("birth") != jsonNull && playerInfoJSON.getJSONObject("birth").get("country") != jsonNull) ? (playerInfoJSON.getJSONObject("birth").getString("country")) : (""),
                     (playerInfoJSON.get("height") != jsonNull && playerInfoJSON.getJSONObject("height").get("meters") != jsonNull) ? (playerInfoJSON.getJSONObject("height").getDouble("meters")) : (0.0),
                     (playerInfoJSON.get("weight") != jsonNull && playerInfoJSON.getJSONObject("weight").get("kilograms") != jsonNull) ? (playerInfoJSON.getJSONObject("weight").getDouble("kilograms")) : (0.0),
-                    "", // Team name - Figure this one out
+                    "", // Team name is filled in with statistics
                     (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("pos") != jsonNull) ? ( playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getString("pos")) : (""),
                     (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("jersey") != jsonNull) ? (playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getInt("jersey")) : (-1),
                     (playerInfoJSON.get("leagues") != jsonNull && playerInfoJSON.getJSONObject("leagues").get("standard") != jsonNull &&  playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").get("active") != jsonNull) ? (playerInfoJSON.getJSONObject("leagues").getJSONObject("standard").getBoolean("active")) : (false),
@@ -151,6 +143,8 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
             int turnovers = 0;
             int blocks = 0;
             int plusMinus = 0;
+            String position = "";
+            String team = "";
             for (Object game: gameStatsJSON) {
                 // Check error where null messes it up - Convert to hashmap??
                 // Check if null - If not proceed as normal, otherwise don't change stat
@@ -192,6 +186,13 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
                 turnovers += gameJSONObject.getInt("turnovers");
                 blocks += gameJSONObject.getInt("blocks");
                 plusMinus += Integer.parseInt(gameJSONObject.getString("plusMinus"));
+                if (gameJSONObject.get("pos") != jsonNull){
+                    position = gameJSONObject.getString("pos");
+                }
+                if (gameJSONObject.get("team") != jsonNull
+                        && gameJSONObject.getJSONObject("team").get("name") != jsonNull) {
+                    team = gameJSONObject.getJSONObject("team").getString("name");
+                }
             }
 
             return new PlayerStats(
@@ -211,7 +212,9 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
                 steals,
                 turnovers,
                 blocks,
-                plusMinus
+                plusMinus,
+                team,
+                position
             );
         }
         catch (IOException | JSONException e) {

@@ -4,11 +4,16 @@ import entity.*;
 import org.json.JSONException;
 import use_case.home_page.HomePageDataAccessInterface;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
+import use_case.schedule.ScheduleDataAccessInterface;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 //
-public class TestDAOErrors implements HomePageDataAccessInterface, PlayerComparisonDataAccessInterface {
+
+public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerComparisonDataAccessInterface {
+    // HomePage methods
     @Override
     public boolean playerExistsById(int playerID) {
         throw new RuntimeException();
@@ -44,6 +49,12 @@ public class TestDAOErrors implements HomePageDataAccessInterface, PlayerCompari
 
     @Override
     public TeamStats getTeamYearlyStats(int teamID, int season) {
+        throw new RuntimeException();
+    }
+
+    // Schedule Methods
+    @Override
+    public Map<Integer, Game> getGames(LocalDate date) {
         throw new RuntimeException();
     }
 }

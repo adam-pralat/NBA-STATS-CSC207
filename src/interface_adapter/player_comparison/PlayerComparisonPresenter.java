@@ -36,6 +36,8 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setCountry((playerStats1.get("country") != jsonNull) ? (playerStats1.get("country").toString()) : (""));
         state.setHeight((playerStats1.get("height") != jsonNull) ? (playerStats1.get("height").toString()) : (""));
         state.setWeight((playerStats1.get("weight") != jsonNull) ? (playerStats1.get("weight").toString()) : (""));
+        state.setTeam((playerStats1.get("team") != jsonNull) ? (playerStats1.get("team").toString()) : (""));
+        state.setPosition((playerStats1.get("position") != jsonNull) ? (playerStats1.get("position").toString()) : (""));
 
         // Cumulative statistics for Player 1
         state.setGamesPlayed((playerStats1.get("gamesPlayed") != jsonNull) ? (playerStats1.get("gamesPlayed").toString()) : (""));
@@ -86,6 +88,8 @@ public class PlayerComparisonPresenter implements PlayerComparisonOutputBoundary
         state.setCountry1((playerStats2.get("country") != jsonNull) ? (playerStats2.get("country").toString()) : (""));
         state.setHeight1((playerStats2.get("height") != jsonNull) ? (playerStats2.get("height").toString()) : (""));
         state.setWeight1((playerStats2.get("weight") != jsonNull) ? (playerStats2.get("weight").toString()) : (""));
+        state.setTeam1((playerStats2.get("team") != jsonNull) ? (playerStats2.get("team").toString()) : (""));
+        state.setPosition1((playerStats2.get("position") != jsonNull) ? (playerStats2.get("position").toString()) : (""));
 
         // Cumulative statistics for Player 2
         state.setGamesPlayed1((playerStats2.get("gamesPlayed") != jsonNull) ? (playerStats2.get("gamesPlayed").toString()) : (""));
