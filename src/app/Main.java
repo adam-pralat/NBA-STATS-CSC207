@@ -67,11 +67,20 @@ public class Main {
         IdInformationController idInformationController = IdInformationUseCaseFactory.getController(idInformationViewModel, IDDAO);
 
         // Views
-        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController);
+        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController, teamStatsController);
         views.add(homeView, homeView.viewName);
 
         ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController, teamStatsController);
         views.add(scheduleView, scheduleView.viewName);
+
+        PlayerStatsView playerStatsView;
+        try {
+            playerStatsView = PlayerStatsUseCaseFactory.create(viewManagerModel, playerStatsViewModel, playerDAO, idInformationViewModel, IDDAO, homePageController);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        assert playerStatsView != null;
+        views.add(playerStatsView, playerStatsView.viewName);
 
         TeamView teamView = TeamStatsUseCaseFactory.create(teamStatsViewModel, teamStatsController, homePageController);
         views.add(teamView, teamView.viewName);
@@ -79,9 +88,7 @@ public class Main {
         PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(playerComparisonViewModel, playerComparisonController, idInformationController, idInformationViewModel, homePageController);
         assert playerComparisonView != null;
         views.add(playerComparisonView, playerComparisonView.viewName);
-      
-        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController, teamStatsController);
-        views.add(homeView, homeView.viewName);
+
         PlayerSeasonComparisonView playerSeasonComparisonView;
         try {
             playerSeasonComparisonView = PlayerSeasonComparisonUseCaseFactory.create(viewManagerModel, playerSeasonComparisonViewModel, playerDAO, idInformationViewModel, IDDAO, homePageController);

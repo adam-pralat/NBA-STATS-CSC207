@@ -138,8 +138,8 @@ public class PlayerStatsView extends JPanel implements ActionListener, PropertyC
                             "Steals Per Game", "Turnovers Per Game", "Blocks Per Game",
                             "Free Throw Percentage", "Field Goal Percentage", "Three Points Percentage"};
                     Object[] data = {currentState.getFirstName(), currentState.getLastName(),
-                            currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight(),
-                            currentState.getWeight(), currentState.getGamesPlayed(), currentState.getPoints(),
+                            currentState.getBirthDate(), currentState.getCountry(), currentState.getHeight() + " m",
+                            currentState.getWeight() + " kg", currentState.getGamesPlayed(), currentState.getPoints(),
                             currentState.getAssists(), currentState.getTimePlayed(), currentState.getFieldGoalsMade(),
                             currentState.getFieldGoalsAttempted(), currentState.getFreeThrowsMade(),
                             currentState.getFreeThrowsAttempted(), currentState.getThreePointsMade(),
@@ -153,8 +153,8 @@ public class PlayerStatsView extends JPanel implements ActionListener, PropertyC
                             currentState.getThreePointsAttemptedPerGame(), currentState.getOffensiveReboundsPerGame(),
                             currentState.getDefensiveReboundsPerGame(), currentState.getReboundsPerGame(),
                             currentState.getPersonalFoulsPerGame(), currentState.getStealsPerGame(),
-                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(), currentState.getFreeThrowPercentage(),
-                            currentState.getFieldGoalPercentage(), currentState.getThreePointPercentage()};
+                            currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(), currentState.getFreeThrowPercentage() + "%",
+                            currentState.getFieldGoalPercentage() + "%", currentState.getThreePointPercentage() + "%"};
                     showPopup(data, columnNames);
                 }
             }
@@ -197,10 +197,17 @@ public class PlayerStatsView extends JPanel implements ActionListener, PropertyC
 
         for (Object[] rowData : n) {
             for (Object cellData : rowData) {
-                JLabel label = new JLabel((String) cellData);
-                label.setHorizontalAlignment(JLabel.HORIZONTAL);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                contentPanel.add(label);
+                if (cellData == null || ((String) cellData).equals("null%")) {
+                    JLabel label = new JLabel("N/A");
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                } else {
+                    JLabel label = new JLabel((String) cellData);
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                }
             }
         }
 

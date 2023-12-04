@@ -33,7 +33,6 @@ public class PlayerDataAccessObjectTest extends TestCase {
 
     public void testGetPlayerYearlyStats() {
         PlayerStats output = playerDAO.getPlayerYearlyStats(265, 2023);
-        System.out.println(output);
         assertEquals(output.gamesPlayed, 23);
         assertEquals(output.points, 529);
         assertEquals(output.assists, 140);
