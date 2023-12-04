@@ -238,10 +238,17 @@ public class PlayerComparisonView extends JPanel implements ActionListener, Prop
 
         for (Object[] rowData : n) {
             for (Object cellData : rowData) {
-                JLabel label = new JLabel((String) cellData);
-                label.setHorizontalAlignment(JLabel.HORIZONTAL);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                contentPanel.add(label);
+                if ((cellData == null) || ((String) cellData).equals("null%") || "".equals((String) cellData)) {
+                    JLabel label = new JLabel("N/A");
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                } else {
+                    JLabel label = new JLabel((String) cellData);
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                }
             }
         }
 
