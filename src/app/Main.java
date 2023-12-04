@@ -1,6 +1,7 @@
 package app;
 
 import data_access.*;
+import entity.PlayerStats;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
@@ -10,9 +11,12 @@ import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonController;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonViewModel;
+import interface_adapter.player_stats.PlayerStatsViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleViewModel;
+import interface_adapter.team_stats.TeamStatsController;
+import interface_adapter.team_stats.TeamStatsViewModel;
 import use_case.id_information.IdInformationDataAccessInterface;
 import view.*;
 
@@ -37,40 +41,44 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        // The data for the views, such as username and password, are in the ViewModels.
-        // This information will be changed by a presenter object that is reporting the
-        // results from the use case. The ViewModels are observable, and will
-        // be observed by the Views.
+        // ViewModels
         HomePageViewModel homePageViewModel = new HomePageViewModel();
-        PlayerComparisonViewModel playerComparisonViewModel = new PlayerComparisonViewModel();
         ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
+        PlayerComparisonViewModel playerComparisonViewModel = new PlayerComparisonViewModel();
         IdInformationViewModel idInformationViewModel = new IdInformationViewModel();
         PlayerSeasonComparisonViewModel playerSeasonComparisonViewModel = new PlayerSeasonComparisonViewModel();
+        TeamStatsViewModel teamStatsViewModel = new TeamStatsViewModel();
+        PlayerStatsViewModel playerStatsViewModel = new PlayerStatsViewModel();
 
+        // DataAccessObjects
         PlayerDataAccessObject playerDAO = new PlayerDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         TeamDataAccessObject teamDAO = new TeamDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         HomePageDataAccessObject homeDAO = new HomePageDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
-        //PlayerComparisonDataAccessObject playerComparisonDAO = playerDAO; //new PlayerComparisonDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         GameDataAccessObject gameDAO = new GameDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         IdInformationDataAccessObject IDDAO = new IdInformationDataAccessObject();
 
-        // TODO: Maybe use a builder here also??
+        // Controllers
         ScheduleController scheduleController = ScheduleUseCaseFactory.createScheduleUseCase(viewManagerModel, scheduleViewModel, gameDAO);
         HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
+        TeamStatsController teamStatsController = TeamStatsUseCaseFactory.createTeamStatsUseCase(viewManagerModel, teamStatsViewModel, teamDAO);
         PlayerSeasonComparisonController playerSeasonComparisonController = PlayerSeasonComparisonUseCaseFactory.createPlayerSeasonComparisonUseCase(viewManagerModel, playerSeasonComparisonViewModel, playerDAO);
-
-        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController);
-        views.add(scheduleView, scheduleView.viewName);
-
-
+        PlayerStatsController playerStatsController = PlayerStatsUseCaseFactory.createPlayerStatsUseCase(viewManagerModel, playerStatsViewModel, playerDAO);
+        PlayerComparisonController playerComparisonController = PlayerComparisonUseCaseFactory.createPlayerComparisonUseCase(viewManagerModel, playerComparisonViewModel, playerDAO);
         IdInformationController idInformationController = IdInformationUseCaseFactory.getController(idInformationViewModel, IDDAO);
 
-        PlayerComparisonController playerComparisonController = PlayerComparisonUseCaseFactory.createPlayerComparisonUseCase(viewManagerModel, playerComparisonViewModel, playerDAO);
-        PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(playerComparisonViewModel, playerComparisonController, idInformationController, idInformationViewModel, homePageController);
-        views.add(playerComparisonView, playerComparisonView.viewName);
-
-        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController);
+        // Views
+        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController);
         views.add(homeView, homeView.viewName);
+
+        ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController, teamStatsController);
+        views.add(scheduleView, scheduleView.viewName);
+
+        TeamView teamView = TeamStatsUseCaseFactory.create(teamStatsViewModel, teamStatsController, homePageController);
+        views.add(teamView, teamView.viewName);
+
+        PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(playerComparisonViewModel, playerComparisonController, idInformationController, idInformationViewModel, homePageController);
+        assert playerComparisonView != null;
+        views.add(playerComparisonView, playerComparisonView.viewName);
 
         PlayerSeasonComparisonView playerSeasonComparisonView;
         try {
@@ -78,6 +86,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        assert playerSeasonComparisonView != null;
         views.add(playerSeasonComparisonView, playerSeasonComparisonView.viewName);
 
         viewManagerModel.setActiveView(homeView.viewName);

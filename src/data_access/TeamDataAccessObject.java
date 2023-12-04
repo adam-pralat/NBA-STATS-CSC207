@@ -6,12 +6,13 @@ import entity.TeamStats;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
+import use_case.team_stats.TeamStatsDataAccessInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TeamDataAccessObject {
+public class TeamDataAccessObject implements TeamStatsDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
     private final String apiKey;
     public TeamDataAccessObject(String apiKey){
@@ -20,7 +21,7 @@ public class TeamDataAccessObject {
     public boolean existsById(int teamID) throws JSONException {
         // Return whether TeamID is in predetermined list of ID's corresponding to NBA teams
         int[] possibleTeamIDs = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41};
-        return Arrays.asList(possibleTeamIDs).contains(teamID);
+        return Arrays.binarySearch(possibleTeamIDs, teamID) >= 0;
     }
 
     public Team getTeamInfo(int teamID) throws JSONException {
@@ -88,17 +89,21 @@ public class TeamDataAccessObject {
         try {
             Response response = client.newCall(request).execute();
             JSONObject responseJSON = new JSONObject(response.body().string());
-            JSONObject teamRecordJSON = (JSONObject) responseJSON.getJSONArray("response").get(0);
+            if(!responseJSON.getJSONArray("response").isEmpty()) {
+                JSONObject teamRecordJSON = (JSONObject) responseJSON.getJSONArray("response").get(0);
 
-            // TODO: Use teamBuilder to make team with addStat...?
-            // Return a team with only the relevant fields filled (Makes easier to build team object from stats)
-            return new TeamRecord(
-                    (teamRecordJSON.get("win") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("total")) : 0,
-                    (teamRecordJSON.get("loss") != jsonNull &&  teamRecordJSON.getJSONObject("loss").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("total")) : 0,
-                    (teamRecordJSON.get("win") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("lastTen")) : 0,
-                    (teamRecordJSON.get("loss") != jsonNull &&  teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("lastTen")) : 0,
-                    (teamRecordJSON.get("conference") != jsonNull &&  teamRecordJSON.getJSONObject("conference").get("rank") != jsonNull) ? (teamRecordJSON.getJSONObject("conference").getInt("rank")) : 0
-            );
+                // TODO: Use teamBuilder to make team with addStat...?
+                // Return a team with only the relevant fields filled (Makes easier to build team object from stats)
+                return new TeamRecord(
+                        (teamRecordJSON.get("win") != jsonNull && teamRecordJSON.getJSONObject("win").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("total")) : 0,
+                        (teamRecordJSON.get("loss") != jsonNull && teamRecordJSON.getJSONObject("loss").get("total") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("total")) : 0,
+                        (teamRecordJSON.get("win") != jsonNull && teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("win").getInt("lastTen")) : 0,
+                        (teamRecordJSON.get("loss") != jsonNull && teamRecordJSON.getJSONObject("win").get("lastTen") != jsonNull) ? (teamRecordJSON.getJSONObject("loss").getInt("lastTen")) : 0,
+                        (teamRecordJSON.get("conference") != jsonNull && teamRecordJSON.getJSONObject("conference").get("rank") != jsonNull) ? (teamRecordJSON.getJSONObject("conference").getInt("rank")) : 0
+                );
+            } else {
+                return new TeamRecord(0, 0, 0, 0, 0);
+            }
         } catch (Exception e) {
             throw new JSONException(e);
         }
