@@ -103,7 +103,7 @@ class PlayerSeasonComparisonPresenterTest {
         assertEquals(String.valueOf(playerSeason1.getGamesPlayed()), state.getGamesPlayed());
         assertEquals(String.valueOf(playerSeason1.getPoints()), state.getPoints());
         assertEquals(String.valueOf(playerSeason1.getAssists()), state.getAssists());
-        assertEquals(String.valueOf(playerSeason1.getTimePlayed()), state.getTimePlayed());
+        assertEquals(String.valueOf(playerSeason1.minutesPlayed()), state.getTimePlayed());
         assertEquals(String.valueOf(playerSeason1.getFieldGoalsMade()), state.getFieldGoalsMade());
         assertEquals(String.valueOf(playerSeason1.getFieldGoalsAttempted()), state.getFieldGoalsAttempted());
         assertEquals(String.valueOf(playerSeason1.getFreeThrowsMade()), state.getFreeThrowsMade());
@@ -121,7 +121,7 @@ class PlayerSeasonComparisonPresenterTest {
 // Statistic metrics for per game for Player season 1
         assertEquals(String.valueOf(playerSeason1.pointsPerGame()), state.getPointsPerGame());
         assertEquals(String.valueOf(playerSeason1.assistsPerGame()), state.getAssistsPerGame());
-        assertEquals(String.valueOf(playerSeason1.timePlayedPerGame()), state.getTimePlayedPerGame());
+        assertEquals(String.valueOf(playerSeason1.minutesPerGame()), state.getTimePlayedPerGame());
         assertEquals(String.valueOf(playerSeason1.fieldGoalsMadePerGame()), state.getFieldGoalsMadePerGame());
         assertEquals(String.valueOf(playerSeason1.fieldGoalsAttemptedPerGame()), state.getFieldGoalsAttemptedPerGame());
         assertEquals(String.valueOf(playerSeason1.freeThrowsMadePerGame()), state.getFreeThrowsMadePerGame());
@@ -146,7 +146,7 @@ class PlayerSeasonComparisonPresenterTest {
         assertEquals(String.valueOf(playerSeason2.getGamesPlayed()), state.getGamesPlayed1());
         assertEquals(String.valueOf(playerSeason2.getPoints()), state.getPoints1());
         assertEquals(String.valueOf(playerSeason2.getAssists()), state.getAssists1());
-        assertEquals(String.valueOf(playerSeason2.getTimePlayed()), state.getTimePlayed1());
+        assertEquals(String.valueOf(playerSeason2.minutesPlayed()), state.getTimePlayed1());
         assertEquals(String.valueOf(playerSeason2.getFieldGoalsMade()), state.getFieldGoalsMade1());
         assertEquals(String.valueOf(playerSeason2.getFieldGoalsAttempted()), state.getFieldGoalsAttempted1());
         assertEquals(String.valueOf(playerSeason2.getFreeThrowsMade()), state.getFreeThrowsMade1());
@@ -164,7 +164,7 @@ class PlayerSeasonComparisonPresenterTest {
 // Statistic metrics for per game for Player season 2
         assertEquals(String.valueOf(playerSeason2.pointsPerGame()), state.getPointsPerGame1());
         assertEquals(String.valueOf(playerSeason2.assistsPerGame()), state.getAssistsPerGame1());
-        assertEquals(String.valueOf(playerSeason2.timePlayedPerGame()), state.getTimePlayedPerGame1());
+        assertEquals(String.valueOf(playerSeason2.minutesPerGame()), state.getTimePlayedPerGame1());
         assertEquals(String.valueOf(playerSeason2.fieldGoalsMadePerGame()), state.getFieldGoalsMadePerGame1());
         assertEquals(String.valueOf(playerSeason2.fieldGoalsAttemptedPerGame()), state.getFieldGoalsAttemptedPerGame1());
         assertEquals(String.valueOf(playerSeason2.freeThrowsMadePerGame()), state.getFreeThrowsMadePerGame1());
