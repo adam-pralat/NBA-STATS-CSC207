@@ -5,6 +5,7 @@ import entity.TeamRecord;
 import entity.TeamStats;
 import interface_adapter.team_stats.TeamStatsPresenter;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class TeamStatsInteractor implements TeamStatsInputBoundary {
             teamStatsOutputBoundary.prepareFailView("Team ID does not exist.");
         } else {
             try {
-                int currSeason = 2023; //TODO method to figure out current season
+                int currSeason = LocalDate.now().getYear();
                 Team team = teamStatsDataAccessInterface.getTeamInfo(teamId);
 
                 //TODO method for yearly record, similar to Yearly stats

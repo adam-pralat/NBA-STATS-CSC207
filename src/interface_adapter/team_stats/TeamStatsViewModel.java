@@ -8,9 +8,9 @@ import java.beans.PropertyChangeSupport;
 
 public class TeamStatsViewModel extends ViewModel {
 
-    private TeamStatsState state;
+    private TeamStatsState state = new TeamStatsState();
 
-    public TeamStatsViewModel(){super("teamStats");}
+    public TeamStatsViewModel(){super("team stats");}
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

@@ -22,7 +22,7 @@ public class TeamStatsPresenter implements TeamStatsOutputBoundary{
     public void prepareSuccessView(TeamStatsOutputData response) {
         Map<String, Object> teamStats = response.getTeamStats();
 
-        TeamStatsState state = this.teamStatsViewModel.getState();
+        TeamStatsState state = teamStatsViewModel.getState();
 
         // Set all state attributes. If an attribute is null, it is set to be an empty string
         state.setName((teamStats.get("name") != jsonNull) ? (teamStats.get("name").toString()) : (""));
