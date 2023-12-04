@@ -92,6 +92,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        assert playerSeasonComparisonView != null;
         views.add(playerSeasonComparisonView, playerSeasonComparisonView.viewName);
 
         viewManagerModel.setActiveView(homeView.viewName);
