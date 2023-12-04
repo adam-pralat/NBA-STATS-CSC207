@@ -41,7 +41,7 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setGamesPlayed((season1PlayerStats.get("gamesPlayed") != jsonNull) ? (season1PlayerStats.get("gamesPlayed").toString()) : (""));
         state.setPoints((season1PlayerStats.get("points") != jsonNull) ? (season1PlayerStats.get("points").toString()) : (""));
         state.setAssists((season1PlayerStats.get("assists") != jsonNull) ? (season1PlayerStats.get("assists").toString()) : (""));
-        state.setTimePlayed((season1PlayerStats.get("timePlayed") != jsonNull) ? (season1PlayerStats.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setTimePlayed((season1PlayerStats.get("minutesPlayed") != jsonNull) ? (season1PlayerStats.get("minutesPlayed").toString()) : ("")); // Convert to minutes/seconds
         state.setFieldGoalsMade((season1PlayerStats.get("fieldGoalsMade") != jsonNull) ? (season1PlayerStats.get("fieldGoalsMade").toString()) : (""));
         state.setFieldGoalsAttempted((season1PlayerStats.get("fieldGoalsAttempted") != jsonNull) ? (season1PlayerStats.get("fieldGoalsAttempted").toString()) : (""));
         state.setFreeThrowsMade((season1PlayerStats.get("freeThrowsMade") != jsonNull) ? (season1PlayerStats.get("freeThrowsMade").toString()) : (""));
@@ -72,7 +72,7 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setStealsPerGame((season1PlayerStats.get("stealsPerGame") != jsonNull) ? (season1PlayerStats.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGame((season1PlayerStats.get("turnoversPerGame") != jsonNull) ? (season1PlayerStats.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGame((season1PlayerStats.get("blocksPerGame") != jsonNull) ? (season1PlayerStats.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGame((season1PlayerStats.get("timePlayedPerGame") != jsonNull) ? (season1PlayerStats.get("timePlayedPerGame").toString()) : (""));
+        state.setTimePlayedPerGame((season1PlayerStats.get("minutesPlayedPerGame") != jsonNull) ? (season1PlayerStats.get("minutesPlayedPerGame").toString()) : (""));
 
         // Percentage metrics for Season 1
         state.setFreeThrowPercentage((season1PlayerStats.get("freeThrowPercentage") != jsonNull) ? (season1PlayerStats.get("freeThrowPercentage").toString()) : (""));
@@ -83,7 +83,7 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setGamesPlayed1((season2PlayerStats.get("gamesPlayed") != jsonNull) ? (season2PlayerStats.get("gamesPlayed").toString()) : (""));
         state.setPoints1((season2PlayerStats.get("points") != jsonNull) ? (season2PlayerStats.get("points").toString()) : (""));
         state.setAssists1((season2PlayerStats.get("assists") != jsonNull) ? (season2PlayerStats.get("assists").toString()) : (""));
-        state.setTimePlayed1((season2PlayerStats.get("timePlayed") != jsonNull) ? (season2PlayerStats.get("timePlayed").toString()) : ("")); // Convert to minutes/seconds
+        state.setTimePlayed1((season2PlayerStats.get("minutesPlayed") != jsonNull) ? (season2PlayerStats.get("minutesPlayed").toString()) : ("")); // Convert to minutes/seconds
         state.setFieldGoalsMade1((season2PlayerStats.get("fieldGoalsMade") != jsonNull) ? (season2PlayerStats.get("fieldGoalsMade").toString()) : (""));
         state.setFieldGoalsAttempted1((season2PlayerStats.get("fieldGoalsAttempted") != jsonNull) ? (season2PlayerStats.get("fieldGoalsAttempted").toString()) : (""));
         state.setFreeThrowsMade1((season2PlayerStats.get("freeThrowsMade") != jsonNull) ? (season2PlayerStats.get("freeThrowsMade").toString()) : (""));
@@ -114,7 +114,7 @@ public class PlayerSeasonComparisonPresenter implements PlayerSeasonComparisonOu
         state.setStealsPerGame1((season2PlayerStats.get("stealsPerGame") != jsonNull) ? (season2PlayerStats.get("stealsPerGame").toString()) : (""));
         state.setTurnoversPerGame1((season2PlayerStats.get("turnoversPerGame") != jsonNull) ? (season2PlayerStats.get("turnoversPerGame").toString()) : (""));
         state.setBlocksPerGame1((season2PlayerStats.get("blocksPerGame") != jsonNull) ? (season2PlayerStats.get("blocksPerGame").toString()) : (""));
-        state.setTimePlayedPerGame1((season2PlayerStats.get("timePlayedPerGame") != jsonNull) ? (season2PlayerStats.get("timePlayedPerGame").toString()) : (""));
+        state.setTimePlayedPerGame1((season2PlayerStats.get("minutesPlayedPerGame") != jsonNull) ? (season2PlayerStats.get("minutesPlayedPerGame").toString()) : (""));
 
 
         // Set view and fire property changes
