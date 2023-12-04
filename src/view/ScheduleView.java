@@ -224,7 +224,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 awayTeam.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(e.getSource().equals(homeTeam)) {
+                        if(e.getSource().equals(awayTeam)) {
                             teamStatsController.execute(games.get(ID).getAwayTeamID());
                         }
                     }
