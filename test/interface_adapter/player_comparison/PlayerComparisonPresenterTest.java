@@ -108,7 +108,7 @@ class PlayerComparisonPresenterTest {
             assertEquals(String.valueOf(player1.getGamesPlayed()), state.getGamesPlayed());
             assertEquals(String.valueOf(player1.getPoints()), state.getPoints());
             assertEquals(String.valueOf(player1.getAssists()), state.getAssists());
-            assertEquals(String.valueOf(player1.getTimePlayed()), state.getTimePlayed());
+            assertEquals(String.valueOf(player1.minutesPlayed()), state.getTimePlayed());
             assertEquals(String.valueOf(player1.getFieldGoalsMade()), state.getFieldGoalsMade());
             assertEquals(String.valueOf(player1.getFieldGoalsAttempted()), state.getFieldGoalsAttempted());
             assertEquals(String.valueOf(player1.getFreeThrowsMade()), state.getFreeThrowsMade());
@@ -126,7 +126,7 @@ class PlayerComparisonPresenterTest {
 // Statistic metrics for per game for Player 1
             assertEquals(String.valueOf(player1.pointsPerGame()), state.getPointsPerGame());
             assertEquals(String.valueOf(player1.assistsPerGame()), state.getAssistsPerGame());
-            assertEquals(String.valueOf(player1.timePlayedPerGame()), state.getTimePlayedPerGame());
+            assertEquals(String.valueOf(player1.minutesPerGame()), state.getTimePlayedPerGame());
             assertEquals(String.valueOf(player1.fieldGoalsMadePerGame()), state.getFieldGoalsMadePerGame());
             assertEquals(String.valueOf(player1.fieldGoalsAttemptedPerGame()), state.getFieldGoalsAttemptedPerGame());
             assertEquals(String.valueOf(player1.freeThrowsMadePerGame()), state.getFreeThrowsMadePerGame());
@@ -162,7 +162,7 @@ class PlayerComparisonPresenterTest {
             assertEquals(String.valueOf(player2.getGamesPlayed()), state.getGamesPlayed1());
             assertEquals(String.valueOf(player2.getPoints()), state.getPoints1());
             assertEquals(String.valueOf(player2.getAssists()), state.getAssists1());
-            assertEquals(String.valueOf(player2.getTimePlayed()), state.getTimePlayed1());
+            assertEquals(String.valueOf(player2.minutesPlayed()), state.getTimePlayed1());
             assertEquals(String.valueOf(player2.getFieldGoalsMade()), state.getFieldGoalsMade1());
             assertEquals(String.valueOf(player2.getFieldGoalsAttempted()), state.getFieldGoalsAttempted1());
             assertEquals(String.valueOf(player2.getFreeThrowsMade()), state.getFreeThrowsMade1());
@@ -180,7 +180,7 @@ class PlayerComparisonPresenterTest {
 // Statistic metrics for per game for Player 2
             assertEquals(String.valueOf(player2.pointsPerGame()), state.getPointsPerGame1());
             assertEquals(String.valueOf(player2.assistsPerGame()), state.getAssistsPerGame1());
-            assertEquals(String.valueOf(player2.timePlayedPerGame()), state.getTimePlayedPerGame1());
+            assertEquals(String.valueOf(player2.minutesPerGame()), state.getTimePlayedPerGame1());
             assertEquals(String.valueOf(player2.fieldGoalsMadePerGame()), state.getFieldGoalsMadePerGame1());
             assertEquals(String.valueOf(player2.fieldGoalsAttemptedPerGame()), state.getFieldGoalsAttemptedPerGame1());
             assertEquals(String.valueOf(player2.freeThrowsMadePerGame()), state.getFreeThrowsMadePerGame1());
