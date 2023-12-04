@@ -20,22 +20,22 @@ public class PlayerStatsInteractor implements PlayerStatsInputBoundary {
     @Override
     public void execute(PlayerStatsInputData inputData) {
         int id = inputData.getId();
-        if (!playerStatsAccessObject.existsById(id)) {
-            playerStatsPresenter.prepareFailView("Player ID does not exist.");
-        } else {
-            try {
+        try {
+            if (!playerStatsAccessObject.existsById(id)) {
+                playerStatsPresenter.prepareFailView("Player ID does not exist.");
+            } else {
                 int currSeason = LocalDate.now().getYear();
                 Player player = playerStatsAccessObject.getPlayerInfo(id);
 
-                for(int season = 2015; season <= currSeason; season++) {
+                for (int season = 2015; season <= currSeason; season++) {
                     PlayerStats seasonPlayerStats = playerStatsAccessObject.getPlayerYearlyStats(id, season);
                     player.addStat(seasonPlayerStats);
                 }
 
                 playerStatsPresenter.prepareSuccessView(new PlayerStatsOutputData(player.toMap(), true));
-            } catch (Exception e) {
-                playerStatsPresenter.prepareFailView(e.toString());
             }
+        } catch (Exception e) {
+            playerStatsPresenter.prepareFailView("Error in getting data.");
         }
     }
 }

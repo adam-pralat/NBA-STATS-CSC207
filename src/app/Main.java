@@ -27,8 +27,9 @@ import java.io.IOException;
 import static app.IdInformationUseCaseFactory.getController;
 
 public class Main {
+    static ViewManagerModel viewManagerModel;
     public static void main(String[] args) {
-        JFrame application = new JFrame("APP Title -------");
+        JFrame application = new JFrame("Java Jumpman");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -38,7 +39,7 @@ public class Main {
         application.add(views);
 
         // This keeps track of and manages which view is currently showing.
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
+        viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
         // The data for the views, such as username and password, are in the ViewModels.
