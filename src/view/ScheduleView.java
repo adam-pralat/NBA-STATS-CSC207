@@ -24,18 +24,18 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     private final ScheduleViewModel scheduleViewModel;
     private final ScheduleController scheduleController;
     private final HomePageController homePageController;
-    // TODO private final TeamStatsController teamStatsController;
+    private final TeamStatsController teamStatsController;
     private final JLabel date;
     private final JButton exit;
     private final JButton previous;
     private final JButton next;
     private final JPanel gamesPanel;
 
-    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel, HomePageController homePageController) { // TODO , TeamStatsController teamStatsController
+    public ScheduleView(ScheduleController controller, ScheduleViewModel viewModel, HomePageController homePageController, TeamStatsController teamStatsController) {
         this.scheduleController = controller;
         this.scheduleViewModel = viewModel;
         this.homePageController = homePageController;
-        // TODO this.teamStatsController = teamStatsController;
+        this.teamStatsController = teamStatsController;
 
         scheduleViewModel.addPropertyChangeListener(this);
 
@@ -216,7 +216,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(e.getSource().equals(homeTeam)) {
-                            // TODO teamStatsController.execute(games.get(ID).getHomeTeamID());
+                            teamStatsController.execute(games.get(ID).getHomeTeamID());
                         }
                     }
                 });
@@ -225,7 +225,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(e.getSource().equals(homeTeam)) {
-                            // TODO teamStatsController.execute(games.get(ID).getAwayTeamID());
+                            teamStatsController.execute(games.get(ID).getAwayTeamID());
                         }
                     }
                 });
