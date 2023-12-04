@@ -8,6 +8,8 @@ import java.beans.PropertyChangeSupport;
 
 public class TeamStatsViewModel extends ViewModel {
 
+    public static final String EXIT_BUTTON_LABEL = "Exit";
+    public static final String VIEW_STATS_LABEL = "View Stats";
     private TeamStatsState state = new TeamStatsState();
 
     public TeamStatsViewModel(){super("team stats");}

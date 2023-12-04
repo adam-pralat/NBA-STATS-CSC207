@@ -32,15 +32,13 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
             "Phoenix Suns", "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs",
             "Toronto Raptors", "Utah Jazz", "Washington Wizards"
     };
-    // int[] possibleTeamIDs = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24,
-    // 25, 26, 27, 28, 29, 30, 31, 38, 41};
 
     private final TeamStatsViewModel teamStatsViewModel;
     private final TeamStatsController teamStatsController;
     private final HomePageController homePageController;
-    private final JComboBox<String> teamDropdown;
+    private final JComboBox<String> teamDropdown = new JComboBox<>(TEAM_NAMES);;
+    private final JPanel teams = new JPanel();
     private final JButton viewStatsButton;
-    private final JLabel teamStatsLabel;
     private final JButton exit;
 
     public TeamView(TeamStatsController controller, TeamStatsViewModel teamStatsViewModel, HomePageController homePageController) {
@@ -53,37 +51,13 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
         JLabel title = new JLabel("Team Statistics");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        teamDropdown = new JComboBox<>(TEAM_NAMES);
-        teamDropdown.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    String teamSelected = (String) teamDropdown.getSelectedItem();
-                    // Perform action based on team selected
-                    teamStatsLabel.setText("Selected team: " + teamSelected);
-                }
-            }
-        });
+        JLabel teamLabel = new JLabel("Select Team: ");
+        teams.add(teamLabel);
+        teams.add(teamDropdown);
 
-        viewStatsButton = new JButton("View Stats");
-        viewStatsButton.addActionListener(this);
-
-        teamStatsLabel = new JLabel();
-        teamStatsLabel.setVerticalAlignment(JLabel.TOP);
-
-        exit = new JButton("Exit");
-
-        JPanel selectionPanel = new JPanel();
-        selectionPanel.add(new JLabel("Select Team: "));
-        selectionPanel.add(teamDropdown);
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(title);
-        this.add(selectionPanel);
-        this.add(viewStatsButton);
-        this.add(teamStatsLabel);
-        this.add(exit);
-
+        JPanel buttons = new JPanel();
+        exit = new JButton(teamStatsViewModel.EXIT_BUTTON_LABEL);
+        exit.addActionListener(this);
         exit.addActionListener(
                 new ActionListener() {
                     @Override
@@ -94,14 +68,23 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                     }
                 }
         );
+        buttons.add(exit);
+
+        viewStatsButton = new JButton(TeamStatsViewModel.VIEW_STATS_LABEL);
+        buttons.add(viewStatsButton);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title);
+        this.add(teams);
+        this.add(buttons);
 
         viewStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(viewStatsButton)) {
-                    String teamName = (String) teamDropdown.getSelectedItem();
+                    String teamName = teamDropdown.getSelectedItem().toString();
                     int teamId = teamNameToIdMap.get(teamName);
-                    teamStatsController.execute(teamId);
+                    controller.execute(teamId);
                     TeamStatsState state = teamStatsViewModel.getState();
                     String[] columnNames = {"Name", "Nickname", "Code", "City", "Logo", "Conference", "Players", "Wins", "Losses",
                             "WinsPastTen", "LossesPastTen", "ConferencePlace", "Games", "FastBreakPoints",
@@ -115,7 +98,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                             "TurnoversPerGame", "BlocksPerGame", "PlusMinusPerGame", "FieldGoalPercentage",
                             "FreeThrowPercentage", "ThreePointPercentage"};
 
-                    Object[][] data = {
+                    Object[] data =
                             {
                                     state.getName(), state.getNickname(), state.getCode(), state.getCity(), state.getLogo(),
                                     state.getConference(), state.getPlayers(), state.getWins(), state.getLosses(),
@@ -132,14 +115,9 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                                     state.getOffensiveReboundsPerGame(), state.getDefensiveReboundsPerGame(),
                                     state.getReboundsPerGame(), state.getPersonalFoulsPerGame(), state.getStealsPerGame(),
                                     state.getTurnoversPerGame(), state.getBlocksPerGame(), state.getPlusMinusPerGame(),
-                                    String.format("%.2f%%", Integer.parseInt(state.getFieldGoalPercentage()) / 100.0),
-                                    String.format("%.2f%%", Integer.parseInt(state.getFreeThrowPercentage()) / 100.0),
-                                    String.format("%.2f%%", Integer.parseInt(state.getThreePointPercentage()) / 100.0)
-                            }
-                    };
-
+                                    state.getFieldGoalPercentage(), state.getFreeThrowPercentage(), state.getThreePointPercentage()
+                            };
                     showPopup(data, columnNames);
-                    System.out.println(Arrays.deepToString(data));
                 }
             }
         });
@@ -162,18 +140,26 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
 
 
 
-    private void showPopup(Object[][] data, String[] columnNames) {
+    private void showPopup(Object[] data, String[] columnNames) {
         JDialog popupDialog = new JDialog(JOptionPane.getFrameForComponent(this),
-                "Team Stats for " + data[0][0] + " - " + data[0][1], true);
-        popupDialog.setSize(new Dimension(400, 300));
+                "Team Stats for " + data[0] + " - " + data[1], true);
+        popupDialog.setSize(new Dimension(1200, 400));
 
-        JPanel contentPanel = new JPanel(new GridLayout(data.length, columnNames.length));
-        for (Object[] rowData : data) {
+        JPanel contentPanel = new JPanel(new GridLayout(2, columnNames.length));
+        Object[][] n = {columnNames, data};
+        for (Object[] rowData : n) {
             for (Object cellData : rowData) {
-                JLabel label = new JLabel((String) cellData);
-                label.setHorizontalAlignment(JLabel.HORIZONTAL);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                contentPanel.add(label);
+                if (cellData != null) {
+                    JLabel label = new JLabel((String) cellData);
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                } else {
+                    JLabel label = new JLabel("N/A");
+                    label.setHorizontalAlignment(JLabel.HORIZONTAL);
+                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    contentPanel.add(label);
+                }
             }
         }
 

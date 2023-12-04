@@ -67,7 +67,6 @@ public class TeamStatsState {
     private String freeThrowPercentage;
     private String threePointPercentage;
 
-    // Team Information error
 
     public TeamStatsState(TeamStatsState copy) {
 

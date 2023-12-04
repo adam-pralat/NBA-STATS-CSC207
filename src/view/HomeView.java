@@ -7,6 +7,7 @@ import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonController;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.schedule.ScheduleController;
+import interface_adapter.team_stats.TeamStatsController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,7 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private final PlayerComparisonController playerComparisonController;
     private final PlayerSeasonComparisonController playerSeasonComparisonController;
     private final PlayerStatsController playerStatsController;
+    private final TeamStatsController teamStatsController;
 
     private JScrollPane playerInfoPane = new JScrollPane();
 
@@ -43,13 +45,14 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
     private String[] teamRowData;
 
 
-    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController, PlayerSeasonComparisonController playerSeasonComparisonController, PlayerStatsController playerStatsController) {
+    public HomeView(HomePageViewModel viewModel, HomePageController homeController, ScheduleController scheduleController, PlayerComparisonController playerComparisonController, PlayerSeasonComparisonController playerSeasonComparisonController, PlayerStatsController playerStatsController, TeamStatsController teamStatsController) {
         this.viewModel = viewModel;
         this.homeController = homeController;
         this.scheduleController = scheduleController;
         this.playerComparisonController = playerComparisonController;
         this.playerSeasonComparisonController = playerSeasonComparisonController;
-        this. playerStatsController = playerStatsController;
+        this.playerStatsController = playerStatsController;
+        this.teamStatsController = teamStatsController;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -145,6 +148,17 @@ public class HomeView extends JPanel implements ActionListener, PropertyChangeLi
 
         teamStatsButton = new JButton(viewModel.TEAM_STATS_BUTTON_LABEL);
         buttons.add(teamStatsButton);
+        teamStatsButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(teamStatsButton)) {
+                            teamStatsController.execute(1);
+                        }
+                    }
+                }
+        );
+
 
         playerComparisonButton = new JButton(viewModel.PLAYER_COMPARISON_BUTTON_LABEL);
         buttons.add(playerComparisonButton);
