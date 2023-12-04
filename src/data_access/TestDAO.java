@@ -7,6 +7,7 @@ import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterfa
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
 import use_case.player_stats.PlayerStatsDataAccessInterface;
 import use_case.schedule.ScheduleDataAccessInterface;
+import use_case.team_stats.TeamStatsDataAccessInterface;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 // TODO: Rewrite tests with new player stats
 // Data access object that returns filler data for testing purposes
-public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface {
+public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface, TeamStatsDataAccessInterface {
     @Override
     public boolean playerExistsById(int playerID) {
         return true;
@@ -125,6 +126,17 @@ public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessI
                 0,
                 0,
                 0
+        );
+    }
+
+    @Override
+    public TeamRecord getYearlyRecord(int teamID, int season) {
+        return new TeamRecord(
+                1,
+                0,
+                1,
+                0,
+                1
         );
     }
 

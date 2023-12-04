@@ -24,26 +24,27 @@ public class TeamStatsInteractor implements TeamStatsInputBoundary {
     @Override
     public void execute(TeamStatsInputData inputData) {
         int teamId = inputData.getTeamId();
-        if (!teamStatsDataAccessInterface.existsById(teamId)) {
-            teamStatsOutputBoundary.prepareFailView("Team ID does not exist.");
-        } else {
-            try {
-                int currSeason = LocalDate.now().getYear();
-                Team team = teamStatsDataAccessInterface.getTeamInfo(teamId);
+        try {
+            if (!teamStatsDataAccessInterface.existsById(teamId)) {
+                teamStatsOutputBoundary.prepareFailView("Team ID does not exist.");
+            } else {
 
-                //TODO method for yearly record, similar to Yearly stats
+                    int currSeason = LocalDate.now().getYear();
+                    Team team = teamStatsDataAccessInterface.getTeamInfo(teamId);
 
-                for(int season = 2015; season <= currSeason; season++) {
-                    TeamStats seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamId, season);
-                    team.addStat(seasonTeamStats);
-                    TeamRecord seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamId, season);
-                    team.addRecord(seasonTeamRecord);
-                }
+                    //TODO method for yearly record, similar to Yearly stats
 
-                teamStatsOutputBoundary.prepareSuccessView(new TeamStatsOutputData(team.toMap(), true));
-            } catch (Exception e) {
-                teamStatsOutputBoundary.prepareFailView(e.toString());
+                    for(int season = 2015; season <= currSeason; season++) {
+                        TeamStats seasonTeamStats = teamStatsDataAccessInterface.getTeamYearlyStats(teamId, season);
+                        team.addStat(seasonTeamStats);
+                        TeamRecord seasonTeamRecord = teamStatsDataAccessInterface.getYearlyRecord(teamId, season);
+                        team.addRecord(seasonTeamRecord);
+                    }
+
+                    teamStatsOutputBoundary.prepareSuccessView(new TeamStatsOutputData(team.toMap(), true));
             }
+        } catch (Exception e) {
+            teamStatsOutputBoundary.prepareFailView("Error in getting data.");
         }
     }
 }
