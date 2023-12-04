@@ -20,4 +20,7 @@ public class PlayerSeasonComparisonOutputData {
         return this.playerSeason2Stats;
     }
 
+    public boolean isUseCaseFailed() {
+        return this.useCaseFailed;
+    }
 }

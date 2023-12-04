@@ -3,6 +3,7 @@ package data_access;
 import entity.*;
 import org.json.JSONException;
 import use_case.home_page.HomePageDataAccessInterface;
+import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterface;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
 import use_case.schedule.ScheduleDataAccessInterface;
 
@@ -14,8 +15,7 @@ import java.util.Map;
 
 // TODO: Rewrite tests with new player stats
 // Data access object that returns filler data for testing purposes
-public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerComparisonDataAccessInterface {
-  
+public class TestDAO implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface {
     @Override
     public boolean playerExistsById(int playerID) {
         return true;
