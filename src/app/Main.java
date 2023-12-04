@@ -1,6 +1,7 @@
 package app;
 
 import data_access.*;
+import entity.PlayerStats;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
@@ -10,6 +11,7 @@ import interface_adapter.player_comparison.PlayerComparisonController;
 import interface_adapter.player_comparison.PlayerComparisonViewModel;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonController;
 import interface_adapter.player_season_comparison.PlayerSeasonComparisonViewModel;
+import interface_adapter.player_stats.PlayerStatsViewModel;
 import interface_adapter.player_stats.PlayerStatsController;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleViewModel;
@@ -46,6 +48,7 @@ public class Main {
         ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
         IdInformationViewModel idInformationViewModel = new IdInformationViewModel();
         PlayerSeasonComparisonViewModel playerSeasonComparisonViewModel = new PlayerSeasonComparisonViewModel();
+        PlayerStatsViewModel playerStatsViewModel = new PlayerStatsViewModel();
 
         PlayerDataAccessObject playerDAO = new PlayerDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
         TeamDataAccessObject teamDAO = new TeamDataAccessObject("7925154257mshf7cd3eb10ac507cp1d04b9jsnaba7faa4cf09");
@@ -58,10 +61,17 @@ public class Main {
         ScheduleController scheduleController = ScheduleUseCaseFactory.createScheduleUseCase(viewManagerModel, scheduleViewModel, gameDAO);
         HomePageController homePageController = HomePageUseCaseFactory.createHomePageUseCase(viewManagerModel, homePageViewModel, homeDAO);
         PlayerSeasonComparisonController playerSeasonComparisonController = PlayerSeasonComparisonUseCaseFactory.createPlayerSeasonComparisonUseCase(viewManagerModel, playerSeasonComparisonViewModel, playerDAO);
-
+        PlayerStatsController playerStatsController = PlayerStatsUseCaseFactory.createPlayerStatsUseCase(viewManagerModel, playerStatsViewModel, playerDAO);
         ScheduleView scheduleView = ScheduleUseCaseFactory.create(scheduleViewModel, scheduleController, homePageController);
         views.add(scheduleView, scheduleView.viewName);
 
+        PlayerStatsView playerStatsView;
+        try {
+            playerStatsView = PlayerStatsUseCaseFactory.create(viewManagerModel, playerStatsViewModel, playerDAO, idInformationViewModel, IDDAO, homePageController);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        views.add(playerStatsView, playerStatsView.viewName);
 
         IdInformationController idInformationController = IdInformationUseCaseFactory.getController(idInformationViewModel, IDDAO);
 
@@ -69,7 +79,7 @@ public class Main {
         PlayerComparisonView playerComparisonView = PlayerComparisonUseCaseFactory.create(playerComparisonViewModel, playerComparisonController, idInformationController, idInformationViewModel, homePageController);
         views.add(playerComparisonView, playerComparisonView.viewName);
 
-        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController);
+        HomeView homeView = HomePageUseCaseFactory.create(homePageViewModel, homePageController, scheduleController, playerComparisonController, playerSeasonComparisonController, playerStatsController);
         views.add(homeView, homeView.viewName);
 
         PlayerSeasonComparisonView playerSeasonComparisonView;
