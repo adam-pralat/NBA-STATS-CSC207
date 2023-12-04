@@ -11,10 +11,6 @@ import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterfa
 import use_case.player_stats.PlayerStatsDataAccessInterface;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-// TODO: Issue - API rate limit is hit + Get FG% and 3P% and FT%
 
 public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, PlayerComparisonDataAccessInterface, PlayerSeasonComparisonDataAccessInterface {
     private Object jsonNull = JSONObject.NULL;// JSON value for null
@@ -22,10 +18,6 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
 
     public PlayerDataAccessObject(String apiKey) {
         this.apiKey = apiKey;
-    }
-
-    public static void main(String args[]) {
-        // System.out.println(existsById(100000));
     }
 
     public boolean existsById(int playerID) throws JSONException {

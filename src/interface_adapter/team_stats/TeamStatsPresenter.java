@@ -18,6 +18,7 @@ public class TeamStatsPresenter implements TeamStatsOutputBoundary{
         this.viewManagerModel = viewManagerModel;
     }
 
+
     @Override
     public void prepareSuccessView(TeamStatsOutputData response) {
         Map<String, Object> teamStats = response.getTeamStats();
