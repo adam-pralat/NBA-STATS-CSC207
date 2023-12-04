@@ -3,6 +3,7 @@ package data_access;
 import entity.*;
 import org.json.JSONException;
 import use_case.home_page.HomePageDataAccessInterface;
+import use_case.player_season_comparison.PlayerSeasonComparisonDataAccessInterface;
 import use_case.player_comparison.PlayerComparisonDataAccessInterface;
 import use_case.schedule.ScheduleDataAccessInterface;
 
@@ -10,9 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
-//
-
-public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerComparisonDataAccessInterface {
+public class TestDAOErrors implements HomePageDataAccessInterface, ScheduleDataAccessInterface, PlayerSeasonComparisonDataAccessInterface, PlayerComparisonDataAccessInterface {
     // HomePage methods
     @Override
     public boolean playerExistsById(int playerID) {
