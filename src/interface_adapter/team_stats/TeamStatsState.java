@@ -68,114 +68,46 @@ public class TeamStatsState {
     private String threePointPercentage;
 
     // Team Information error
-    private String nameError = null;
-    private String nicknameError = null;
-    private String codeError = null;
-    private String cityError = null;
-    private String logoError = null;
-    private String conferenceError = null;
-    private ArrayList<Player> playersError = null;
-
-    // Wins/Losses error
-    private String winsError = null;
-    private String lossesError = null;
-    private String winsPastTenError = null;
-    private String lossesPastTenError = null;
-    private String conferencePlaceError = null;
-
-    // Team Statistics error
-    private String gamesError = null;
-    private String fastBreakPointsError = null;
-    private String pointsInPaintError = null;
-    private String secondChancePointsError = null;
-    private String pointsOffTurnoversError = null;
-    private String pointsError = null;
-    private String fieldGoalsMadeError = null;
-    private String fieldGoalsAttemptedError = null;
-    private String freeThrowsMadeError = null;
-    private String freeThrowsAttemptedError = null;
-    private String threePointsMadeError = null;
-    private String threePointsAttemptedError = null;
-    private String offRebError = null;
-    private String defRebError = null;
-    private String assistsError = null;
-    private String pFoulsError = null;
-    private String stealsError = null;
-    private String turnoversError = null;
-    private String blocksError = null;
-    private String plusMinusError = null;
 
     public TeamStatsState(TeamStatsState copy) {
 
         // Team Information
         name = copy.name;
-        nameError = copy.nameError;
         nickname = copy.nickname;
-        nicknameError = copy.nicknameError;
         code = copy.code;
-        codeError = copy.codeError;
         city = copy.city;
-        cityError = copy.cityError;
         logo = copy.logo;
-        logoError = copy.logoError;
         conference = copy.conference;
-        conferenceError = copy.conferenceError;
         players = copy.players;
-        playersError = copy.playersError;
 
         // Wins/Losses
         wins = copy.wins;
-        winsError = copy.winsError;
         losses = copy.losses;
-        lossesError = copy.lossesError;
         winsPastTen = copy.winsPastTen;
-        winsPastTenError = copy.winsPastTenError;
         lossesPastTen = copy.lossesPastTen;
-        lossesPastTenError = copy.lossesPastTenError;
         conferencePlace = copy.conferencePlace;
-        conferencePlaceError = copy.conferencePlaceError;
 
         // Team Statistics
         games = copy.games;
-        gamesError = copy.gamesError;
         fastBreakPoints = copy.fastBreakPoints;
-        fastBreakPointsError = copy.fastBreakPointsError;
         pointsInPaint = copy.pointsInPaint;
-        pointsInPaintError = copy.pointsInPaintError;
         secondChancePoints = copy.secondChancePoints;
-        secondChancePointsError = copy.secondChancePointsError;
         pointsOffTurnovers = copy.pointsOffTurnovers;
-        pointsOffTurnoversError = copy.pointsOffTurnoversError;
         points = copy.points;
-        pointsError = copy.pointsError;
         fieldGoalsMade = copy.fieldGoalsMade;
-        fieldGoalsMadeError = copy.fieldGoalsMadeError;
         fieldGoalsAttempted = copy.fieldGoalsAttempted;
-        fieldGoalsAttemptedError = copy.fieldGoalsAttemptedError;
         freeThrowsMade = copy.freeThrowsMade;
-        freeThrowsMadeError = copy.freeThrowsMadeError;
         freeThrowsAttempted = copy.freeThrowsAttempted;
-        freeThrowsAttemptedError = copy.freeThrowsAttemptedError;
         threePointsMade = copy.threePointsMade;
-        threePointsMadeError = copy.threePointsMadeError;
         threePointsAttempted = copy.threePointsAttempted;
-        threePointsAttemptedError = copy.threePointsAttemptedError;
         offReb = copy.offReb;
-        offRebError = copy.offRebError;
         defReb = copy.defReb;
-        defRebError = copy.defRebError;
         assists = copy.assists;
-        assistsError = copy.assistsError;
         pFouls = copy.pFouls;
-        pFoulsError = copy.pFoulsError;
         steals = copy.steals;
-        stealsError = copy.stealsError;
         turnovers = copy.turnovers;
-        turnoversError = copy.turnoversError;
         blocks = copy.blocks;
-        blocksError = copy.blocksError;
         plusMinus = copy.plusMinus;
-        plusMinusError = copy.plusMinusError;
 
         // Per game metrics
         pointsPerGame = copy.pointsPerGame;
@@ -619,261 +551,4 @@ public class TeamStatsState {
     public void setThreePointPercentage(String threePointPercentage) {
         this.threePointPercentage = threePointPercentage;
     }
-
-    public String getNameError() {
-        return nameError;
-    }
-
-    public void setNameError(String nameError) {
-        this.nameError = nameError;
-    }
-
-    public String getNicknameError() {
-        return nicknameError;
-    }
-
-    public void setNicknameError(String nicknameError) {
-        this.nicknameError = nicknameError;
-    }
-
-    public String getCodeError() {
-        return codeError;
-    }
-
-    public void setCodeError(String codeError) {
-        this.codeError = codeError;
-    }
-
-    public String getCityError() {
-        return cityError;
-    }
-
-    public void setCityError(String cityError) {
-        this.cityError = cityError;
-    }
-
-    public String getLogoError() {
-        return logoError;
-    }
-
-    public void setLogoError(String logoError) {
-        this.logoError = logoError;
-    }
-
-    public String getConferenceError() {
-        return conferenceError;
-    }
-
-    public void setConferenceError(String conferenceError) {
-        this.conferenceError = conferenceError;
-    }
-
-    public ArrayList<Player> getPlayersError() {
-        return playersError;
-    }
-
-    public void setPlayersError(ArrayList<Player> playersError) {
-        this.playersError = playersError;
-    }
-
-    public String getWinsError() {
-        return winsError;
-    }
-
-    public void setWinsError(String winsError) {
-        this.winsError = winsError;
-    }
-
-    public String getLossesError() {
-        return lossesError;
-    }
-
-    public void setLossesError(String lossesError) {
-        this.lossesError = lossesError;
-    }
-
-    public String getWinsPastTenError() {
-        return winsPastTenError;
-    }
-
-    public void setWinsPastTenError(String winsPastTenError) {
-        this.winsPastTenError = winsPastTenError;
-    }
-
-    public String getLossesPastTenError() {
-        return lossesPastTenError;
-    }
-
-    public void setLossesPastTenError(String lossesPastTenError) {
-        this.lossesPastTenError = lossesPastTenError;
-    }
-
-    public String getConferencePlaceError() {
-        return conferencePlaceError;
-    }
-
-    public void setConferencePlaceError(String conferencePlaceError) {
-        this.conferencePlaceError = conferencePlaceError;
-    }
-
-    public String getGamesError() {
-        return gamesError;
-    }
-
-    public void setGamesError(String gamesError) {
-        this.gamesError = gamesError;
-    }
-
-    public String getFastBreakPointsError() {
-        return fastBreakPointsError;
-    }
-
-    public void setFastBreakPointsError(String fastBreakPointsError) {
-        this.fastBreakPointsError = fastBreakPointsError;
-    }
-
-    public String getPointsInPaintError() {
-        return pointsInPaintError;
-    }
-
-    public void setPointsInPaintError(String pointsInPaintError) {
-        this.pointsInPaintError = pointsInPaintError;
-    }
-
-    public String getSecondChancePointsError() {
-        return secondChancePointsError;
-    }
-
-    public void setSecondChancePointsError(String secondChancePointsError) {
-        this.secondChancePointsError = secondChancePointsError;
-    }
-
-    public String getPointsOffTurnoversError() {
-        return pointsOffTurnoversError;
-    }
-
-    public void setPointsOffTurnoversError(String pointsOffTurnoversError) {
-        this.pointsOffTurnoversError = pointsOffTurnoversError;
-    }
-
-    public String getPointsError() {
-        return pointsError;
-    }
-
-    public void setPointsError(String pointsError) {
-        this.pointsError = pointsError;
-    }
-
-    public String getFieldGoalsMadeError() {
-        return fieldGoalsMadeError;
-    }
-
-    public void setFieldGoalsMadeError(String fieldGoalsMadeError) {
-        this.fieldGoalsMadeError = fieldGoalsMadeError;
-    }
-
-    public String getFieldGoalsAttemptedError() {
-        return fieldGoalsAttemptedError;
-    }
-
-    public void setFieldGoalsAttemptedError(String fieldGoalsAttemptedError) {
-        this.fieldGoalsAttemptedError = fieldGoalsAttemptedError;
-    }
-
-    public String getFreeThrowsMadeError() {
-        return freeThrowsMadeError;
-    }
-
-    public void setFreeThrowsMadeError(String freeThrowsMadeError) {
-        this.freeThrowsMadeError = freeThrowsMadeError;
-    }
-
-    public String getFreeThrowsAttemptedError() {
-        return freeThrowsAttemptedError;
-    }
-
-    public void setFreeThrowsAttemptedError(String freeThrowsAttemptedError) {
-        this.freeThrowsAttemptedError = freeThrowsAttemptedError;
-    }
-
-    public String getThreePointsMadeError() {
-        return threePointsMadeError;
-    }
-
-    public void setThreePointsMadeError(String threePointsMadeError) {
-        this.threePointsMadeError = threePointsMadeError;
-    }
-
-    public String getThreePointsAttemptedError() {
-        return threePointsAttemptedError;
-    }
-
-    public void setThreePointsAttemptedError(String threePointsAttemptedError) {
-        this.threePointsAttemptedError = threePointsAttemptedError;
-    }
-
-    public String getOffRebError() {
-        return offRebError;
-    }
-
-    public void setOffRebError(String offRebError) {
-        this.offRebError = offRebError;
-    }
-
-    public String getDefRebError() {
-        return defRebError;
-    }
-
-    public void setDefRebError(String defRebError) {
-        this.defRebError = defRebError;
-    }
-
-    public String getAssistsError() {
-        return assistsError;
-    }
-
-    public void setAssistsError(String assistsError) {
-        this.assistsError = assistsError;
-    }
-
-    public String getpFoulsError() {
-        return pFoulsError;
-    }
-
-    public void setpFoulsError(String pFoulsError) {
-        this.pFoulsError = pFoulsError;
-    }
-
-    public String getStealsError() {
-        return stealsError;
-    }
-
-    public void setStealsError(String stealsError) {
-        this.stealsError = stealsError;
-    }
-
-    public String getTurnoversError() {
-        return turnoversError;
-    }
-
-    public void setTurnoversError(String turnoversError) {
-        this.turnoversError = turnoversError;
-    }
-
-    public String getBlocksError() {
-        return blocksError;
-    }
-
-    public void setBlocksError(String blocksError) {
-        this.blocksError = blocksError;
-    }
-
-    public String getPlusMinusError() {
-        return plusMinusError;
-    }
-
-    public void setPlusMinusError(String plusMinusError) {
-        this.plusMinusError = plusMinusError;
-    }
-
 }
