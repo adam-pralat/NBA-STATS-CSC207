@@ -67,6 +67,7 @@ public class TeamStatsState {
     private String freeThrowPercentage;
     private String threePointPercentage;
 
+
     public TeamStatsState(TeamStatsState copy) {
 
         // Team Information

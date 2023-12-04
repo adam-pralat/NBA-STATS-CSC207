@@ -314,39 +314,4 @@ public class HomePageState {
     public void setError(String error) {
         this.error = error;
     }
-
-    @Override
-    public String toString() {
-        return "HomePageState{" +
-                "error='" + error + '\'' +
-                ", playerFirstName='" + playerFirstName + '\'' +
-                ", playerLastName='" + playerLastName + '\'' +
-                ", playerBirthDate='" + playerBirthDate + '\'' +
-                ", playerCountry='" + playerCountry + '\'' +
-                ", playerTeam='" + playerTeam + '\'' +
-                ", playerPointsPerGame=" + playerPointsPerGame +
-                ", playerAssistsPerGame=" + playerAssistsPerGame +
-                ", playerFreeThrowPercentage=" + playerFreeThrowPercentage +
-                ", playerFieldGoalPercentage=" + playerFieldGoalPercentage +
-                ", playerThreePointPercentage=" + playerThreePointPercentage +
-                ", playerMinutesPlayedPerGame=" + playerMinutesPlayedPerGame +
-                ", playerStealsPerGame=" + playerStealsPerGame +
-                ", playerTurnoversPerGame=" + playerTurnoversPerGame +
-                ", playerBlocksPerGame=" + playerBlocksPerGame +
-                ", teamName='" + teamName + '\'' +
-                ", teamNickname='" + teamNickname + '\'' +
-                ", teamCode='" + teamCode + '\'' +
-                ", conference='" + conference + '\'' +
-                ", teamWins=" + teamWins +
-                ", teamLosses=" + teamLosses +
-                ", teamsWinsLastTen=" + teamsWinsLastTen +
-                ", teamsLossesLastTen=" + teamsLossesLastTen +
-                ", conferencePlace=" + conferencePlace +
-                ", teamPointsPerGame=" + teamPointsPerGame +
-                ", teamFreeThrowPercentage=" + teamFreeThrowPercentage +
-                ", teamFieldGoalPercentage=" + teamFieldGoalPercentage +
-                ", teamThreePointPercentage=" + teamThreePointPercentage +
-                ", useCaseFailed=" + useCaseFailed +
-                '}';
-    }
 }
