@@ -115,7 +115,7 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
                                     state.getOffensiveReboundsPerGame(), state.getDefensiveReboundsPerGame(),
                                     state.getReboundsPerGame(), state.getPersonalFoulsPerGame(), state.getStealsPerGame(),
                                     state.getTurnoversPerGame(), state.getBlocksPerGame(), state.getPlusMinusPerGame(),
-                                    state.getFieldGoalPercentage(), state.getFreeThrowPercentage(), state.getThreePointPercentage()
+                                    state.getFieldGoalPercentage() + "%", state.getFreeThrowPercentage() + "%", state.getThreePointPercentage() + "%"
                             };
                     showPopup(data, columnNames);
                 }
@@ -149,13 +149,13 @@ public class TeamView extends JPanel implements ActionListener, PropertyChangeLi
         Object[][] n = {columnNames, data};
         for (Object[] rowData : n) {
             for (Object cellData : rowData) {
-                if (cellData != null) {
-                    JLabel label = new JLabel((String) cellData);
+                if (cellData == null || ((String) cellData).equals("null%")) {
+                    JLabel label = new JLabel("N/A");
                     label.setHorizontalAlignment(JLabel.HORIZONTAL);
                     label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     contentPanel.add(label);
                 } else {
-                    JLabel label = new JLabel("N/A");
+                    JLabel label = new JLabel((String) cellData);
                     label.setHorizontalAlignment(JLabel.HORIZONTAL);
                     label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     contentPanel.add(label);

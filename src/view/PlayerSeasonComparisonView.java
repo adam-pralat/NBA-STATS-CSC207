@@ -167,8 +167,8 @@ public class PlayerSeasonComparisonView extends JPanel implements ActionListener
                             currentState.getDefensiveReboundsPerGame(), currentState.getReboundsPerGame(),
                             currentState.getPersonalFoulsPerGame(), currentState.getStealsPerGame(),
                             currentState.getTurnoversPerGame(), currentState.getBlocksPerGame(),
-                            currentState.getPlusMinusPerGame(), currentState.getFreeThrowPercentage(),
-                            currentState.getFieldGoalPercentage(), currentState.getThreePointPercentage()},
+                            currentState.getPlusMinusPerGame(), currentState.getFreeThrowPercentage() + "%",
+                            currentState.getFieldGoalPercentage() + "%", currentState.getThreePointPercentage() + "%"},
                             {s2, currentState.getGamesPlayed1(), currentState.getPoints1(),
                                     currentState.getAssists1(), currentState.getTimePlayed1(), currentState.getFieldGoalsMade1(),
                                     currentState.getFieldGoalsAttempted1(), currentState.getFreeThrowsMade1(),
@@ -184,8 +184,8 @@ public class PlayerSeasonComparisonView extends JPanel implements ActionListener
                                     currentState.getDefensiveReboundsPerGame1(), currentState.getReboundsPerGame1(),
                                     currentState.getPersonalFoulsPerGame1(), currentState.getStealsPerGame1(),
                                     currentState.getTurnoversPerGame1(), currentState.getBlocksPerGame1(),
-                                    currentState.getPlusMinusPerGame1(), currentState.getFreeThrowPercentage1(),
-                                    currentState.getFieldGoalPercentage1(), currentState.getThreePointPercentage1()}
+                                    currentState.getPlusMinusPerGame1(), currentState.getFreeThrowPercentage1() + "%",
+                                    currentState.getFieldGoalPercentage1() + "%", currentState.getThreePointPercentage1() + "%"}
                     };
                     showPopup(data, columnNames);
                 }
@@ -229,13 +229,13 @@ public class PlayerSeasonComparisonView extends JPanel implements ActionListener
 
         for (Object[] rowData : n) {
             for (Object cellData : rowData) {
-                if (cellData != null) {
-                    JLabel label = new JLabel(String.valueOf(cellData));
+                if (cellData == null || String.valueOf(cellData).equals("null%")) {
+                    JLabel label = new JLabel("N/A");
                     label.setHorizontalAlignment(JLabel.HORIZONTAL);
                     label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     contentPanel.add(label);
                 } else {
-                    JLabel label = new JLabel("N/A");
+                    JLabel label = new JLabel(String.valueOf(cellData));
                     label.setHorizontalAlignment(JLabel.HORIZONTAL);
                     label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     contentPanel.add(label);

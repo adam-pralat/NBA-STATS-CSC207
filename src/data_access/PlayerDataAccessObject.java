@@ -119,10 +119,8 @@ public class PlayerDataAccessObject implements PlayerStatsDataAccessInterface, P
             Response playerStatsResponse = playerStatsClient.newCall(playerStatsRequest).execute();
 
             // Display API response
-            // System.out.println(response);
 
             JSONObject playerStatsResponseJSON = new JSONObject(playerStatsResponse.body().string());
-            System.out.println(playerStatsResponseJSON);
             JSONArray gameStatsJSON = playerStatsResponseJSON.getJSONArray("response");
 
             // Add player stats to existing player object
